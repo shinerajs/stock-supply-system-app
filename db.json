@@ -1,0 +1,76 @@
+{
+  "users": [
+    {
+      "fullName": "test user",
+      "email": "test1@gmail.com",
+      "password": "1234",
+      "id": 1
+    },
+    {
+      "fullName": "test Data",
+      "email": "test@gmail.com",
+      "password": "123456",
+      "id": 2
+    },
+    {
+      "fullName": "Shine Raj",
+      "email": "shinerajs53@gmail.com",
+      "password": "1234",
+      "id": 3
+    },
+    {
+      "fullName": "Ananthu",
+      "email": "test@gmail.com",
+      "password": "123456",
+      "id": 4
+    },
+    {
+      "fullName": "Subash",
+      "email": "subu@gmail.com",
+      "password": "1234",
+      "id": 5
+    },
+    {
+      "fullName": "Sooraj",
+      "email": "sooraj@gmail.com",
+      "password": "1234",
+      "id": 6
+    },
+    {
+      "fullName": "Athira",
+      "email": "athira@gmail.com",
+      "password": "athira123",
+      "id": 7
+    },
+    {
+      "fullName": "Subhash",
+      "email": "subivzm@gmail.com",
+      "password": "quest123",
+      "id": 8
+    },
+    {
+      "fullName": "Jekre",
+      "email": "jekree@gmail.com",
+      "password": "test1234",
+      "id": 9
+    }
+  ],
+  "suppliers": [
+    {
+      "name": "Shine",
+      "product": "Rice",
+      "quantity": "20kg",
+      "inumber": "22/03/2023",
+      "amount": "280",
+      "id": 8
+    },
+    {
+      "name": "Vishnu",
+      "product": "Tomoto",
+      "quantity": "10kg",
+      "inumber": "15/02/2024",
+      "amount": "500",
+      "id": 9
+    }
+  ]
+}

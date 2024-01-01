@@ -1,0 +1,8 @@
+.btn-margin {
+    margin-top: 10px;
+}
+
+:host ::ng-deep .btn-margin .p-button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

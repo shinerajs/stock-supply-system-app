@@ -2,10 +2,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { User } from 'src/app/interfaces/auth';
 import { Supplier } from 'src/app/interfaces/supplier';
-import { SupplierService } from 'src/app/services/supplier.service';
+//import { SupplierService } from 'src/app/services/supplier.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { Firestore, collection, addDoc, collectionData } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-supplier-form',
@@ -14,30 +15,56 @@ import { Router } from '@angular/router';
 })
 export class SupplierFormComponent {
 
+  supplierData!: Observable<any>;
+
   suppliers: Supplier[] = [];
+
   displayAddEditModal = false;
   selectedProduct: any = null;
   subscriptions: Subscription[] = [];
   suplySubscription: Subscription = new Subscription();
 
-  constructor(private supplierService: SupplierService,
+  constructor(
+    // private supplierData: SupplierService,
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
-    private router: Router) { }
+    private router: Router,
+    private firestore: Firestore) {
 
-  ngOnInit(): void {
+
     this.getSupplierList();
   }
 
   getSupplierList() {
-    this.suplySubscription = this.supplierService.getSuppliers().subscribe(
-      response => {
-        console.log(response);
+    const collectionInstance = collection(this.firestore, 'suppliers');
+    collectionData(collectionInstance).subscribe(res => {
+      console.log(res);
 
-        this.suppliers = response;
-      }
-    );
-    this.subscriptions.push(this.suplySubscription)
+    })
+    this.supplierData = collectionData(collectionInstance);
+    console.log(this.supplierData);
+
+    // this.supplierData.getSuppliers().subscribe(res => {
+
+    //   this.suppliers = res.map((e: any) => {
+    //     const data = e.payload.doc.data();
+    //     data.id = e.payload.doc.id;
+    //     return data;
+    //   })
+    // }, err => {
+    //   alert('Error while fetching supplier data');
+    // })
+
+
+
+    // this.suplySubscription = this.supplierService.getSuppliers().subscribe(
+    //   response => {
+    //     console.log(response);
+
+    //     this.suppliers = response;
+    //   }
+    // );
+    // this.subscriptions.push(this.suplySubscription)
   }
 
   showAddModal() {
@@ -89,21 +116,34 @@ export class SupplierFormComponent {
 
 
   deleteSupplier(supplier: Supplier) {
-    this.confirmationService.confirm({
-      header: 'Are you sure want to delete?',
-      message: 'Please confirm to proceed.',
-      accept: () => {
-        this.supplierService.deleteSupplier(supplier.id).subscribe(
-          response => {
-            this.suppliers = this.suppliers.filter(data => data.id !== supplier.id);
-            this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Deleted Successfully!' });
-          }
-        )
-      },
-      reject: () => {
-        this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected!' });
-      }
-    });
+    // this.confirmationService.confirm({
+    //   header: 'Are you sure want to delete' + supplier.name + '?',
+    //   message: 'Please confirm to proceed.',
+    //   accept: () => {
+    //     this.supplierData.deleteSupplier(supplier);
+    //     this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Deleted Successfully!' });
+
+    //   },
+    //   reject: () => {
+    //     this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected!' });
+    //   }
+    // });
+
+    // this.confirmationService.confirm({
+    //   header: 'Are you sure want to delete?',
+    //   message: 'Please confirm to proceed.',
+    //   accept: () => {
+    //     this.supplierService.deleteSupplier(supplier.id).subscribe(
+    //       response => {
+    //         this.suppliers = this.suppliers.filter(data => data.id !== supplier.id);
+    //         this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Deleted Successfully!' });
+    //       }
+    //     )
+    //   },
+    //   reject: () => {
+    //     this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected!' });
+    //   }
+    // });
   }
 
 

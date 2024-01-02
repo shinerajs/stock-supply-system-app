@@ -1,50 +1,63 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Supplier } from 'src/app/interfaces/supplier';
-import { User } from '../interfaces/auth';
+// import { HttpClient } from '@angular/common/http';
+// import { Injectable } from '@angular/core';
+// import { Observable } from 'rxjs';
+// import { Supplier } from 'src/app/interfaces/supplier';
+// import { User } from '../interfaces/auth';
+// import { AngularFirestore } from '@angular/fire/compat/firestore'
 
-@Injectable({
-  providedIn: 'root'
-})
-export class SupplierService {
+// @Injectable({
+//   providedIn: 'root'
+// })
+// export class SupplierService {
 
-  private baseUrl = 'http://localhost:3000';
+//   constructor(private fireStore: AngularFirestore) { }
 
-  constructor(private http: HttpClient) { }
+//   //add supplier
 
-  saveSuppliers(supplierDetails: Supplier) {
-    return this.http.post(`${this.baseUrl}/suppliers`, supplierDetails)
-  }
+//   saveSuppliers(supplierDetails: Supplier) {
+//     supplierDetails.id = this.fireStore.createId();
+//     return this.fireStore.collection('/Suppliers').add(supplierDetails);
+//   }
 
-  getSuppliers(): Observable<Supplier[]> {
-    return this.http.get<Supplier[]>(`${this.baseUrl}/suppliers`)
-  }
+//   //get supplier
 
-  editSupplier(postData: any, selectedPdt: any) {
-    if (!selectedPdt) {
-      return this.http.post(`${this.baseUrl}/suppliers`, postData);
-    } else {
-      return this.http.put(`${this.baseUrl}/suppliers/${selectedPdt.id}`, postData);
-    }
-  }
+//   getSuppliers() {
+//     return this.fireStore.collection('/Suppliers').snapshotChanges();
+//   }
 
-  deleteSupplier(supplierId: number) {
-    return this.http.delete(`${this.baseUrl}/suppliers/${supplierId}`);
-  }
+//   //delete supplier
 
-}
+//   deleteSupplier(supplierDetails: Supplier) {
+//     return this.fireStore.doc('/Suppliers/' + supplierDetails.id).delete();
+//   }
 
+//   //update supplier
 
-// private baseUrl = 'http://localhost:3000';
+//   //editSupplier(supplierDetails: Supplier)
 
+//   // private baseUrl = 'http://localhost:3000';
 
-// constructor(private http: HttpClient) { }
+//   // constructor(private http: HttpClient) { }
 
-// registerUser(userDetails: User) {
-//   return this.http.post(`${this.baseUrl}/users`, userDetails);
+//   // saveSuppliers(supplierDetails: Supplier) {
+//   //   return this.http.post(`${this.baseUrl}/suppliers`, supplierDetails)
+//   // }
+
+//   // getSuppliers(): Observable<Supplier[]> {
+//   //   return this.http.get<Supplier[]>(`${this.baseUrl}/suppliers`)
+//   // }
+
+//   // editSupplier(postData: any, selectedPdt: any) {
+//   //   if (!selectedPdt) {
+//   //     return this.http.post(`${this.baseUrl}/suppliers`, postData);
+//   //   } else {
+//   //     return this.http.put(`${this.baseUrl}/suppliers/${selectedPdt.id}`, postData);
+//   //   }
+//   // }
+
+//   // deleteSupplier(supplierId: number) {
+//   //   return this.http.delete(`${this.baseUrl}/suppliers/${supplierId}`);
+//   // }
+
 // }
 
-// getUserByEmail(email: string): Observable<User[]> {
-//   return this.http.get<User[]>(`${this.baseUrl}/users?email=${email}`);
-// }

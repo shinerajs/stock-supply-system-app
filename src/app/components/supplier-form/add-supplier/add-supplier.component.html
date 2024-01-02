@@ -28,7 +28,7 @@
     </div>
     <div class="field">
       <label class="block" for="inumber">Purchase Date</label>
-      <input type="number" pInputText id="inumber" formControlName="inumber" />
+      <input type="text" pInputText id="inumber" formControlName="inumber" />
       <small class="p-error block" *ngIf="
           supplierForm.controls['inumber'].invalid &&
           supplierForm.controls['inumber'].dirty
@@ -47,6 +47,6 @@
   <ng-template pTemplate="footer">
     <p-button (click)="closeModal()" label="Cancel" styleClass="p-button-text"></p-button>
 
-    <p-button type="submit" (click)="editSupplier()" label="{{modalType}}" [disabled]="supplierForm.invalid"></p-button>
+    <p-button type="submit" (click)="addSupplier()" label="{{modalType}}" [disabled]="supplierForm.invalid"></p-button>
   </ng-template>
 </p-dialog>

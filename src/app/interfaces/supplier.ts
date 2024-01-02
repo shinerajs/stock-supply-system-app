@@ -1,10 +1,10 @@
 export interface Supplier {
-    id: number;
+    id: string;
     name: string;
     product: string;
-    quantity: number;
+    quantity: string;
     inumber: string;
-    amount: number;
+    amount: string;
 
     rating: RatingProps;
 }

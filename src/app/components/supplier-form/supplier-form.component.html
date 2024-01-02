@@ -13,18 +13,18 @@
             <th></th>
         </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-supplier>
+    <ng-template pTemplate="body" let-supplierData>
         <tr>
-            <td>{{ supplier.name }}</td>
-            <td>{{ supplier.product }}</td>
-            <td>{{ supplier.quantity }}</td>
-            <td>{{ supplier.inumber }}</td>
-            <td>{{ supplier.amount }}</td>
+            <td>{{ supplierData.name }}</td>
+            <td>{{ supplierData.product }}</td>
+            <td>{{ supplierData.quantity }}</td>
+            <td>{{ supplierData.inumber }}</td>
+            <td>{{ supplierData.amount }}</td>
             <td>
                 <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
-                    (click)="showEditModal(supplier)"></button>
+                    (click)="showEditModal(supplierData)"></button>
                 <button pButton icon="pi pi-trash" class="p-button-rounded p-button-warning"
-                    (click)="deleteSupplier(supplier)"></button>
+                    (click)="deleteSupplier(supplierData)"></button>
             </td>
 
         </tr>

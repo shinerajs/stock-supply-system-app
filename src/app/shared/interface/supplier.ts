@@ -1,15 +1,11 @@
 export interface Supplier {
+
     id: string;
     name: string;
+    mobile: string;
     product: string;
     quantity: string;
-    inumber: string;
     amount: string;
+    purdate: Date
 
-    rating: RatingProps;
-}
-
-interface RatingProps {
-    rate: number;
-    count: number;
 }

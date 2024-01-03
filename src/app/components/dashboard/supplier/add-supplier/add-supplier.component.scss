@@ -1,0 +1,23 @@
+.mat-mdc-dialog-content {
+    width: 600px;
+}
+
+.mat-mdc-grid-list {
+    overflow: hidden;
+}
+
+.mat-mdc-radio-button {
+    margin-right: 15px;
+}
+
+:host ::ng-deep .mat-mdc-text-field-wrapper {
+    background-color: white !important;
+}
+
+:host ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: white !important;
+}
+
+// :host ::ng-deep .mdc-text-field .mdc-floating-label {
+//     transform: translateY(0%);
+// }

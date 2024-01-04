@@ -7,7 +7,7 @@
       <a mat-list-item routerLinkActive="active" routerLink="dashboard/supplier">
         <mat-icon>inventory_2</mat-icon>Supplier</a>
       <a mat-list-item routerLinkActive="active" href="#">Link 2</a>
-      <a mat-list-item routerLinkActive="active" href="#">Sign out</a>
+      <a mat-list-item routerLinkActive="active" (click)="logOut()">Sign out</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

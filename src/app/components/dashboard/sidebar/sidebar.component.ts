@@ -2,7 +2,8 @@ import { Component, inject } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { AsyncPipe, NgIf } from '@angular/common';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -17,4 +18,22 @@ export class SidebarComponent {
       map(result => result.matches),
       shareReplay()
     );
+
+    constructor (
+      private authService: AuthService,
+      private router: Router
+    ) { }
+
+    logOut() {
+      this.authService.logout()
+      .then(response => {
+        console.log(response);
+        this.router.navigate(['/login'])
+      })
+      .catch(error => {
+        console.log(error);
+        
+      })
+
+    }
 }

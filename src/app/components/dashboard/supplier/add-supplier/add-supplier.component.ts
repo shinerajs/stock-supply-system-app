@@ -10,6 +10,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export class AddSupplierComponent {
   form !: FormGroup;
   tittle !: string;
+  button !: string;
   id !: string;
   name !: string;
   mobile !: string;

@@ -16,13 +16,19 @@ import { MaterialModule } from './material/material.module';
 import { SidebarComponent } from './components/dashboard/sidebar/sidebar.component';
 import { SupplierComponent } from './components/dashboard/supplier/supplier.component';
 import { AddSupplierComponent } from './components/dashboard/supplier/add-supplier/add-supplier.component';
+import { DeleteSupplierComponent } from './components/dashboard/supplier/delete-supplier/delete-supplier.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { RegisterComponent } from './components/auth/register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
     SupplierComponent,
-    AddSupplierComponent
+    AddSupplierComponent,
+    DeleteSupplierComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

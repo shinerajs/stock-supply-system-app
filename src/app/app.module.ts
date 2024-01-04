@@ -19,6 +19,9 @@ import { AddSupplierComponent } from './components/dashboard/supplier/add-suppli
 import { DeleteSupplierComponent } from './components/dashboard/supplier/delete-supplier/delete-supplier.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
+import { LandingComponent } from './components/landing/landing.component';
+import { provideHotToastConfig } from '@ngneat/hot-toast';
+import { HotToastModule } from '@ngneat/hot-toast';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,8 @@ import { RegisterComponent } from './components/auth/register/register.component
     AddSupplierComponent,
     DeleteSupplierComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    LandingComponent
   ],
   imports: [
     BrowserModule,
@@ -43,9 +47,12 @@ import { RegisterComponent } from './components/auth/register/register.component
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
-    provideStorage(() => getStorage())
+    provideStorage(() => getStorage()),
+    HotToastModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    provideHotToastConfig(), // @ngneat/hot-toast providers
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

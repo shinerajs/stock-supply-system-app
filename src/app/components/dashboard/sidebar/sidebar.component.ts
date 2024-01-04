@@ -19,21 +19,16 @@ export class SidebarComponent {
       shareReplay()
     );
 
-    constructor (
-      private authService: AuthService,
-      private router: Router
-    ) { }
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) { }
 
-    logOut() {
-      this.authService.logout()
-      .then(response => {
-        console.log(response);
-        this.router.navigate(['/login'])
-      })
-      .catch(error => {
-        console.log(error);
-        
-      })
+  logOut() {
+    this.authService.logout().subscribe(() => {
+      this.router.navigate(['/loginuser']);
+    });
 
-    }
+
+  }
 }

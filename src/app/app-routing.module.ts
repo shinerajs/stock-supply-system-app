@@ -3,24 +3,36 @@ import { RouterModule, Routes } from '@angular/router';
 import { SupplierComponent } from './components/dashboard/supplier/supplier.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
-import { canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
+import { canActivate, redirectUnauthorizedTo, redirectLoggedInTo } from '@angular/fire/auth-guard';
+import { LandingComponent } from './components/landing/landing.component';
+
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
+const redirectLoggedInToHome = () => redirectLoggedInTo(['dashboard']);
+
 const routes: Routes = [
+  {
+    path: 'loginuser', component: LandingComponent, ...canActivate(redirectLoggedInToHome)
+  },
+  {
+    path: '', pathMatch: 'full', component: SupplierComponent, ...canActivate(redirectUnauthorizedToLogin)
+  },
+  {
+    path: 'supplier', component: SupplierComponent, ...canActivate(redirectUnauthorizedToLogin)
+  },
+
   {
     path: 'dashboard',
     children: [
       {
-        path: '', redirectTo: '/supplier', pathMatch: 'full'
-      },
-      {
         path: 'supplier', component: SupplierComponent
       }
-    ], ...canActivate (() => redirectUnauthorizedTo(['/register']))
+    ], ...canActivate(redirectUnauthorizedToLogin)
   },
   {
-    path: 'login', component: LoginComponent
+    path: 'login', component: LoginComponent, ...canActivate(redirectLoggedInToHome)
   },
   {
-    path: 'register', component: RegisterComponent
+    path: 'register', component: RegisterComponent, ...canActivate(redirectLoggedInToHome)
   },
   // {
   //   path: 'home',

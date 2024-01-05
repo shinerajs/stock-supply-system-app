@@ -3,7 +3,7 @@
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-divider></mat-divider>
-    <mat-nav-list>
+    <mat-nav-list class="content">
       <a mat-list-item routerLinkActive="active" routerLink="supplier">
         <mat-icon>inventory_2</mat-icon>Supplier</a>
       <a mat-list-item routerLinkActive="active" href="#">Link 2</a>
@@ -16,7 +16,23 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>stock-supply-system-app</span>
+      <span>Stock Management System</span>
+
+      <ng-container *ngIf="user$ | async as user; else loginButton">
+        <button mat-button>
+          <img width="30" height="30" class="profile-image-toolbar"
+            [src]="user.photoURL ?? '../../../assets/image-placeholder.png'" />
+          {{ user.displayName }}
+          <mat-icon>expand_more</mat-icon>
+        </button></ng-container>
+      <ng-template #loginButton>
+        <button mat-button routerLink="login">
+          <mat-icon>login</mat-icon>
+          Login
+        </button>
+      </ng-template>
+
+
     </mat-toolbar>
     <!-- Add Content Here -->
     <router-outlet></router-outlet>

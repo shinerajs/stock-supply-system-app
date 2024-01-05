@@ -7,18 +7,18 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./delete-supplier.component.scss']
 })
 export class DeleteSupplierComponent {
-   supplierName !: string;
-   tittle !: string;
+  supplierName !: string;
+  tittle !: string;
 
-   constructor (
-    @Inject(MAT_DIALOG_DATA) data : any,
-    private dialogRef : MatDialogRef <DeleteSupplierComponent>
-   ) {
+  constructor(
+    @Inject(MAT_DIALOG_DATA) data: any,
+    private dialogRef: MatDialogRef<DeleteSupplierComponent>
+  ) {
     this.supplierName = data.supplierName;
     this.tittle = data.tittle;
-   }
+  }
 
-   close() {
+  close() {
     this.dialogRef.close();
   }
 

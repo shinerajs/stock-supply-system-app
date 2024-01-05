@@ -22,4 +22,11 @@ export class AuthService {
     return from(this.auth.signOut());
   }
 
+  isUserLoggedIn() {
+    // const user = authState(this.auth)
+    // return user;
+    const user = JSON.parse(localStorage.getItem('user')!);
+    return user !== null ? true : false;
+  }
+
 }

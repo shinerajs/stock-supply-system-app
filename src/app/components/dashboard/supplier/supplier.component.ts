@@ -17,12 +17,12 @@ import { DeleteSupplierComponent } from './delete-supplier/delete-supplier.compo
 export class SupplierComponent {
 
   suppliersArr: Supplier[] = [];
-  displayedColumns: string[] = ['name', 'mobile', 'product', 'quantity','amount', 'action'];
+  displayedColumns: string[] = ['name', 'mobile', 'product', 'quantity', 'amount', 'action'];
   dataSource!: MatTableDataSource<Supplier>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  
+
   constructor(
     public dialog: MatDialog,
     private supplierService: DataService,
@@ -40,7 +40,7 @@ export class SupplierComponent {
     dialogConfig.autoFocus = true;
     dialogConfig.data = {
       tittle: 'Add Supplier',
-      button: 'Add'
+      buttonName: 'Add'
     }
     const dialogRef = this.dialog.open(AddSupplierComponent, dialogConfig);
 
@@ -61,43 +61,60 @@ export class SupplierComponent {
       this.dataSource = new MatTableDataSource(this.suppliersArr);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      
+
     })
- 
+
   }
 
-  // getAllSuppliers() {
-  //   this.dataApi.getSupplier().subscribe(res => {
-  //     this.suppliersArr = res.map((e: any) => {
-  //       const data = e.payload.doc.data();
-  //       data.id = e.payload.doc.id;
-  //       return data;
-  //     })
-  //     console.log(this.suppliersArr);
-  //   })
-  // }
+  viewSupplier(row: any) { }
 
-  viewSupplier(row : any) {}
+  editSupplier(row: any) {
+    if (row.id == null || row.name == null) {
+      return;
+    }
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      tittle: "Edit doctor",
+      buttonName: 'Update'
+    }
+    // dialogConfig.data = row;
+    // dialogConfig.data.title = "Edit doctor";
+    // dialogConfig.data.buttonName = "Update";
+    // dialogConfig.data.birthdate = row.name;
 
-  editSupplier(row : any) {}
+    const dialogRef = this.dialog.open(AddSupplierComponent, dialogConfig);
 
-  deleteSupplier(row : any) {
+    dialogRef.afterClosed().subscribe(data => {
+      if (data) {
+        this.supplierService.updateSupplier(row);
+        console.log(row);
+
+        this.openSnackBar("Doctor is updated successfully.", "OK")
+      }
+    })
+  }
+
+  async deleteSupplier(row: Supplier) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
     dialogConfig.data = {
-      title : 'Delete doctor',
-      doctorName : row.name
+      title: 'Delete doctor',
+      supplierName: row.name
     }
 
     const dialogRef = this.dialog.open(DeleteSupplierComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(data => {
-      if(data) {
-        this.supplierService.deleteSupplier(row.id);
+      if (data) {
+        this.supplierService.deleteSupplier(row);
+        console.log(row);
+
         this.openSnackBar("Supplier deleted Successfully!", "OK")
       }
-  })
+    })
   }
 
   openSnackBar(message: string, action: string) {

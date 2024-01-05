@@ -14,6 +14,7 @@
   position: sticky;
   top: 0;
   z-index: 1;
+  justify-content: space-between;
 }
 
 .mat-nav-list a {
@@ -33,4 +34,17 @@
   background-color: #3f51b5 !important;
   color: white !important;
   border-radius: 5px;
+}
+
+.content {
+  padding: 32px;
+}
+
+.profile-image-toolbar {
+  border-radius: 100%;
+  margin-right: 8px;
+}
+
+.content a {
+  align-items: center;
 }

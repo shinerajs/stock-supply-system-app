@@ -1,3 +1,27 @@
+<img class="image" src="../../../assets/trianglif.png" alt="background">
+
+<mat-toolbar color="primary">
+  Stock Management System
+  <!-- <ng-container *ngIf="user$ | async as user; else loginButton">
+    <button mat-button [matMenuTriggerFor]="userMenu">
+      <img
+        width="30"
+        height="30"
+        class="profile-image-toolbar"
+        [src]="user.photoURL ?? 'assets/images/image-placeholder.png'"
+      />
+      {{ user.displayName }}
+      <mat-icon>expand_more</mat-icon>
+    </button>
+  </ng-container> -->
+
+  <button mat-button routerLink="">
+    <mat-icon>home</mat-icon>
+    Home
+  </button>
+
+</mat-toolbar>
+
 <div class="form-container mat-elevation-z5">
   <h1>Login</h1>
   <form [formGroup]="loginForm" (ngSubmit)="login()">
@@ -17,7 +41,7 @@
       </mat-error>
     </mat-form-field>
     <div class="center margin-top">
-      <button type="submit" mat-raised-button color="primary">Login</button>
+      <button class="btn" type="submit" mat-raised-button color="primary">Login</button>
     </div>
     <span class="center margin-top">New to our platform? <a class="sign-up-link" routerLink="/register"> Sign
         up!</a></span>

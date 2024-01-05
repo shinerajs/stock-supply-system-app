@@ -10,6 +10,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export class AddSupplierComponent {
   form !: FormGroup;
   tittle !: string;
+  buttonName !: string;
   button !: string;
   id !: string;
   name !: string;
@@ -25,6 +26,7 @@ export class AddSupplierComponent {
     private dialogRef: MatDialogRef<AddSupplierComponent>
   ) {
     this.tittle = data.tittle;
+    this.buttonName = data.buttonName;
   }
 
   ngOnInit(): void {

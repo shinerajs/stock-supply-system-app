@@ -38,6 +38,7 @@ export class LoginComponent {
 
     if (!this.loginForm.valid || !email || !password) {
       return;
+
     }
     this.authService.login(email, password)
       .pipe(
@@ -48,9 +49,16 @@ export class LoginComponent {
           // error: ({ no }) => `There was an error: ${message} `,
         })
       )
-      .subscribe(() => {
-        this.router.navigate(['']);
-      });
+      .subscribe(async user => {
+        if (user) {
+          localStorage.setItem('user', JSON.stringify(user));
+          await this.router.navigate(['']);
+          location.reload();
+        }
+      })
+    // .subscribe(() => {
+    //   this.router.navigate(['']);
+    // });
   }
 
 

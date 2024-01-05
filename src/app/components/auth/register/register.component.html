@@ -52,6 +52,15 @@
     </div>
 
 </div> -->
+<img class="image" src="../../../assets/trianglif.png" alt="background">
+<mat-toolbar color="primary">
+    Stock Management System
+    <button mat-button routerLink="/login">
+        <mat-icon>login</mat-icon>
+        Login
+    </button>
+
+</mat-toolbar>
 
 <div class="form-container mat-elevation-z5">
     <h1>Sign Up a New User!</h1>
@@ -87,7 +96,8 @@
             Passwords should match
         </mat-error>
         <div class="center margin-top">
-            <button type="submit" mat-raised-button color="primary">Sign Up!</button>
+            <button class="btn" type="submit" mat-raised-button color="primary">Sign Up!</button>
         </div>
+        <a class="center margin-top sign-up-link" routerLink="/login"> Already have an account?</a>
     </form>
 </div>

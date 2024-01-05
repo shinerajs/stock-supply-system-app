@@ -6,12 +6,18 @@ import { RegisterComponent } from './components/auth/register/register.component
 import { canActivate, redirectUnauthorizedTo, redirectLoggedInTo } from '@angular/fire/auth-guard';
 import { LandingComponent } from './components/landing/landing.component';
 
-const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['loginuser']);
 const redirectLoggedInToHome = () => redirectLoggedInTo(['dashboard']);
 
 const routes: Routes = [
   {
     path: 'loginuser', component: LandingComponent, ...canActivate(redirectLoggedInToHome)
+  },
+  {
+    path: 'login', component: LoginComponent, ...canActivate(redirectLoggedInToHome)
+  },
+  {
+    path: 'register', component: RegisterComponent, ...canActivate(redirectLoggedInToHome)
   },
   {
     path: '', pathMatch: 'full', component: SupplierComponent, ...canActivate(redirectUnauthorizedToLogin)
@@ -28,12 +34,7 @@ const routes: Routes = [
       }
     ], ...canActivate(redirectUnauthorizedToLogin)
   },
-  {
-    path: 'login', component: LoginComponent, ...canActivate(redirectLoggedInToHome)
-  },
-  {
-    path: 'register', component: RegisterComponent, ...canActivate(redirectLoggedInToHome)
-  },
+
   // {
   //   path: 'home',
   //   component: HomeComponent,

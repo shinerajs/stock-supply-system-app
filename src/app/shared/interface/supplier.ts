@@ -6,6 +6,7 @@ export interface Supplier {
     product: string;
     quantity: string;
     amount: string;
-    purdate: Date
+    purdate: Date;
+    buttonName: string;
 
 }

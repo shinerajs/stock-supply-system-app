@@ -9,6 +9,7 @@ import { AuthService } from './shared/services/auth.service';
 export class AppComponent {
   title = 'Stock Management System';
   userLoggedIn: boolean = false;
+  public layoutConf: any = {};
 
   constructor(
     private authService: AuthService

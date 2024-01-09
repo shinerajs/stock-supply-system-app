@@ -66,7 +66,9 @@ export class SupplierComponent {
 
   }
 
-  viewSupplier(row: any) { }
+  viewSupplier(row: any) {
+    window.open('/dashboard/patient/' + row.patient_id, '_blank');
+  }
 
   editSupplier(row: any) {
     if (row.id == null || row.name == null) {
@@ -75,23 +77,22 @@ export class SupplierComponent {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.data = {
-      tittle: "Edit doctor",
-      buttonName: 'Update'
-    }
-    // dialogConfig.data = row;
-    // dialogConfig.data.title = "Edit doctor";
-    // dialogConfig.data.buttonName = "Update";
-    // dialogConfig.data.birthdate = row.name;
+    dialogConfig.data = row;
+    dialogConfig.data.tittle = "Edit doctor",
+      dialogConfig.data.buttonName = 'Update';
+    dialogConfig.data.purdate = row.purdate.toDate();
+
+    console.log(dialogConfig.data);
 
     const dialogRef = this.dialog.open(AddSupplierComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(data => {
+      console.log(data);
       if (data) {
-        this.supplierService.updateSupplier(row);
-        console.log(row);
+        this.supplierService.updateSupplier(data);
+        console.log(data);
 
-        this.openSnackBar("Doctor is updated successfully.", "OK")
+        this.openSnackBar("Supplier is updated successfully.", "OK")
       }
     })
   }
@@ -131,4 +132,8 @@ export class SupplierComponent {
     }
   }
 
+  toDate() {
+    var date = new Date().toLocaleDateString("en-us");
+    return date;
+  }
 }

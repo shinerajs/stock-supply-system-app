@@ -22,6 +22,12 @@ import { RegisterComponent } from './components/auth/register/register.component
 import { LandingComponent } from './components/landing/landing.component';
 import { provideHotToastConfig } from '@ngneat/hot-toast';
 import { HotToastModule } from '@ngneat/hot-toast';
+import { LayoutComponent } from './components/layout/layout.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { ProductComponent } from './components/dashboard/product/product/product.component';
+import { AddProductComponent } from './components/dashboard/product/product/add-product/add-product.component';
+import { ViewSupplierComponent } from './components/dashboard/supplier/view-supplier/view-supplier.component';
+//import { SidenavComponent } from './components/dashboard/sidenav/sidenav.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +38,12 @@ import { HotToastModule } from '@ngneat/hot-toast';
     DeleteSupplierComponent,
     LoginComponent,
     RegisterComponent,
-    LandingComponent
+    LandingComponent,
+    LayoutComponent,
+    FooterComponent,
+    ProductComponent,
+    AddProductComponent,
+    ViewSupplierComponent
   ],
   imports: [
     BrowserModule,

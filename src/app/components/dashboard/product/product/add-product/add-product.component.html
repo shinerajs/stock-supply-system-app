@@ -8,16 +8,16 @@
         <mat-grid-tile>
             <div>
                 <mat-form-field>
-                    <mat-label style="font-size: 17px;">Supplier Name</mat-label>
-                    <input matInput placeholder="Ex. SKN Traders" formControlName="name" required>
+                    <mat-label>Product Name</mat-label>
+                    <input matInput placeholder="Ex. Biriyani" formControlName="name" required>
                     <mat-error
-                        *ngIf="form.get('name')?.invalid || form.get('name')?.dirty || form.get('name')?.touched">Enter
+                        *ngIf="form.get('name')?.invalid || form.get('name')?.dirty || form.get('productname')?.touched">Enter
                         full
                         name</mat-error>
                 </mat-form-field>
 
                 <mat-form-field>
-                    <mat-label style="font-size: 17px;">Mobile number : </mat-label>
+                    <mat-label>Mobile number : </mat-label>
                     <input matInput placeholder="9865452152" formControlName="mobile" required>
                     <mat-error
                         *ngIf="form.get('mobile')?.invalid || form.get('mobile')?.dirty || form.get('mobile')?.touched">Enter
@@ -25,7 +25,7 @@
                 </mat-form-field>
 
                 <mat-form-field>
-                    <mat-label style="font-size: 17px;">Product</mat-label>
+                    <mat-label>Product</mat-label>
                     <input matInput placeholder="ex. Rice" formControlName="product" required>
                     <mat-error
                         *ngIf="form.get('product')?.invalid || form.get('product')?.dirty || form.get('product')?.touched">This
@@ -39,7 +39,7 @@
             <div>
 
                 <mat-form-field>
-                    <mat-label style="font-size: 17px;">Purchase Date</mat-label>
+                    <mat-label>Purchase Date</mat-label>
                     <input matInput [matDatepicker]="picker" formControlName="purdate">
                     <mat-hint>MM/DD/YYYY</mat-hint>
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -50,7 +50,7 @@
                 </mat-form-field>
 
                 <mat-form-field>
-                    <mat-label style="font-size: 17px;">Quantity</mat-label>
+                    <mat-label>Quantity</mat-label>
                     <input matInput placeholder="ex. 20kg" formControlName="quantity" required>
                     <mat-error
                         *ngIf="form.get('quantity')?.invalid || form.get('quantity')?.dirty || form.get('quantity')?.touched">Enter
@@ -58,7 +58,7 @@
                 </mat-form-field>
 
                 <mat-form-field>
-                    <mat-label style="font-size: 17px;">Amount</mat-label>
+                    <mat-label>Amount</mat-label>
                     <input matInput placeholder="ex. 500" formControlName="amount" required>
                     <mat-error
                         *ngIf="form.get('amount')?.invalid || form.get('amount')?.dirty || form.get('amount')?.touched">Enter

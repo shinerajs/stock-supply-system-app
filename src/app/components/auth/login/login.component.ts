@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { MatProgressBar } from '@angular/material/progress-bar';
+import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +17,8 @@ export class LoginComponent {
     email: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required],
   });
+  @ViewChild(MatProgressBar)progressBar!: MatProgressBar;
+  @ViewChild(MatButton) submitButton !: MatButton ;
 
   constructor(
     private authService: AuthService,
@@ -34,6 +38,9 @@ export class LoginComponent {
   login() {
     console.log(this.loginForm.value);
 
+    this.submitButton.disabled = true;
+    this.progressBar.mode = 'indeterminate';
+
     const { email, password } = this.loginForm.value;
 
     if (!this.loginForm.valid || !email || !password) {
@@ -42,6 +49,7 @@ export class LoginComponent {
     }
     this.authService.login(email, password)
       .pipe(
+        
         this.toast.observe({
           success: 'Logged in successfully',
           loading: 'Logging in...',
@@ -49,8 +57,11 @@ export class LoginComponent {
           // error: ({ no }) => `There was an error: ${message} `,
         })
       )
+      
       .subscribe(async user => {
         if (user) {
+          this.submitButton.disabled = false;
+          this.progressBar.mode = 'determinate';
           localStorage.setItem('user', JSON.stringify(user));
           await this.router.navigate(['']);
           location.reload();

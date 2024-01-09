@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, NonNullableFormBuilder, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 import { UsersService } from 'src/app/shared/services/users.service';
 import { LandingComponent } from '../../landing/landing.component';
 import { HotToastService } from '@ngneat/hot-toast';
-//import { passwordMatchValidator } from 'src/app/shared/password-match.directive';
+
 
 export function passwordsMatchValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
@@ -72,6 +72,7 @@ export class RegisterComponent {
 
   register() {
     console.log(this.form.value);
+
     const { name, email, password } = this.form.value;
     if (!this.form.valid || !name || !password || !email) {
       return;

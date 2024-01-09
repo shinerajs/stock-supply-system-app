@@ -7,7 +7,7 @@ import { canActivate, redirectUnauthorizedTo, redirectLoggedInTo } from '@angula
 import { LandingComponent } from './components/landing/landing.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['loginuser']);
-const redirectLoggedInToHome = () => redirectLoggedInTo(['dashboard']);
+const redirectLoggedInToHome = () => redirectLoggedInTo(['']);
 
 const routes: Routes = [
   {

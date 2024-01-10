@@ -27,6 +27,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ProductComponent } from './components/dashboard/product/product/product.component';
 import { AddProductComponent } from './components/dashboard/product/product/add-product/add-product.component';
 import { ViewSupplierComponent } from './components/dashboard/supplier/view-supplier/view-supplier.component';
+import { AlertComponent } from './components/dashboard/alert/alert.component';
 //import { SidenavComponent } from './components/dashboard/sidenav/sidenav.component';
 
 @NgModule({
@@ -43,7 +44,8 @@ import { ViewSupplierComponent } from './components/dashboard/supplier/view-supp
     FooterComponent,
     ProductComponent,
     AddProductComponent,
-    ViewSupplierComponent
+    ViewSupplierComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,

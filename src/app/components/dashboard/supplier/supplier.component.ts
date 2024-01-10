@@ -8,6 +8,7 @@ import { AddSupplierComponent } from './add-supplier/add-supplier.component';
 import { DataService } from 'src/app/shared/services/data.service';
 import { Supplier } from 'src/app/shared/interface/supplier';
 import { DeleteSupplierComponent } from './delete-supplier/delete-supplier.component';
+import { ViewSupplierComponent } from './view-supplier/view-supplier.component';
 
 @Component({
   selector: 'app-supplier',
@@ -17,7 +18,7 @@ import { DeleteSupplierComponent } from './delete-supplier/delete-supplier.compo
 export class SupplierComponent {
 
   suppliersArr: Supplier[] = [];
-  displayedColumns: string[] = ['name', 'mobile', 'product', 'quantity', 'amount','available', 'action'];
+  displayedColumns: string[] = ['name', 'mobile', 'product', 'quantity', 'amount', 'available', 'action'];
   dataSource!: MatTableDataSource<Supplier>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -67,10 +68,8 @@ export class SupplierComponent {
   }
 
   viewSupplier(row: any) {
-    window.open('/dashboard/patient/' + row.patient_id, '_blank');
-  }
+    // window.open('/view_supplier/' + row.patient_id, '_blank');
 
-  editSupplier(row: any) {
     if (row.id == null || row.name == null) {
       return;
     }
@@ -78,7 +77,35 @@ export class SupplierComponent {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.data = row;
-    dialogConfig.data.tittle = "Edit doctor",
+    // dialogConfig.data.tittle = "View Supplier",
+    // dialogConfig.data.buttonName = 'Update';
+    //dialogConfig.data.purdate = row.purdate.toDate();
+
+    console.log(dialogConfig.data);
+
+    const dialogRef = this.dialog.open(ViewSupplierComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(data => {
+
+      if (data) {
+        this.supplierService.getSupplierById(data);
+        console.log(data);
+
+        // this.openSnackBar("Supplier is updated successfully.", "OK")
+      }
+    })
+  }
+
+  editSupplier(row: any) {
+    if (row.id == null || row.name == null) {
+      return;
+
+    }
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = row;
+    dialogConfig.data.tittle = "Edit Supplier",
       dialogConfig.data.buttonName = 'Update';
     dialogConfig.data.purdate = row.purdate.toDate();
 
@@ -87,7 +114,7 @@ export class SupplierComponent {
     const dialogRef = this.dialog.open(AddSupplierComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(data => {
-      console.log(data);
+
       if (data) {
         this.supplierService.updateSupplier(data);
         console.log(data);
@@ -102,7 +129,7 @@ export class SupplierComponent {
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
     dialogConfig.data = {
-      title: 'Delete doctor',
+      tittle: 'Delete Supplier',
       supplierName: row.name
     }
 
@@ -137,37 +164,28 @@ export class SupplierComponent {
     return date;
   }
 
-  getProductStatus(value: any) {
-   // if (value) {
-      if (value = 'active') {
+  getProductStatus(row: any) {
+
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = row;
+    if (row) {
+      if (row == 'active') {
         return {
           color: "accent",
-          status: `${value}`
+          status: `Active`
         };
-      }
-
-      if (value = 'inactive') {
+      } else
         return {
           color: "primary",
-          status: `in stock`
-        }
-      } else 
+          status: `Deleted`
+        };
+    } else
       return {
         color: "warn",
-         status: `out of stcok`
-      }
-
-
-    //    else
-    //     return {
-    //       color: "primary",
-    //       status: `in stock`
-    //     };
-    // } 
-    // else
-    //   return {
-    //     color: "warn",
-    //     status: `out of stcok`
-    //   };
+        status: `Inactive`
+      };
   }
 }
+

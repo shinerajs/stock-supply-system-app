@@ -56,15 +56,15 @@
         <td mat-cell *matCellDef="let row"> {{row.amount}} </td>
       </ng-container>
 
-        <!-- Weight Column -->
-        <ng-container matColumnDef="available">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Supplier Status</th>
-          <td mat-cell *matCellDef="let row">
-            <mat-chip class="align-middle py-4 px-8" [color]="getProductStatus(row.available).color" selected>
-              {{ getProductStatus(row.available).status }}
-            </mat-chip>
-          </td>
-        </ng-container>
+      <!-- Weight Column -->
+      <ng-container matColumnDef="available">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Supplier Status</th>
+        <td mat-cell *matCellDef="let row">
+          <mat-chip class="align-middle py-4 px-8" [color]="getProductStatus(row.available).color" selected>
+            {{ getProductStatus(row.available).status }}
+          </mat-chip>
+        </td>
+      </ng-container>
 
       <!-- Action Column -->
       <ng-container matColumnDef="action">

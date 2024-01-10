@@ -46,7 +46,7 @@ export class AddProductComponent {
     this.dialogRef.close();
   }
 
-  addSupplier() {
+  addProduct() {
     this.dialogRef.close(this.form.value);
   }
 }

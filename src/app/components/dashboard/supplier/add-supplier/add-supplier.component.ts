@@ -21,7 +21,9 @@ export class AddSupplierComponent {
   purdate !: Date;
   amount !: string;
   available !: string;
+  comments !: string;
   radata: any;
+
   constructor(
     private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) data: any,
@@ -38,6 +40,7 @@ export class AddSupplierComponent {
     this.amount = data.amount;
     this.purdate = data.purdate;
     this.available = data.available;
+    this.comments = data.comments;
   }
 
   ngOnInit(): void {
@@ -49,7 +52,8 @@ export class AddSupplierComponent {
       quantity: [this.quantity, [Validators.required]],
       purdate: [this.purdate, [Validators.required]],
       amount: [this.amount, [Validators.required]],
-      available: [this.available, [Validators.required]]
+      available: [this.available, [Validators.required]],
+      comments: [this.comments]
 
     })
   }
@@ -59,8 +63,14 @@ export class AddSupplierComponent {
   }
 
   addSupplier() {
+
     console.log(this.form.value, this.radata);
 
     this.dialogRef.close({ ...this.form.value, id: this.radata.id });
+  }
+
+  toDate() {
+    var date = new Date().toLocaleDateString("en-us");
+    return date;
   }
 }

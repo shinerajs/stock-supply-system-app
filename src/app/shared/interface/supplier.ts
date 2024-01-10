@@ -9,5 +9,6 @@ export interface Supplier {
     purdate: Date;
     buttonName: string;
     available: string;
+    comments: string;
 
 }

@@ -25,11 +25,19 @@
                 </mat-form-field>
 
                 <mat-form-field>
-                    <mat-label style="font-size: 17px;">Product</mat-label>
+                    <mat-label style="font-size: 17px;">Item</mat-label>
                     <input matInput placeholder="ex. Rice" formControlName="product" required>
                     <mat-error
                         *ngIf="form.get('product')?.invalid || form.get('product')?.dirty || form.get('product')?.touched">This
                         Field is Required! </mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label style="font-size: 17px;">Comments</mat-label>
+                    <input matInput placeholder="" formControlName="comments">
+                    <!-- <mat-error
+                        *ngIf="form.get('comments')?.invalid || form.get('comments')?.dirty || form.get('comments')?.touched">This
+                        Field is Required! </mat-error> -->
                 </mat-form-field>
 
             </div>
@@ -46,7 +54,7 @@
                     <mat-datepicker #picker></mat-datepicker>
                     <mat-error
                         *ngIf="form.get('purdate')?.invalid || form.get('purdate')?.dirty || form.get('purdate')?.touched">Choose
-                        valid birthdate</mat-error>
+                        valid purchase date</mat-error>
                 </mat-form-field>
 
                 <mat-form-field>
@@ -54,7 +62,7 @@
                     <input matInput placeholder="ex. 20kg" formControlName="quantity" required>
                     <mat-error
                         *ngIf="form.get('quantity')?.invalid || form.get('quantity')?.dirty || form.get('quantity')?.touched">Enter
-                        valid qualification </mat-error>
+                        valid quantity</mat-error>
                 </mat-form-field>
 
                 <mat-form-field>
@@ -62,16 +70,16 @@
                     <input matInput placeholder="ex. 500" formControlName="amount" required>
                     <mat-error
                         *ngIf="form.get('amount')?.invalid || form.get('amount')?.dirty || form.get('amount')?.touched">Enter
-                        valid qualification </mat-error>
+                        valid amount</mat-error>
                 </mat-form-field>
-<br>
+                <br>
                 <mat-label class="me-3">Supplier Status : </mat-label>
-          <br>
-          <mat-radio-group aria-label="Select a gender" color="primary" formControlName="available">
-            <mat-radio-button value="active">Active</mat-radio-button>
-            <mat-radio-button value="disabled">Disabled</mat-radio-button>
-            <mat-radio-button value="deleted">Deleted</mat-radio-button>
-          </mat-radio-group>
+                <br>
+                <mat-radio-group aria-label="Select a gender" color="primary" formControlName="available">
+                    <mat-radio-button value="active">Active</mat-radio-button>
+                    <!-- <mat-radio-button value="disabled">Disabled</mat-radio-button> -->
+                    <mat-radio-button value="deleted">Deleted</mat-radio-button>
+                </mat-radio-group>
 
             </div>
         </mat-grid-tile>
@@ -80,7 +88,7 @@
 
 </mat-dialog-content>
 
-<div mat-dialog-actions>
+<div style="justify-content: space-between;" mat-dialog-actions>
     <button mat-raised-button mat-dialog-close (click)="cancelAdd()">Cancel</button>
     <button mat-raised-button color="primary" mat-dialog-close (click)="addSupplier()" [disabled]="form.invalid">
         {{buttonName}} </button>

@@ -8,5 +8,6 @@ export interface Supplier {
     amount: string;
     purdate: Date;
     buttonName: string;
+    available: string;
 
 }

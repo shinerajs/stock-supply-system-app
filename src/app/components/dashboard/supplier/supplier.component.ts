@@ -17,7 +17,7 @@ import { DeleteSupplierComponent } from './delete-supplier/delete-supplier.compo
 export class SupplierComponent {
 
   suppliersArr: Supplier[] = [];
-  displayedColumns: string[] = ['name', 'mobile', 'product', 'quantity', 'amount', 'action'];
+  displayedColumns: string[] = ['name', 'mobile', 'product', 'quantity', 'amount','available', 'action'];
   dataSource!: MatTableDataSource<Supplier>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -135,5 +135,39 @@ export class SupplierComponent {
   toDate() {
     var date = new Date().toLocaleDateString("en-us");
     return date;
+  }
+
+  getProductStatus(value: any) {
+   // if (value) {
+      if (value = 'active') {
+        return {
+          color: "accent",
+          status: `${value}`
+        };
+      }
+
+      if (value = 'inactive') {
+        return {
+          color: "primary",
+          status: `in stock`
+        }
+      } else 
+      return {
+        color: "warn",
+         status: `out of stcok`
+      }
+
+
+    //    else
+    //     return {
+    //       color: "primary",
+    //       status: `in stock`
+    //     };
+    // } 
+    // else
+    //   return {
+    //     color: "warn",
+    //     status: `out of stcok`
+    //   };
   }
 }

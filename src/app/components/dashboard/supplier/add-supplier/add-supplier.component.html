@@ -64,6 +64,14 @@
                         *ngIf="form.get('amount')?.invalid || form.get('amount')?.dirty || form.get('amount')?.touched">Enter
                         valid qualification </mat-error>
                 </mat-form-field>
+<br>
+                <mat-label class="me-3">Supplier Status : </mat-label>
+          <br>
+          <mat-radio-group aria-label="Select a gender" color="primary" formControlName="available">
+            <mat-radio-button value="active">Active</mat-radio-button>
+            <mat-radio-button value="disabled">Disabled</mat-radio-button>
+            <mat-radio-button value="deleted">Deleted</mat-radio-button>
+          </mat-radio-group>
 
             </div>
         </mat-grid-tile>

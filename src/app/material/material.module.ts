@@ -18,13 +18,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatMenuModule } from '@angular/material/menu';
-<<<<<<< HEAD
 import { MatButton } from '@angular/material/button';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-=======
 import { MatTooltipModule } from "@angular/material/tooltip";
->>>>>>> 0cac501cf0990f9273e8e78c3449d276f6af4a56
-
+import { MatChipsModule } from "@angular/material/chips"
 @NgModule({
   imports: [
     MatCardModule,
@@ -46,11 +43,9 @@ import { MatTooltipModule } from "@angular/material/tooltip";
     MatTableModule,
     MatPaginatorModule,
     MatMenuModule,
-<<<<<<< HEAD
-    MatProgressBarModule
-=======
-    MatTooltipModule
->>>>>>> 0cac501cf0990f9273e8e78c3449d276f6af4a56
+    MatProgressBarModule,
+    MatTooltipModule,
+    MatChipsModule
   ],
   exports: [
     MatCardModule,
@@ -72,13 +67,10 @@ import { MatTooltipModule } from "@angular/material/tooltip";
     MatTableModule,
     MatPaginatorModule,
     MatMenuModule,
-<<<<<<< HEAD
     MatButton,
-    MatProgressBarModule
-
-=======
-    MatTooltipModule
->>>>>>> 0cac501cf0990f9273e8e78c3449d276f6af4a56
+    MatProgressBarModule,
+    MatTooltipModule,
+    MatChipsModule
   ]
 })
 export class MaterialModule { }

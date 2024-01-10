@@ -20,6 +20,7 @@ export class AddSupplierComponent {
   quantity !: string;
   purdate !: Date;
   amount !: string;
+  available !: string;
   radata: any;
   constructor(
     private fb: FormBuilder,
@@ -36,6 +37,7 @@ export class AddSupplierComponent {
     this.quantity = data.quantity;
     this.amount = data.amount;
     this.purdate = data.purdate;
+    this.available = data.available;
   }
 
   ngOnInit(): void {
@@ -46,7 +48,8 @@ export class AddSupplierComponent {
       product: [this.product, [Validators.required]],
       quantity: [this.quantity, [Validators.required]],
       purdate: [this.purdate, [Validators.required]],
-      amount: [this.amount, [Validators.required]]
+      amount: [this.amount, [Validators.required]],
+      available: [this.available, [Validators.required]]
 
     })
   }

@@ -23,6 +23,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatChipsModule } from "@angular/material/chips";
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   imports: [
@@ -48,7 +49,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatProgressBarModule,
     MatTooltipModule,
     MatChipsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatTabsModule
   ],
   exports: [
     MatCardModule,
@@ -74,7 +76,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatProgressBarModule,
     MatTooltipModule,
     MatChipsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatTabsModule
   ]
 })
 export class MaterialModule { }

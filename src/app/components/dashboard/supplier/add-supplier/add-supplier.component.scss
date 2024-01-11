@@ -1,5 +1,6 @@
 .mat-mdc-dialog-content {
-    width: 870px;
+    width: 800px;
+    text-align: center;
 }
 
 .mat-mdc-form-field {
@@ -10,8 +11,12 @@
     text-align: center;
 }
 
-.mat-icon {
-    transform: translateX(-16px);
+.icon {
+    transform: translateX(-15px);
+}
+
+.iconsep {
+    transform: translateX(-10px);
 }
 
 :host ::ng-deep.mat-mdc-form-field:not(.mat-form-field-disabled) .mat-mdc-floating-label.mdc-floating-label {

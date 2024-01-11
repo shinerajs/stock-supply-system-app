@@ -28,6 +28,7 @@ import { ViewSupplierComponent } from './components/dashboard/supplier/view-supp
 import { AlertComponent } from './components/dashboard/alert/alert.component';
 import { DashboardComponent } from './components/dashboard/dashboard/dashboard.component';
 import { ChipsInputExample } from "./components/dashboard/chip/chip.component";
+import { SuppliertabComponent } from './components/dashboard/suppliertab/suppliertab.component';
 //import { ChipComponent } from './components/dashboard/chip/chip.component';
 //import { SidenavComponent } from './components/dashboard/sidenav/sidenav.component';
 
@@ -46,6 +47,7 @@ import { ChipsInputExample } from "./components/dashboard/chip/chip.component";
     ViewSupplierComponent,
     AlertComponent,
     DashboardComponent,
+    SuppliertabComponent,
   ],
   providers: [
     provideHotToastConfig(), // @ngneat/hot-toast providers

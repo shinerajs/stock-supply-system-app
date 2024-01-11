@@ -15,6 +15,6 @@ export interface Supplier {
     buttonName: string;
     available: string;
     comments: string;
-    certificates: string[];
+    certificates: {name:string}
 
 }

@@ -78,7 +78,7 @@ export class AddSupplierComponent {
       amount: [this.amount, [Validators.required]],
       available: [this.available, [Validators.required]],
       comments: [this.comments],
-      certificates: this.fruits
+      certificates: [this.fruits, [Validators.required]]
 
     })
   }
@@ -108,6 +108,8 @@ export class AddSupplierComponent {
     // Add our fruit
     if (value) {
       this.fruits.push({ name: value });
+      console.log(this.fruits);
+      
     }
 
     // Clear the input value

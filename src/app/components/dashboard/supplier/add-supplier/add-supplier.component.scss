@@ -1,5 +1,21 @@
 .mat-mdc-dialog-content {
-    width: 700px;
+    width: 870px;
+}
+
+.mat-mdc-form-field {
+    width: 320px;
+}
+
+.mat-grid-tile-content {
+    text-align: center;
+}
+
+.mat-icon {
+    transform: translateX(-16px);
+}
+
+:host ::ng-deep.mat-mdc-form-field:not(.mat-form-field-disabled) .mat-mdc-floating-label.mdc-floating-label {
+    margin-left: 20px;
 }
 
 .mat-mdc-grid-list {
@@ -17,3 +33,12 @@
 // :host ::ng-deep .mdc-text-field .mdc-floating-label {
 //     transform: translateY(0%);
 // }
+.inline {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+:host ::ng-deep .mat-mdc-dialog-container .mdc-dialog__surface {
+    width: 97%;
+}

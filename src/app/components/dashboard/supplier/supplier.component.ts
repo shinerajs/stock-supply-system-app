@@ -107,7 +107,6 @@ export class SupplierComponent {
     dialogConfig.data = row;
     dialogConfig.data.tittle = "Edit Supplier",
       dialogConfig.data.buttonName = 'Update';
-    dialogConfig.data.purdate = row.purdate.toDate();
 
     console.log(dialogConfig.data);
 
@@ -159,10 +158,6 @@ export class SupplierComponent {
     }
   }
 
-  toDate() {
-    var date = new Date().toLocaleDateString("en-us");
-    return date;
-  }
 
   getProductStatus(row: any) {
 

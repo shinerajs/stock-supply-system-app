@@ -18,7 +18,6 @@ export class ViewSupplierComponent {
   mobile !: string;
   product !: string;
   quantity !: string;
-  purdate !: Date;
   amount !: string;
   available !: string;
   comments !: string;
@@ -39,7 +38,6 @@ export class ViewSupplierComponent {
     this.product = data.product;
     this.quantity = data.quantity;
     this.amount = data.amount;
-    this.purdate = data.purdate.toDate();
     this.available = data.available;
     this.comments = data.comments
   }
@@ -48,11 +46,6 @@ export class ViewSupplierComponent {
     // this.getSupplierById();
   }
 
-
-  toDate() {
-    var date = new Date().toLocaleDateString("en-us");
-    return date;
-  }
 
   // getSupplierById() {
   //   this.supplierService.getSupplierById(this.id).subscribe(res => {

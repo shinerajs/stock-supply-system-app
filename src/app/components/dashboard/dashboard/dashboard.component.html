@@ -1,0 +1,47 @@
+<img class="image" src="../../../assets/trianglif.png" alt="background">
+<div class="landing">
+    <h1>
+        Welcome to Our Stock Management System
+    </h1>
+    <!-- <div class="landing">
+        <h2> Click Login to login to our system</h2>
+        <p>OR</p>
+        <button mat-raised-button color="primary" routerLink="/register">
+            Sign Up!
+        </button>
+
+        <button mat-raised-button color="primary" routerLink="/login">
+            Login!
+        </button>
+    </div> -->
+</div>
+
+<div class="row">
+    <div class="col-sm-6 col-md-4 mt-3 ml-3">
+        <mat-card class="add-doc text-center">
+            <a routerLink="supplier">
+                <mat-card-content>
+                    <mat-icon>groups</mat-icon> <br>
+                    Supplier
+                </mat-card-content></a>
+        </mat-card>
+    </div>
+
+    <div class="col-sm-6 col-md-4 mt-3">
+        <mat-card class="add-doc text-center" (click)="addSupplier()">
+            <mat-card-content>
+                <mat-icon>group_add</mat-icon> <br>
+                Invite Supplier
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+    <div class="col-sm-6 col-md-4 mt-3">
+        <mat-card class="add-doc text-center" (click)="addSupplier()">
+            <mat-card-content>
+                <mat-icon>card_membership</mat-icon> <br>
+                Manage Certificate
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

@@ -5,8 +5,7 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { canActivate, redirectUnauthorizedTo, redirectLoggedInTo } from '@angular/fire/auth-guard';
 import { LandingComponent } from './components/landing/landing.component';
-import { ProductComponent } from './components/dashboard/product/product/product.component';
-import { ViewSupplierComponent } from './components/dashboard/supplier/view-supplier/view-supplier.component';
+import { DashboardComponent } from './components/dashboard/dashboard/dashboard.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['loginuser']);
 const redirectLoggedInToHome = () => redirectLoggedInTo(['']);
@@ -22,18 +21,13 @@ const routes: Routes = [
     path: 'register', component: RegisterComponent, ...canActivate(redirectLoggedInToHome)
   },
   {
-    path: '', pathMatch: 'full', component: SupplierComponent, ...canActivate(redirectUnauthorizedToLogin)
+    path: '', pathMatch: 'full', component: DashboardComponent, ...canActivate(redirectUnauthorizedToLogin)
   },
+  // {
+  //   path: 'supplier', component: SupplierComponent, ...canActivate(redirectUnauthorizedToLogin)
+  // },
   {
-    path: 'supplier', component: SupplierComponent, ...canActivate(redirectUnauthorizedToLogin)
-  },
-
-  {
-    path: 'product', component: ProductComponent, ...canActivate(redirectUnauthorizedToLogin)
-  },
-
-  {
-    path: 'view_supplier/:supplier_id', component: ViewSupplierComponent, ...canActivate(redirectUnauthorizedToLogin)
+    path: 'dashboard', component: DashboardComponent, ...canActivate(redirectUnauthorizedToLogin)
   },
 
   {

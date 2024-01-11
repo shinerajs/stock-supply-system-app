@@ -1,0 +1,18 @@
+<mat-form-field class="example-chip-list">
+    <mat-label style="font-size: 17px;">Add mandatory certificates*</mat-label>
+    <mat-chip-grid #chipGrid aria-label="Enter fruits">
+        <mat-chip-row *ngFor="let fruit of fruits" (removed)="remove(fruit)" [editable]="true"
+            (edited)="edit(fruit, $event)" [aria-description]="'press enter to edit ' + fruit.name">
+            {{fruit.name}}
+            <button matChipRemove [attr.aria-label]="'remove ' + fruit.name">
+                <mat-icon>cancel</mat-icon>
+            </button>
+        </mat-chip-row>
+        <div class="inline">
+            <mat-icon>workspace_premium</mat-icon>
+            <input placeholder="Add Certificate..." [matChipInputFor]="chipGrid"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="add($event)" />
+        </div>
+    </mat-chip-grid>
+</mat-form-field>

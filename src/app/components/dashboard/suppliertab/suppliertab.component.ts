@@ -21,8 +21,8 @@ export class SuppliertabComponent {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.data = {
-      tittle: 'Add Supplier',
-      buttonName: 'Add'
+      tittle: 'Invite Supplier',
+      buttonName: 'Invite'
     }
     const dialogRef = this.dialog.open(AddSupplierComponent, dialogConfig);
 

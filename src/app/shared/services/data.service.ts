@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { collection, doc, Firestore, addDoc, collectionData, deleteDoc, updateDoc, setDoc } from '@angular/fire/firestore'
 import { Supplier } from '../interface/supplier';
 import { Observable, from } from 'rxjs';
+import { SupplierDetails } from '../interface/supplier-details';
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +22,13 @@ export class DataService {
     // const supplierRef = doc(this.firestore, `suppliers/${supplier.id}`);
     // await setDoc(supplierRef, Object.assign({}, supplier));
     // return true;
-
   }
+
+  async addSupplierDetails(details: SupplierDetails) {
+    details.id = doc(collection(this.firestore, 'id')).id
+    return addDoc(collection(this.firestore, 'supplierdetails'), details);
+  }
+
 
   // async updateSupplier(supplier: Supplier) {
   //   // supplier.id = doc(collection(this.firestore, 'id')).id

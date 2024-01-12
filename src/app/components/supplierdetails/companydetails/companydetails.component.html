@@ -1,0 +1,182 @@
+<div [formGroup]="form">
+
+    <h2 style="margin: 15px 0px 10px 20px;" mat-dialog-title> Company Details </h2>
+    <mat-divider></mat-divider>
+
+    <div class="groupform">
+        <mat-form-field>
+            <mat-label style="font-size: 17px;">Full Name of Company</mat-label>
+            <input matInput placeholder="Enter full name of Company" formControlName="companyname" required>
+            <mat-error
+                *ngIf="form.get('companyname')?.invalid || form.get('companyname')?.dirty || form.get('companyname')?.touched">This
+                field is required!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label style="font-size: 17px;">Registered Address</mat-label>
+            <input matInput placeholder="Enter registered address" formControlName="regaddress" required>
+            <mat-error
+                *ngIf="form.get('regaddress')?.invalid || form.get('regaddress')?.dirty || form.get('regaddress')?.touched">This
+                field is required!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label style="font-size: 17px;">Trade Address</mat-label>
+            <input matInput placeholder="Enter trade address" formControlName="tradeaddress" required>
+            <mat-error
+                *ngIf="form.get('tradeaddress')?.invalid || form.get('tradeaddress')?.dirty || form.get('tradeaddress')?.touched">This
+                field is required!</mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field>
+            <mat-label style="font-size: 17px;">Town</mat-label>
+            <input matInput placeholder="Enter town name" formControlName="town" required>
+            <mat-error *ngIf="form.get('town')?.invalid || form.get('town')?.dirty || form.get('town')?.touched">This
+                field is required!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label style="font-size: 17px;">Country</mat-label>
+            <input matInput placeholder="Enter country name" formControlName="country" required>
+            <mat-error
+                *ngIf="form.get('country')?.invalid || form.get('country')?.dirty || form.get('country')?.touched">This
+                field is required!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label style="font-size: 17px;">Post Code</mat-label>
+            <input matInput placeholder="Enter post code" formControlName="postcode" required>
+            <mat-error
+                *ngIf="form.get('postcode')?.invalid || form.get('postcode')?.dirty || form.get('postcode')?.touched">This
+                field is required!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label style="font-size: 17px;">Contact Number</mat-label>
+            <input matInput placeholder="Enter contact number" formControlName="mobile" required>
+            <mat-error
+                *ngIf="form.get('mobile')?.invalid || form.get('mobile')?.dirty || form.get('mobile')?.touched">This
+                field is required!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label style="font-size: 17px;">E-mail</mat-label>
+            <input matInput placeholder="Enter your email" formControlName="email">
+            <mat-error *ngIf="form.get('email')?.invalid || form.get('email')?.dirty || form.get('email')?.touched">This
+                field is required!</mat-error>
+        </mat-form-field>
+    </div>
+
+    <h2 style="margin: 15px 0px 10px 20px;" mat-dialog-title> Supervisor Details </h2>
+    <mat-divider></mat-divider>
+    <div class="groupform">
+        <mat-form-field>
+            <mat-label style="font-size: 17px;">Supervisor E-mail</mat-label>
+            <input matInput placeholder="Enter supervisor mail address" formControlName="supervisoremail" required>
+            <mat-error
+                *ngIf="form.get('supervisoremail')?.invalid || form.get('supervisoremail')?.dirty || form.get('supervisoremail')?.touched">This
+                field is required!</mat-error>
+        </mat-form-field>
+    </div>
+
+    <h2 style="margin: 15px 0px 10px 20px;" mat-dialog-title> Account Details </h2>
+    <mat-divider></mat-divider>
+    <div class="groupform">
+        <mat-form-field>
+            <mat-label style="font-size: 17px;">Bank Account Number</mat-label>
+            <input matInput placeholder="Enter supplier bank account number" formControlName="accountnumber" required>
+            <mat-error
+                *ngIf="form.get('accountnumber')?.invalid || form.get('accountnumber')?.dirty || form.get('accountnumber')?.touched">This
+                field is required!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label style="font-size: 17px;">Bank IFSC Code</mat-label>
+            <input matInput placeholder="Enter supplier bank IFSC code" formControlName="ifsccode" required>
+            <mat-error
+                *ngIf="form.get('ifsccode')?.invalid || form.get('ifsccode')?.dirty || form.get('ifsccode')?.touched">This
+                field is required!</mat-error>
+        </mat-form-field>
+
+        <!-- <br>
+        <mat-label style="font-size: 17px;" class="me-3">Regular Supplier </mat-label>
+        <br>
+        <mat-radio-group aria-label="Select a gender" color="primary" formControlName="status">
+            <mat-radio-button value="yes">Yes</mat-radio-button>
+            <mat-radio-button value="no">No</mat-radio-button>
+        </mat-radio-group> -->
+
+        <mat-form-field>
+            <mat-label style="font-size: 17px;">VAT Reg Number</mat-label>
+            <input matInput placeholder="Enter VAT registration number" formControlName="vatnumber" required>
+            <mat-error
+                *ngIf="form.get('vatnumber')?.invalid || form.get('vatnumber')?.dirty || form.get('vatnumber')?.touched">This
+                field is required!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label style="font-size: 17px;">Company Reg Number</mat-label>
+            <input matInput placeholder="Enter company registration number" formControlName="companyregnum" required>
+            <mat-error
+                *ngIf="form.get('companyregnum')?.invalid || form.get('companyregnum')?.dirty || form.get('companyregnum')?.touched">This
+                field is required!</mat-error>
+        </mat-form-field>
+    </div>
+
+
+    <h2 style="margin: 15px 0px 10px 20px;" mat-dialog-title> Contact Details </h2>
+    <mat-divider></mat-divider>
+    <div class="groupform">
+        <mat-form-field>
+            <mat-label style="font-size: 17px;">Nmae</mat-label>
+            <input matInput placeholder="Enter Contact person name" formControlName="name" required>
+            <mat-error *ngIf="form.get('name')?.invalid || form.get('name')?.dirty || form.get('name')?.touched">This
+                field is required!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label style="font-size: 17px;">Position</mat-label>
+            <input matInput placeholder="Enter contact person position" formControlName="position" required>
+            <mat-error
+                *ngIf="form.get('position')?.invalid || form.get('position')?.dirty || form.get('position')?.touched">This
+                field is required!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label style="font-size: 17px;">Contact Number</mat-label>
+            <input matInput placeholder="Enter contact number" formControlName="contactnum" required>
+            <mat-error
+                *ngIf="form.get('contactnum')?.invalid || form.get('contactnum')?.dirty || form.get('contactnum')?.touched">This
+                field is required!</mat-error>
+        </mat-form-field>
+    </div>
+
+
+    <h2 style="margin: 15px 0px 10px 20px;" mat-dialog-title> Decleration </h2>
+    <mat-divider></mat-divider>
+    <section style="margin-left: 20px;" class="example-section">
+        <mat-checkbox class="example-margin">By ticking above, you consent to our company's Terms and Conditions and
+            PPE requirements.</mat-checkbox>
+        <!-- <mat-checkbox class="example-margin" [disabled]="true">Disabled</mat-checkbox> -->
+    </section>
+
+
+
+    <!-- <br>
+                <mat-label class="me-3">Supplier Status : </mat-label>
+                <br>
+                <mat-radio-group aria-label="Select a gender" color="primary" formControlName="available">
+                    <mat-radio-button value="active">Active</mat-radio-button>
+                    <mat-radio-button value="disabled">Disabled</mat-radio-button> 
+                    <mat-radio-button value="deleted">Deleted</mat-radio-button>
+                </mat-radio-group>  -->
+
+
+</div>
+
+<div style="justify-content: center; display: flex; padding: 0px 20px 20px 0px;">
+    <!-- <button mat-raised-button mat-dialog-close (click)="cancelAdd()">Cancel</button> -->
+    <button mat-raised-button color="primary" (click)="saveDetails()">
+        Save </button>
+</div>

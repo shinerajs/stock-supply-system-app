@@ -7,6 +7,8 @@ import { canActivate, redirectUnauthorizedTo, redirectLoggedInTo } from '@angula
 import { LandingComponent } from './components/landing/landing.component';
 import { DashboardComponent } from './components/dashboard/dashboard/dashboard.component';
 import { SuppliertabComponent } from './components/dashboard/suppliertab/suppliertab.component';
+import { CompanydetailsComponent } from './components/supplierdetails/companydetails/companydetails.component';
+import { SupplierworksComponent } from './components/supplierdetails/supplierworks/supplierworks.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['loginuser']);
 const redirectLoggedInToHome = () => redirectLoggedInTo(['']);
@@ -36,6 +38,12 @@ const routes: Routes = [
     children: [
       {
         path: 'suppliertab', component: SuppliertabComponent
+      },
+      {
+        path: 'company-details', component: CompanydetailsComponent
+      },
+      {
+        path: 'supplier-works', component: SupplierworksComponent
       }
     ], ...canActivate(redirectUnauthorizedToLogin)
   },

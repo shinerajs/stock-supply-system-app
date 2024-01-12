@@ -18,7 +18,7 @@ import { ViewSupplierComponent } from './view-supplier/view-supplier.component';
 export class SupplierComponent {
 
   suppliersArr: Supplier[] = [];
-  displayedColumns: string[] = ['name', 'mobile', 'product', 'quantity', 'amount', 'available', 'action'];
+  displayedColumns: string[] = ['id', 'companyname', 'name', 'email', 'mobile', 'supervisoremail', 'contractor', 'invitedon', 'action'];
   dataSource!: MatTableDataSource<Supplier>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -40,8 +40,8 @@ export class SupplierComponent {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.data = {
-      tittle: 'Add Supplier',
-      buttonName: 'Add'
+      tittle: 'Invite Supplier',
+      buttonName: 'Invite'
     }
     const dialogRef = this.dialog.open(AddSupplierComponent, dialogConfig);
 

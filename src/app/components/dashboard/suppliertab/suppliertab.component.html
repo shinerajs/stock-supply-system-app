@@ -1,14 +1,14 @@
 <div class="landing">
-<mat-icon>groups</mat-icon>
-<h2 style="margin: 0px;">Manage Suppliers on your system</h2>
-<p>Edit pending invitation and manage current suppliers</p>
-        <button mat-raised-button color="primary" (click)="addSupplier()">
-            Invite Supplier
-        </button>
+    <mat-icon>groups</mat-icon>
+    <h2 style="margin: 0px;">Manage Suppliers on your system</h2>
+    <p>Edit pending invitation and manage current suppliers</p>
+    <button mat-raised-button color="primary" (click)="addSupplier()">
+        Invite Supplier
+    </button>
 </div>
 
 <mat-tab-group style="background: lightgray;">
     <mat-tab routerLinkActive="active" label="Invited"> <app-supplier></app-supplier> </mat-tab>
-    <mat-tab label="Second"> Content 2 </mat-tab>
+    <mat-tab label="On Review"> On Review </mat-tab>
     <mat-tab label="Third"> Content 3 </mat-tab>
-  </mat-tab-group>
+</mat-tab-group>

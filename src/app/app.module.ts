@@ -29,6 +29,11 @@ import { AlertComponent } from './components/dashboard/alert/alert.component';
 import { DashboardComponent } from './components/dashboard/dashboard/dashboard.component';
 import { ChipsInputExample } from "./components/dashboard/chip/chip.component";
 import { SuppliertabComponent } from './components/dashboard/suppliertab/suppliertab.component';
+import { SupplierdetailsComponent } from './components/supplierdetails/supplierdetails.component';
+import { CompanydetailsComponent } from './components/supplierdetails/companydetails/companydetails.component';
+import { SupplierworksComponent } from './components/supplierdetails/supplierworks/supplierworks.component';
+import { CertificatesComponent } from './components/supplierdetails/certificates/certificates.component';
+import { SidemenuComponent } from './components/supplierdetails/sidemenu/sidemenu.component';
 //import { ChipComponent } from './components/dashboard/chip/chip.component';
 //import { SidenavComponent } from './components/dashboard/sidenav/sidenav.component';
 
@@ -48,6 +53,11 @@ import { SuppliertabComponent } from './components/dashboard/suppliertab/supplie
     AlertComponent,
     DashboardComponent,
     SuppliertabComponent,
+    SupplierdetailsComponent,
+    CompanydetailsComponent,
+    SupplierworksComponent,
+    CertificatesComponent,
+    SidemenuComponent,
   ],
   providers: [
     provideHotToastConfig(), // @ngneat/hot-toast providers

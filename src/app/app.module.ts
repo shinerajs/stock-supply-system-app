@@ -34,6 +34,7 @@ import { CompanydetailsComponent } from './components/supplierdetails/companydet
 import { SupplierworksComponent } from './components/supplierdetails/supplierworks/supplierworks.component';
 import { CertificatesComponent } from './components/supplierdetails/certificates/certificates.component';
 import { SidemenuComponent } from './components/supplierdetails/sidemenu/sidemenu.component';
+import { AddCertificatesComponent } from './components/supplierdetails/certificates/add-certificates/add-certificates.component';
 //import { ChipComponent } from './components/dashboard/chip/chip.component';
 //import { SidenavComponent } from './components/dashboard/sidenav/sidenav.component';
 
@@ -58,6 +59,7 @@ import { SidemenuComponent } from './components/supplierdetails/sidemenu/sidemen
     SupplierworksComponent,
     CertificatesComponent,
     SidemenuComponent,
+    AddCertificatesComponent,
   ],
   providers: [
     provideHotToastConfig(), // @ngneat/hot-toast providers

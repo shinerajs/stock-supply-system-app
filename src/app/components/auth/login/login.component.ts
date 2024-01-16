@@ -5,6 +5,9 @@ import { HotToastService } from '@ngneat/hot-toast';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { MatProgressBar } from '@angular/material/progress-bar';
 import { MatButton } from '@angular/material/button';
+import { User } from '@angular/fire/auth';
+import { Users } from 'src/app/shared/interface/user';
+import { Admins } from 'src/app/shared/interface/admins';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +15,9 @@ import { MatButton } from '@angular/material/button';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+
+  users : Users;
+  admins: Admins;
 
   loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -25,7 +31,10 @@ export class LoginComponent {
     private toast: HotToastService,
     private router: Router,
     private fb: NonNullableFormBuilder,
-  ) { }
+  ) {
+    this.admins = new Admins();
+    this.users = new Users();
+   }
 
   get email() {
     return this.loginForm.get('email');
@@ -48,6 +57,7 @@ export class LoginComponent {
 
     }
     this.authService.login(email, password)
+    
       .pipe(
         
         this.toast.observe({

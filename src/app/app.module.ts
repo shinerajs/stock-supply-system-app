@@ -35,6 +35,8 @@ import { SupplierworksComponent } from './components/supplierdetails/supplierwor
 import { CertificatesComponent } from './components/supplierdetails/certificates/certificates.component';
 import { SidemenuComponent } from './components/supplierdetails/sidemenu/sidemenu.component';
 import { AddCertificatesComponent } from './components/supplierdetails/certificates/add-certificates/add-certificates.component';
+import { SidetoastComponent } from './components/sidetoast/sidetoast.component';
+import { CustomalertComponent } from './components/customalert/customalert.component';
 //import { ChipComponent } from './components/dashboard/chip/chip.component';
 //import { SidenavComponent } from './components/dashboard/sidenav/sidenav.component';
 
@@ -45,8 +47,6 @@ import { AddCertificatesComponent } from './components/supplierdetails/certifica
     SupplierComponent,
     AddSupplierComponent,
     DeleteSupplierComponent,
-    LoginComponent,
-    RegisterComponent,
     LandingComponent,
     LayoutComponent,
     FooterComponent,
@@ -60,6 +60,8 @@ import { AddCertificatesComponent } from './components/supplierdetails/certifica
     CertificatesComponent,
     SidemenuComponent,
     AddCertificatesComponent,
+    SidetoastComponent,
+    CustomalertComponent,
   ],
   providers: [
     provideHotToastConfig(), // @ngneat/hot-toast providers

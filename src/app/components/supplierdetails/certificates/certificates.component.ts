@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-certificates',
@@ -6,6 +6,5 @@ import { Component, Inject } from '@angular/core';
   styleUrls: ['./certificates.component.scss']
 })
 export class CertificatesComponent {
-
 
 }

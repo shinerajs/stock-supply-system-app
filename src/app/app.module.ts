@@ -34,9 +34,12 @@ import { CompanydetailsComponent } from './components/supplierdetails/companydet
 import { SupplierworksComponent } from './components/supplierdetails/supplierworks/supplierworks.component';
 import { CertificatesComponent } from './components/supplierdetails/certificates/certificates.component';
 import { SidemenuComponent } from './components/supplierdetails/sidemenu/sidemenu.component';
+<<<<<<< HEAD
 import { AddCertificatesComponent } from './components/supplierdetails/certificates/add-certificates/add-certificates.component';
 import { SidetoastComponent } from './components/sidetoast/sidetoast.component';
 import { CustomalertComponent } from './components/customalert/customalert.component';
+=======
+>>>>>>> parent of 86964b6 (company details add)
 //import { ChipComponent } from './components/dashboard/chip/chip.component';
 //import { SidenavComponent } from './components/dashboard/sidenav/sidenav.component';
 
@@ -59,9 +62,12 @@ import { CustomalertComponent } from './components/customalert/customalert.compo
     SupplierworksComponent,
     CertificatesComponent,
     SidemenuComponent,
+<<<<<<< HEAD
     AddCertificatesComponent,
     SidetoastComponent,
     CustomalertComponent,
+=======
+>>>>>>> parent of 86964b6 (company details add)
   ],
   providers: [
     provideHotToastConfig(), // @ngneat/hot-toast providers

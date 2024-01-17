@@ -1,0 +1,17 @@
+<h2 mat-dialog-title> {{ tittle }} </h2>
+<mat-divider></mat-divider>
+<mat-form-field>
+    <div class="inline">
+        <mat-icon class="icon">workspace_premium</mat-icon>
+        <input matInput placeholder="Add certificates here..." formControlName="certificates" required>
+    </div>
+    <mat-error
+        *ngIf="form.get('certificates')?.invalid || form.get('certificates')?.dirty || form.get('certificates')?.touched">Enter
+        certificate
+        name</mat-error>
+</mat-form-field>
+
+<div style="justify-content: end; padding: 0px 20px 20px 0px;" mat-dialog-actions>
+    <button mat-raised-button color="primary" mat-dialog-close (click)="addCertificates()">
+        {{buttonName}} </button>
+</div>

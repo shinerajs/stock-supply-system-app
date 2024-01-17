@@ -1,4 +1,4 @@
-<div class="mat-dialog-title" mat-dialog-title>
+<div  class="mat-dialog-title" mat-dialog-title>
     <h1 style="margin-bottom: 5px;">{{data.heading}}</h1>
     <button style="margin-bottom: 5px;border: none;background-color: #ffffff;" (click)="onCancel()">
         <mat-icon>close</mat-icon>
@@ -7,10 +7,10 @@
 <!-- <h1  mat-dialog-title>{{data.heading}} </h1> -->
 <mat-divider></mat-divider>
 <div class="mat-dialog-content" mat-dialog-content>
-    <p>{{data.body}}</p>
+  <p>{{data.body}}</p>
 </div>
 <div mat-dialog-actions>
     <button class="btn" (click)="onProceed()"> Proceed</button>
     <button class="btn_delete" (click)="onCancel()">Cancel</button>
-    <!-- <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button> -->
+  <!-- <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button> -->
 </div>

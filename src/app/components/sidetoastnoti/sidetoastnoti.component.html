@@ -1,14 +1,14 @@
 <div class="container">
     <div class="header">
         <h4>{{_message?.header}}</h4>
-        <button mat-icon-button class="close-icon" (click)="closeToast()" style="color: #D06A3E;">
+        <button mat-icon-button class="close-icon"(click)="closeToast()" style="color: #D06A3E;" >
             <mat-icon>close</mat-icon>
         </button>
     </div>
     <mat-divider></mat-divider>
     <div class="body">
         <p>{{_message?.body}}</p>
-        <button matSnackBarAction mat-stroked-button style="color: #D06A3E;" (click)="routeOut()">Visit</button>
+        <button matSnackBarAction mat-stroked-button style="color: #D06A3E;" (click)="routeOut()" >Visit</button>
     </div>
     <div class="footer">
         <mat-progress-bar mode="indeterminate"></mat-progress-bar>

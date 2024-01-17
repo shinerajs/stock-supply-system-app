@@ -1,6 +1,6 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit,Inject } from '@angular/core';
 //import {MatSnackBarRef, MAT_SNACK_BAR_DATA} from '@angular/material/snack-bar';  
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import {  MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 @Component({
   selector: 'app-customalert',
   templateUrl: './customalert.component.html',
@@ -8,24 +8,24 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 })
 export class CustomalertComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public alertDialogRef: MatDialogRef<CustomalertComponent>) { }
-
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,public alertDialogRef:MatDialogRef<CustomalertComponent>) { }  
+  
 
   ngOnInit(): void {
-
-
+    
+    
   }
 
-  onProceed() {
-
+  onProceed(){
+    
     //this.snackBarRef.dismissWithAction();
     this.alertDialogRef.close("proceed");
 
   }
-  onCancel() {
+  onCancel(){
     //this.snackBarRef.dismiss();
-    this.alertDialogRef.close("cancel");
+   this.alertDialogRef.close("cancel");
   }
-
+  
 
 }

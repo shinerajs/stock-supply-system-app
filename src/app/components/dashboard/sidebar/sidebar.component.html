@@ -75,7 +75,7 @@
       </button>
       <span>Stock Management System</span>
 
-      <ng-container *ngIf="user$ | async as user; else loginButton">
+      <ng-container>
         <button mat-button [matMenuTriggerFor]="appUserMenu">
           <mat-menu #appUserMenu="matMenu">
             <button mat-menu-item routerLink="#">
@@ -90,16 +90,19 @@
               <mat-icon>date_range</mat-icon>
               <span>Calendar</span>
             </button>
-            <button mat-menu-item (click)="logOut()">
+            <button mat-menu-item [disabled]="!currentuser.role" (click)="logOut()">
               <mat-icon>exit_to_app</mat-icon>
               <span>Sign out</span>
             </button>
           </mat-menu>
-          <img width="30" height="30" class="profile-image-toolbar"
-            [src]="user.photoURL ?? '../../../assets/face-7.jpg'" />
-          {{ user.displayName }}
+          <img width="30" height="30" class="profile-image-toolbar" *ngIf="!currentuser.photoURL"
+            src='../../../assets/face-7.jpg' />
+          {{currentuser.displayName}}
           <mat-icon>expand_more</mat-icon>
-        </button></ng-container>
+        </button>
+        <mat-card-subtitle>{{currentuser.role}}</mat-card-subtitle>
+
+      </ng-container>
       <ng-template #loginButton>
         <button mat-button routerLink="login">
           <mat-icon>login</mat-icon>

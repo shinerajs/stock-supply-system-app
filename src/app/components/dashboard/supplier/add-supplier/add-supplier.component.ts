@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatChipEditedEvent, MatChipInputEvent } from '@angular/material/chips';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DataService } from 'src/app/shared/services/data.service';
+import { UsersService } from 'src/app/shared/services/users.service';
 
 export interface Fruit {
   name: string;
@@ -16,7 +17,9 @@ export interface Fruit {
   styleUrls: ['./add-supplier.component.scss']
 })
 export class AddSupplierComponent {
+  user$ = this.usersService.currentUserProfile$;
   form !: FormGroup;
+  uid!: string;
   tittle !: string;
   buttonName !: string;
   button !: string;
@@ -43,6 +46,7 @@ export class AddSupplierComponent {
     private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) data: any,
     private dataService: DataService,
+    private usersService: UsersService,
     private dialogRef: MatDialogRef<AddSupplierComponent>
   ) {
     this.radata = data;
@@ -109,7 +113,7 @@ export class AddSupplierComponent {
     if (value) {
       this.fruits.push({ name: value });
       console.log(this.fruits);
-      
+
     }
 
     // Clear the input value

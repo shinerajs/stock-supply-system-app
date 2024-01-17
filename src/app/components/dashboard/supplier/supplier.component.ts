@@ -9,6 +9,7 @@ import { DataService } from 'src/app/shared/services/data.service';
 import { Supplier } from 'src/app/shared/interface/supplier';
 import { DeleteSupplierComponent } from './delete-supplier/delete-supplier.component';
 import { ViewSupplierComponent } from './view-supplier/view-supplier.component';
+import { UsersService } from 'src/app/shared/services/users.service';
 
 @Component({
   selector: 'app-supplier',
@@ -16,7 +17,8 @@ import { ViewSupplierComponent } from './view-supplier/view-supplier.component';
   styleUrls: ['./supplier.component.scss']
 })
 export class SupplierComponent {
-
+  currentuid: any = '';
+  user$ = this.usersService.currentUserProfile$;
   suppliersArr: Supplier[] = [];
   displayedColumns: string[] = ['id', 'companyname', 'name', 'email', 'mobile', 'supervisoremail', 'contractor', 'invitedon', 'action'];
   dataSource!: MatTableDataSource<Supplier>;
@@ -27,12 +29,21 @@ export class SupplierComponent {
   constructor(
     public dialog: MatDialog,
     private supplierService: DataService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private usersService: UsersService
   ) { }
 
   ngOnInit(): void {
     this.getAllSuppliers();
 
+  }
+
+  async getCurrentUser() {
+    await this.supplierService.getUserDetails().then(async (res: any) => {
+      this.currentuid = res.uid;
+      console.log(this.currentuid);
+
+    })
   }
 
   addSupplier() {
@@ -48,7 +59,8 @@ export class SupplierComponent {
     dialogRef.afterClosed().subscribe(data => {
       if (data) {
         console.log(data);
-        this.supplierService.addSupplier(data);
+
+        this.usersService.addSupplier(data);
         this.openSnackBar("Successfully added.", "OK")
       }
     })
@@ -74,9 +86,11 @@ export class SupplierComponent {
       return;
     }
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
+    dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
     dialogConfig.data = row;
+    dialogConfig.position = { right: '18px' };
+    dialogConfig.width = "40%"
     // dialogConfig.data.tittle = "View Supplier",
     // dialogConfig.data.buttonName = 'Update';
     //dialogConfig.data.purdate = row.purdate.toDate();
@@ -88,7 +102,7 @@ export class SupplierComponent {
     dialogRef.afterClosed().subscribe(data => {
 
       if (data) {
-        this.supplierService.getSupplierById(data);
+        this.usersService.getSupplierDetails(data);
         console.log(data);
 
         // this.openSnackBar("Supplier is updated successfully.", "OK")

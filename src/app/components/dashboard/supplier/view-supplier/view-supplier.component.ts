@@ -21,7 +21,23 @@ export class ViewSupplierComponent {
   amount !: string;
   available !: string;
   comments !: string;
+  companyname !: string;
+  regaddress !: string;
+  tradeaddress !: string;
+  town !: string;
+  country !: string;
+  postcode !: string;
+  email !: string;
+  supervisoremail !: string;
+  accountnumber !: string;
+  ifsccode !: string;
+  status !: string;
+  vatnumber !: string;
+  companyregnum !: string;
+  position !: string;
+  contactnum !: string;
   radata: any;
+
 
   constructor(
     @Inject(MAT_DIALOG_DATA) data: any,
@@ -39,7 +55,23 @@ export class ViewSupplierComponent {
     this.quantity = data.quantity;
     this.amount = data.amount;
     this.available = data.available;
-    this.comments = data.comments
+    this.comments = data.comments;
+    this.companyname = data.companyname;
+    this.regaddress = data.regaddress;
+    this.tradeaddress = data.tradeaddress;
+    this.town = data.town;
+    this.country = data.country;
+    this.postcode = data.postcode;
+    this.email = data.email;
+    this.supervisoremail = data.supervisoremail;
+    this.accountnumber = data.accountnumber;
+    this.ifsccode = data.ifsccode;
+    this.status = data.status;
+    this.vatnumber = data.vatnumber;
+    this.companyregnum = data.companyregnum;
+    this.position = data.position;
+    this.contactnum = data.contactnum;
+
   }
 
   ngOnInit(): void {

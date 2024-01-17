@@ -1,5 +1,5 @@
 export interface Supplier {
-
+    uid: string;
     id: string;
     name: string;
     email: string;
@@ -15,6 +15,6 @@ export interface Supplier {
     buttonName: string;
     available: string;
     comments: string;
-    certificates: {name:string}
+    certificates: { name: string }
 
 }

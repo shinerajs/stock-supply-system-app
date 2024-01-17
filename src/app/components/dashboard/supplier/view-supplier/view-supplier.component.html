@@ -9,20 +9,65 @@
     <div class="row pt-3">
         <div class="col-md-6">
             <mat-card-content>
-                <span> Product : </span> {{product}} <br><br>
-                <span> Quantity : </span> {{quantity}} <br><br>
-                <span> Comments : </span> {{comments}} <br><br>
+                <span> Company Name : </span> {{companyname}} <br><br>
+                <span> Registered Address : </span> {{regaddress}} <br><br>
+                <span> Trade Address : </span> {{tradeaddress}} <br><br>
+                <!-- <span> Town : </span> {{town}} <br><br> -->
             </mat-card-content>
         </div>
         <div class="col-md-6">
             <mat-card-content>
-
-                <span> Amount : </span> {{amount}} <br><br>
-                <span> Mobile : </span> {{mobile}} <br><br>
-                <span> Status : </span> {{available}} <br><br>
+                <!-- <span> Country : </span> {{country}} <br><br> -->
+                <span> Postcode : </span> {{postcode}} <br><br>
+                <span> Mobile Number : </span> {{mobile}} <br><br>
+                <span> Email : </span> {{email}} <br><br>
             </mat-card-content>
         </div>
     </div>
+
+    <!-- <mat-card-title class="pb-2">
+        Supervisor Details
+    </mat-card-title>
+    <mat-divider></mat-divider>
+    <div class="row pt-3">
+        <mat-card-content>
+            <span> Supervisor Email : </span> {{supervisoremail}} <br><br>
+        </mat-card-content>
+    </div> -->
+
+    <mat-card-title class="pb-2">
+        Account Details
+    </mat-card-title>
+    <mat-divider></mat-divider>
+    <div class="row pt-3">
+        <div class="col-md-6">
+            <mat-card-content>
+                <span> Account Number : </span> {{accountnumber}} <br><br>
+                <span> IFSC Code : </span> {{ifsccode}} <br><br>
+                <span> Status : </span> {{status}} <br><br>
+            </mat-card-content>
+        </div>
+        <div class="col-md-6">
+            <mat-card-content>
+                <span> VAT Number : </span> {{vatnumber}} <br><br>
+                <span> Company Reg.Number : </span> {{companyregnum}} <br><br>
+                <span> Supervisor Email : </span> {{supervisoremail}} <br><br>
+            </mat-card-content>
+        </div>
+    </div>
+
+    <mat-card-title class="pb-2">
+        Contact Details
+    </mat-card-title>
+    <mat-divider></mat-divider>
+    <div class="row pt-3">
+        <mat-card-content>
+            <span> Name : </span> {{name}} <br><br>
+            <span> Position : </span> {{position}} <br><br>
+            <span> Contact Number : </span> {{contactnum}} <br><br>
+        </mat-card-content>
+    </div>
+
 </mat-card>
 <div style="justify-content: space-between;" mat-dialog-actions>
     <button mat-raised-button (click)="close()">Close</button>

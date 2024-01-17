@@ -1,12 +1,16 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Component, Inject, inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { MatChipEditedEvent, MatChipInputEvent } from '@angular/material/chips';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { HotToastService } from '@ngneat/hot-toast';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { tap } from 'rxjs';
 import { DataService } from 'src/app/shared/services/data.service';
-
+import { UsersService } from 'src/app/shared/services/users.service';
+@UntilDestroy()
 @Component({
   selector: 'app-companydetails',
   templateUrl: './companydetails.component.html',
@@ -15,66 +19,64 @@ import { DataService } from 'src/app/shared/services/data.service';
 
 
 export class CompanydetailsComponent {
-  form !: FormGroup;
-  id !: string;
-  companyname !: string;
-  regaddress !: string;
-  tradeaddress !: string;
-  town !: string;
-  country !: string;
-  postcode !: string;
-  mobile !: string;
-  email !: string;
-  supervisoremail !: string;
-  accountnumber !: string;
-  ifsccode !: string;
-  status !: string;
-  vatnumber !: string;
-  companyregnum !: string;
-  name !: string;
-  position !: string;
-  contactnum !: string;
+  // isSubmitting = true;
+  user$ = this.usersService.currentUserProfile$;
+  form = this.fb.group({
+    uid: [''],
+    companyname: [''],
+    regaddress: [''],
+    tradeaddress: [''],
+    town: [''],
+    country: [''],
+    postcode: [''],
+    mobile: [''],
+    email: [''],
+    supervisoremail: [''],
+    accountnumber: [''],
+    ifsccode: [''],
+    vatnumber: [''],
+    companyregnum: [''],
+    name: [''],
+    position: [''],
+    contactnum: [''],
+
+  });
 
   constructor(
-    private fb: FormBuilder,
-    //@Inject(MAT_DIALOG_DATA) data: any,
-    private dataService: DataService,
-    private _snackBar: MatSnackBar
-    //private dialogRef: MatDialogRef<AddSupplierComponent>
+    private fb: NonNullableFormBuilder,
+    private toast: HotToastService,
+    private usersService: UsersService
   ) {
 
   }
 
   ngOnInit(): void {
-    this.form = this.fb.group({
-      id: [this.id, []],
-      companyname: [this.companyname, [Validators.required]],
-      regaddress: [this.regaddress, [Validators.required]],
-      tradeaddress: [this.tradeaddress, [Validators.required]],
-      town: [this.town, [Validators.required]],
-      country: [this.country, [Validators.required]],
-      postcode: [this.postcode, [Validators.required]],
-      mobile: [this.mobile, [Validators.required]],
-      email: [this.email, [Validators.required]],
-      supervisoremail: [this.supervisoremail, [Validators.required]],
-      accountnumber: [this.accountnumber, [Validators.required]],
-      ifsccode: [this.ifsccode, [Validators.required]],
-      status: [this.status, [Validators.required]],
-      vatnumber: [this.vatnumber, [Validators.required]],
-      companyregnum: [this.companyregnum, [Validators.required]],
-      name: [this.name, [Validators.required]],
-      position: [this.position, [Validators.required]],
-      contactnum: [this.contactnum, [Validators.required]],
-    })
+    this.usersService.currentUserProfile$
+      .pipe(untilDestroyed(this), tap(console.log))
+      .subscribe((user) => {
+        this.form.patchValue({ ...user });
+      });
   }
 
-  saveDetails() {
+  saveSupplierDetails() {
     console.log(this.form.value);
-    this.dataService.addSupplierDetails(this.form.value);
-    this.openSnackBar("Successfully added.", "OK")
+    // this.isSubmitting = false;
+    const { uid, ...data } = this.form.value;
+
+    if (!uid) {
+      return;
+    }
+
+    this.usersService
+      .updateUser({ uid, ...data })
+      .pipe(
+        this.toast.observe({
+          loading: 'Saving profile data...',
+          success: 'Profile updated successfully',
+          error: 'There was an error in updating the profile',
+        })
+      )
+      .subscribe();
   }
 
-  openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action);
-  }
 }

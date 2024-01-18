@@ -5,6 +5,7 @@ import { Observable, from } from 'rxjs';
 import { SupplierDetails } from '../interface/supplier-details';
 import { UsersService } from './users.service';
 import { Auth, UserInfo, updateProfile, getAuth } from '@angular/fire/auth'
+import { ProfileUser } from '../interface/user';
 
 
 @Injectable({
@@ -25,15 +26,15 @@ export class DataService {
     })
   }
 
-  async addSupplier(supplier: Supplier) {
-    supplier.id = doc(collection(this.firestore, 'id')).id
-    return addDoc(collection(this.firestore, 'suppliers'), supplier);
-    //another method =>
-    // const supplierRef = collection(this.firestore, 'suppliers');
-    // return addDoc(supplierRef, supplier);
-    // const supplierRef = doc(this.firestore, `suppliers/${supplier.id}`);
-    // await setDoc(supplierRef, Object.assign({}, supplier));
-    // return true; 
+  // async addSupplier(supplier: Supplier) {
+  //   supplier.id = doc(collection(this.firestore, 'id')).id
+  //   return addDoc(collection(this.firestore, 'suppliers'), supplier);
+  // }
+
+  async addSupplier(user: ProfileUser) {
+    user.id = doc(collection(this.firestore, "id")).id
+    console.log(user?.uid);
+    return addDoc(collection(this.firestore, 'users/' + 'ZQ1rk1LEwkbTf5hHSFyiFKrIDJa2' + '/suppliers'), user);
   }
 
   async addSupplierDetails(details: SupplierDetails) {
@@ -41,8 +42,8 @@ export class DataService {
     return addDoc(collection(this.firestore, 'supplierdetails'), details);
   }
 
-  getSupplierDetails(details: SupplierDetails): Observable<SupplierDetails[]> {
-    const supplierRef = collection(this.firestore, `supplierdetails/${details.id}`)
+  getSupplierDetails(user: ProfileUser): Observable<SupplierDetails[]> {
+    const supplierRef = collection(this.firestore, `supplierdetails/${user.id}`)
     console.log(supplierRef);
 
     return collectionData(supplierRef, { idField: 'id' }) as Observable<SupplierDetails[]>
@@ -69,8 +70,12 @@ export class DataService {
 
   //Get Supplier from Firebase
 
+  // getSupplier(): Observable<Supplier[]> {
+  //   const supplierRef = collection(this.firestore, 'suppliers')
+  //   return collectionData(supplierRef, { idField: 'id' }) as Observable<Supplier[]>
+  // }
   getSupplier(): Observable<Supplier[]> {
-    const supplierRef = collection(this.firestore, 'suppliers')
+    const supplierRef = collection(this.firestore, 'users/' + 'ZQ1rk1LEwkbTf5hHSFyiFKrIDJa2' + '/suppliers')
     return collectionData(supplierRef, { idField: 'id' }) as Observable<Supplier[]>
   }
 

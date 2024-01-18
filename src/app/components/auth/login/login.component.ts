@@ -14,6 +14,7 @@ import {
   getDoc,
   setDoc,
 } from '@angular/fire/firestore';
+import { CustomNotificationService } from 'src/app/shared/services/custom-notification.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -26,8 +27,8 @@ export class LoginComponent {
     email: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required],
   });
-  @ViewChild(MatProgressBar)progressBar!: MatProgressBar;
-  @ViewChild(MatButton) submitButton !: MatButton ;
+  @ViewChild(MatProgressBar) progressBar!: MatProgressBar;
+  @ViewChild(MatButton) submitButton !: MatButton;
 
   constructor(
     private auth: Auth,
@@ -36,6 +37,7 @@ export class LoginComponent {
     private toast: HotToastService,
     private router: Router,
     private fb: NonNullableFormBuilder,
+    private loadingService: CustomNotificationService
     // private snackbar: SnackbarService
   ) { }
 
@@ -47,41 +49,41 @@ export class LoginComponent {
     return this.loginForm.get('password');
   }
 
-  updateUserCollection = async (credential: any) => {
+  // updateUserCollection = async (credential: any) => {
 
-    const userRef = doc(this.afs, 'users-list', credential.user.uid);
+  //   const userRef = doc(this.afs, 'users-list', credential.user.uid);
 
-    try {
-      
-      await setDoc(userRef, {
-        displayName: credential.user.displayName,
-        uid: credential.user.uid,
-        email: credential.user.email,
-        createdAt: credential.user.metadata.creationTime,
-        lastloginat: credential.user.metadata.lastLoginAt,
+  //   try {
 
-      }, { merge: true });
+  //     await setDoc(userRef, {
+  //       displayName: credential.user.displayName,
+  //       uid: credential.user.uid,
+  //       email: credential.user.email,
+  //       createdAt: credential.user.metadata.creationTime,
+  //       lastloginat: credential.user.metadata.lastLoginAt,
 
-      const docSnap = await getDoc(userRef);
+  //     }, { merge: true });
 
-      if (docSnap.exists()) {
-        
-        if(docSnap.data() && docSnap.data()['role']=='Architect'){
-          this.router.navigate(['/architect']);
-        }
-        else{
-          this.router.navigate(['/dashboard']);
-        }
-      } else {
-        
-      }
+  //     const docSnap = await getDoc(userRef);
 
-    } catch (e: any) {
-      console.error(e.message);
-      this.isSubmitting = false;
-      // this.snackbar.openSnackBar('Login Failed !!!', 'Try Again');
-    }
-  }
+  //     if (docSnap.exists()) {
+
+  //       if(docSnap.data() && docSnap.data()['role']=='Architect'){
+  //         this.router.navigate(['/architect']);
+  //       }
+  //       else{
+  //         this.router.navigate(['/dashboard']);
+  //       }
+  //     } else {
+
+  //     }
+
+  //   } catch (e: any) {
+  //     console.error(e.message);
+  //     this.isSubmitting = false;
+  //     // this.snackbar.openSnackBar('Login Failed !!!', 'Try Again');
+  //   }
+  // }
 
   // async login() {
   //   console.log(this.loginForm.value);
@@ -97,24 +99,23 @@ export class LoginComponent {
   //   const email = form.value.email;
   //   const password = form.value.password;
   //   console.log(email);
-    
+
   //   try {
 
 
   //     const credential = await signInWithEmailAndPassword(this.auth, email, password);
-      
+
   //     this.updateUserCollection(credential);
   //   } catch (e: any) {
   //     console.error(e.message);
   //     this.isSubmitting = false;
   //     // this.snackbar.openSnackBar('Authentication Failed', 'Try Again');
-      
+
   //   }
   // }
 
-  login()
-  {
-  console.log(this.loginForm.value);
+  login() {
+    console.log(this.loginForm.value);
     const { email, password } = this.loginForm.value;
 
     if (!this.loginForm.valid || !email || !password) {
@@ -123,7 +124,7 @@ export class LoginComponent {
     }
     this.authService.login(email, password)
       .pipe(
-        
+
         this.toast.observe({
           success: 'Logged in successfully',
           loading: 'Logging in...',
@@ -131,7 +132,7 @@ export class LoginComponent {
           // error: ({ no }) => `There was an error: ${message} `,
         })
       )
-      
+
       .subscribe(async user => {
         if (user) {
           this.submitButton.disabled = false;

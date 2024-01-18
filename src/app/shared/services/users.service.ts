@@ -41,10 +41,17 @@ export class UsersService {
     return from(setDoc(ref, user));
   }
 
+  //for updating user details
+  // updateUser(user: ProfileUser): Observable<void> {
+  //   const ref = doc(this.firestore, 'users', user?.uid);
+  //   return from(updateDoc(ref, { ...user }));
+  // }
   updateUser(user: ProfileUser): Observable<void> {
-    const ref = doc(this.firestore, 'users', user?.uid);
+    const ref = doc(this.firestore, 'users/' + user?.uid + '/suppliers/' + 'Kcsq8mcf3frpvWXyRChI');
     return from(updateDoc(ref, { ...user }));
   }
+
+
 
   getSupplierDetails(details: ProfileUser): Observable<ProfileUser[]> {
     const supplierRef = collection(this.firestore, `supplierdetails/${details.id}`)

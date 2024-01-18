@@ -95,6 +95,7 @@ export class AddSupplierComponent {
 
     console.log(this.form.value, this.radata);
 
+
     this.dialogRef.close({ ...this.form.value, id: this.radata.id });
   }
 

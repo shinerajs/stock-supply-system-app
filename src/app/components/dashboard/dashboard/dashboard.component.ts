@@ -39,7 +39,6 @@ export class DashboardComponent {
         success: 'Successfully Invited',
         loading: 'Inviting...',
         error: 'Please Check the entered details.',
-        // error: ({ no }) => `There was an error: ${message} `,
       }))
       .subscribe(data => {
         if (data) {
@@ -72,19 +71,25 @@ export class DashboardComponent {
     }
     const dialogRef = this.dialog.open(AlertComponent, dialogConfig);
 
-    dialogRef.afterClosed().subscribe(data => {
-      if (data) {
-        // this.supplierService.deleteSupplier(row);
-        // console.log(row);
-        this.authService.logout().subscribe(() => {
-          localStorage.clear();
-          this.router.navigate(['/loginuser']);
-          location.reload();
-        });
+    dialogRef.afterClosed()
+      .pipe(this.toast.observe({
+        success: 'Successfully LogOut',
+        loading: 'Logging out...',
+        error: 'Please Check the entered details.',
+      }))
+      .subscribe(data => {
+        if (data) {
+          // this.supplierService.deleteSupplier(row);
+          // console.log(row);
+          this.authService.logout().subscribe(() => {
+            localStorage.clear();
+            this.router.navigate(['/loginuser']);
+            location.reload();
+          });
 
-        this.openSnackBar("LogOut Successfully!", "OK")
-      }
-    })
+          // this.openSnackBar("LogOut Successfully!", "OK")
+        }
+      })
 
   }
 }

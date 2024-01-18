@@ -4,6 +4,7 @@ import { AddSupplierComponent } from '../supplier/add-supplier/add-supplier.comp
 import { DataService } from 'src/app/shared/services/data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HotToastService } from '@ngneat/hot-toast';
+import { UsersService } from 'src/app/shared/services/users.service';
 
 @Component({
   selector: 'app-suppliertab',
@@ -14,7 +15,8 @@ export class SuppliertabComponent {
   constructor(
     public dialog: MatDialog,
     private supplierService: DataService,
-    private toast:HotToastService
+    private usersServices: UsersService,
+    private toast: HotToastService
   ) { }
 
   addSupplier() {
@@ -28,17 +30,18 @@ export class SuppliertabComponent {
     const dialogRef = this.dialog.open(AddSupplierComponent, dialogConfig);
 
     dialogRef.afterClosed()
-    .pipe( this.toast.observe({
-      loading: 'Inviting Supplier...',
-      success: 'Successfully Invited',
-      error: 'There was an error in inviting the Supplier',
-    }))
-    .subscribe(data => {
-      if (data) {
-        console.log(data);
-        this.supplierService.addSupplier(data);
-      }
-    })
+      .pipe(this.toast.observe({
+        loading: 'Inviting Supplier...',
+        success: 'Successfully Invited',
+        error: 'There was an error in inviting the Supplier',
+      }))
+      .subscribe(data => {
+        if (data) {
+          console.log(data);
+          this.supplierService.addSupplier(data);
+          // this.usersServices.addSupplier(data);
+        }
+      })
   }
 
 

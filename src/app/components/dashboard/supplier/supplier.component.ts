@@ -30,7 +30,7 @@ export class SupplierComponent {
   constructor(
     public dialog: MatDialog,
     private supplierService: DataService,
-    private toast:HotToastService,
+    private toast: HotToastService,
     private usersService: UsersService
   ) { }
 
@@ -58,19 +58,19 @@ export class SupplierComponent {
     const dialogRef = this.dialog.open(AddSupplierComponent, dialogConfig);
 
     dialogRef.afterClosed()
-    .pipe( this.toast.observe({
-      loading: 'Inviting Supplier...',
-      success: 'Successfully Invited',
-      error: 'There was an error in inviting the Supplier',
-    }))
-    .subscribe(data => {
-      if (data) {
-        console.log(data);
+      .pipe(this.toast.observe({
+        loading: 'Inviting Supplier...',
+        success: 'Successfully Invited',
+        error: 'There was an error in inviting the Supplier',
+      }))
+      .subscribe(data => {
+        if (data) {
+          console.log(data);
 
-        this.supplierService.addSupplier(data);
-       
-      }
-    })
+          this.supplierService.addSupplier(data);
+
+        }
+      })
   }
 
   getAllSuppliers() {
@@ -134,20 +134,20 @@ export class SupplierComponent {
     const dialogRef = this.dialog.open(AddSupplierComponent, dialogConfig);
 
     dialogRef.afterClosed()
-    .pipe( this.toast.observe({
-      loading: 'Editing Supplier...',
-      success: 'Successfully Edited',
-      error: 'There was an error in editing the Supplier',
-  }))
-    .subscribe(data => {
+      .pipe(this.toast.observe({
+        loading: 'Editing Supplier...',
+        success: 'Successfully Edited',
+        error: 'There was an error in editing the Supplier',
+      }))
+      .subscribe(data => {
 
-      if (data) {
-        this.supplierService.updateSupplier(data);
-        console.log(data);
+        if (data) {
+          this.supplierService.updateSupplier(data);
+          console.log(data);
 
-       // this.openSnackBar("Supplier is updated successfully.", "OK")
-      }
-    })
+          // this.openSnackBar("Supplier is updated successfully.", "OK")
+        }
+      })
   }
 
   async deleteSupplier(row: Supplier) {
@@ -162,20 +162,20 @@ export class SupplierComponent {
     const dialogRef = this.dialog.open(DeleteSupplierComponent, dialogConfig);
 
     dialogRef.afterClosed()
-    .pipe(
-      this.toast.observe({
-        loading: 'Deleting Supplier...',
-        success: 'Successfully Deleted',
-        error: 'There was an error in deleting the Supplier',
-      })
-    ).subscribe(data => {
-      if (data) {
-        this.supplierService.deleteSupplier(row);
-        console.log(row);
+      .pipe(
+        this.toast.observe({
+          loading: 'Deleting Supplier...',
+          success: 'Successfully Deleted',
+          error: 'There was an error in deleting the Supplier',
+        })
+      ).subscribe(data => {
+        if (data) {
+          this.supplierService.deleteSupplier(row);
+          console.log(row);
 
-      //  this.openSnackBar("Supplier deleted Successfully!", "OK")
-      }
-    })
+          //  this.openSnackBar("Supplier deleted Successfully!", "OK")
+        }
+      })
   }
 
 

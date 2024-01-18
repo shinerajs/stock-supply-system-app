@@ -3,6 +3,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddSupplierComponent } from '../supplier/add-supplier/add-supplier.component';
 import { DataService } from 'src/app/shared/services/data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'app-suppliertab',
@@ -13,7 +14,7 @@ export class SuppliertabComponent {
   constructor(
     public dialog: MatDialog,
     private supplierService: DataService,
-    private _snackBar: MatSnackBar
+    private toast:HotToastService
   ) { }
 
   addSupplier() {
@@ -26,18 +27,20 @@ export class SuppliertabComponent {
     }
     const dialogRef = this.dialog.open(AddSupplierComponent, dialogConfig);
 
-    dialogRef.afterClosed().subscribe(data => {
+    dialogRef.afterClosed()
+    .pipe( this.toast.observe({
+      loading: 'Inviting Supplier...',
+      success: 'Successfully Invited',
+      error: 'There was an error in inviting the Supplier',
+    }))
+    .subscribe(data => {
       if (data) {
         console.log(data);
         this.supplierService.addSupplier(data);
-        this.openSnackBar("Successfully added.", "OK")
       }
     })
   }
 
-  openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action);
-  }
 
 }
 

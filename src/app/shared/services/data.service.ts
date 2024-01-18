@@ -27,7 +27,7 @@ export class DataService {
 
   async addSupplier(supplier: Supplier) {
     supplier.id = doc(collection(this.firestore, 'id')).id
-    return addDoc(collection(this.firestore, `users/${this.getUserDetails}/suppliers`), supplier);
+    return addDoc(collection(this.firestore, 'suppliers'), supplier);
     //another method =>
     // const supplierRef = collection(this.firestore, 'suppliers');
     // return addDoc(supplierRef, supplier);

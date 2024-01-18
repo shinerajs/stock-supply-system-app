@@ -10,6 +10,7 @@ import { Supplier } from 'src/app/shared/interface/supplier';
 import { DeleteSupplierComponent } from './delete-supplier/delete-supplier.component';
 import { ViewSupplierComponent } from './view-supplier/view-supplier.component';
 import { UsersService } from 'src/app/shared/services/users.service';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'app-supplier',
@@ -20,7 +21,7 @@ export class SupplierComponent {
   currentuid: any = '';
   user$ = this.usersService.currentUserProfile$;
   suppliersArr: Supplier[] = [];
-  displayedColumns: string[] = ['id', 'companyname', 'name', 'email', 'mobile', 'supervisoremail', 'contractor', 'invitedon', 'action'];
+  displayedColumns: string[] = ['id', 'companyname', 'name', 'email', 'mobile', 'supervisoremail', 'contractor', 'action'];
   dataSource!: MatTableDataSource<Supplier>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -29,7 +30,7 @@ export class SupplierComponent {
   constructor(
     public dialog: MatDialog,
     private supplierService: DataService,
-    private _snackBar: MatSnackBar,
+    private toast:HotToastService,
     private usersService: UsersService
   ) { }
 
@@ -56,12 +57,18 @@ export class SupplierComponent {
     }
     const dialogRef = this.dialog.open(AddSupplierComponent, dialogConfig);
 
-    dialogRef.afterClosed().subscribe(data => {
+    dialogRef.afterClosed()
+    .pipe( this.toast.observe({
+      loading: 'Inviting Supplier...',
+      success: 'Successfully Invited',
+      error: 'There was an error in inviting the Supplier',
+    }))
+    .subscribe(data => {
       if (data) {
         console.log(data);
 
-        this.usersService.addSupplier(data);
-        this.openSnackBar("Successfully added.", "OK")
+        this.supplierService.addSupplier(data);
+       
       }
     })
   }
@@ -126,13 +133,19 @@ export class SupplierComponent {
 
     const dialogRef = this.dialog.open(AddSupplierComponent, dialogConfig);
 
-    dialogRef.afterClosed().subscribe(data => {
+    dialogRef.afterClosed()
+    .pipe( this.toast.observe({
+      loading: 'Editing Supplier...',
+      success: 'Successfully Edited',
+      error: 'There was an error in editing the Supplier',
+  }))
+    .subscribe(data => {
 
       if (data) {
         this.supplierService.updateSupplier(data);
         console.log(data);
 
-        this.openSnackBar("Supplier is updated successfully.", "OK")
+       // this.openSnackBar("Supplier is updated successfully.", "OK")
       }
     })
   }
@@ -148,18 +161,21 @@ export class SupplierComponent {
 
     const dialogRef = this.dialog.open(DeleteSupplierComponent, dialogConfig);
 
-    dialogRef.afterClosed().subscribe(data => {
+    dialogRef.afterClosed()
+    .pipe(
+      this.toast.observe({
+        loading: 'Deleting Supplier...',
+        success: 'Successfully Deleted',
+        error: 'There was an error in deleting the Supplier',
+      })
+    ).subscribe(data => {
       if (data) {
         this.supplierService.deleteSupplier(row);
         console.log(row);
 
-        this.openSnackBar("Supplier deleted Successfully!", "OK")
+      //  this.openSnackBar("Supplier deleted Successfully!", "OK")
       }
     })
-  }
-
-  openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action);
   }
 
 

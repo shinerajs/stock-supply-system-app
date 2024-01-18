@@ -60,14 +60,5 @@ export class UsersService {
     })
   }
 
-  async addSupplier(user: ProfileUser) {
-    user.id = doc(collection(this.firestore, 'id')).id
-    return addDoc(collection(this.firestore, `users/${user.uid}/suppliers`), user);
-    //another method =>
-    // const supplierRef = collection(this.firestore, 'suppliers');
-    // return addDoc(supplierRef, supplier);
-    // const supplierRef = doc(this.firestore, `suppliers/${supplier.id}`);
-    // await setDoc(supplierRef, Object.assign({}, supplier));
-    // return true; 
-  }
+
 }

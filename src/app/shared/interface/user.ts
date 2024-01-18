@@ -38,5 +38,5 @@ export interface ProfileUser {
     buttonName?: string;
     available?: string;
     comments?: string;
-    certificates?: { name: string }
+    certificates?: string;
 }

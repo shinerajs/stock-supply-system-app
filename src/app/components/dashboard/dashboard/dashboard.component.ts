@@ -4,6 +4,9 @@ import { AddSupplierComponent } from '../supplier/add-supplier/add-supplier.comp
 import { DataService } from 'src/app/shared/services/data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HotToastService } from '@ngneat/hot-toast';
+import { AlertComponent } from '../alert/alert.component';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,6 +18,8 @@ export class DashboardComponent {
   constructor(
     public dialog: MatDialog,
     private supplierService: DataService,
+    private authService: AuthService,
+    private router: Router,
     private toast: HotToastService,
     private _snackBar: MatSnackBar
   ) { }
@@ -49,5 +54,37 @@ export class DashboardComponent {
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action);
   }
+  logOut() {
+    // this.authService.logout().subscribe(async user => {
+    //   if (user) {
+    //     localStorage.clear();
+    //     await this.router.navigate(['/loginuser']);
+    //     location.reload();
+    //   }
+    // })
 
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      tittle: 'Alert!',
+      action: 'LogOut'
+    }
+    const dialogRef = this.dialog.open(AlertComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(data => {
+      if (data) {
+        // this.supplierService.deleteSupplier(row);
+        // console.log(row);
+        this.authService.logout().subscribe(() => {
+          localStorage.clear();
+          this.router.navigate(['/loginuser']);
+          location.reload();
+        });
+
+        this.openSnackBar("LogOut Successfully!", "OK")
+      }
+    })
+
+  }
 }

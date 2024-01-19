@@ -4,7 +4,7 @@ import { AddSupplierComponent } from '../supplier/add-supplier/add-supplier.comp
 import { DataService } from 'src/app/shared/services/data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HotToastService } from '@ngneat/hot-toast';
-import { AlertComponent } from '../alert/alert.component';
+import { AlertComponent } from '../../../components/alert/alert.component';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { Router } from '@angular/router';
 

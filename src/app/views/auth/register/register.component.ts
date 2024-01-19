@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { UsersService } from 'src/app/shared/services/users.service';
-import { LandingComponent } from '../../landing/landing.component';
+import { LandingComponent } from '../../../views/auth/landing/landing.component';
 import { HotToastService } from '@ngneat/hot-toast';
 import { Observable } from 'rxjs';
 import { Auth, createUserWithEmailAndPassword, updateProfile } from '@angular/fire/auth';
@@ -78,28 +78,28 @@ export class RegisterComponent {
   }
 
   register = async (form: NgForm, e: Event) => {
-    
+
     e.preventDefault();
     form.form.updateValueAndValidity();
     if (form.form.invalid) {
       Object.keys(form.form.controls).forEach((key) => {
         form.form.get(key)?.markAsDirty(); //mark dirty if fields are empty
       });
-    } 
-    else{
-      this.isSubmitting = true;    
-      
+    }
+    else {
+      this.isSubmitting = true;
+
       try {
         const credential = await createUserWithEmailAndPassword(
           this.auth,
           form.value.email,
           form.value.password
         );
-  
+
         await updateProfile(
-          credential.user, { 
-            displayName: form.value.displayName,
-          }
+          credential.user, {
+          displayName: form.value.displayName,
+        }
         );
         this.updateUserCollection(credential);
       } catch (e: any) {
@@ -112,10 +112,10 @@ export class RegisterComponent {
 
   }
 
-  updateUserCollection = async (credential:any) => {
+  updateUserCollection = async (credential: any) => {
 
     const userRef = doc(this.afs, 'users-list', credential.user.uid);
-    
+
     try {
       await setDoc(userRef, {
         displayName: credential.user.displayName,
@@ -123,21 +123,21 @@ export class RegisterComponent {
         email: credential.user.email,
         role: 'New User',
         createdAt: credential.user.metadata.creationTime,
-        lastloginat:credential.user.metadata.lastLoginAt,
+        lastloginat: credential.user.metadata.lastLoginAt,
       });
       const docSnap = await getDoc(userRef);
       if (docSnap.exists()) {
         localStorage.setItem('user', JSON.stringify(docSnap.data()));
-          location.reload();
-      this.router.navigate(['/dashboard']);
+        location.reload();
+        this.router.navigate(['/dashboard']);
       }
     } catch (e: any) {
       console.error(e.message);
       this.isSubmitting = false;
       this.openSnackBar('error', "ok")
-     // this.uxService.openSnackBar('Login Failed !!!', 'Try Again');
+      // this.uxService.openSnackBar('Login Failed !!!', 'Try Again');
     }
-    
+
   }
 
   // register() {
@@ -166,6 +166,6 @@ export class RegisterComponent {
   // }
 
   loadUsers() {
-  this.allUsers = this.usersService.loadUsers();
+    this.allUsers = this.usersService.loadUsers();
   }
 }

@@ -3,10 +3,10 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UsersService } from 'src/app/shared/services/users.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { AlertComponent } from '../alert/alert.component';
+import { AlertComponent } from '../../../components/alert/alert.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HotToastComponent } from '@ngneat/hot-toast/lib/components/hot-toast/hot-toast.component';
 import { HotToastService } from '@ngneat/hot-toast';
@@ -17,6 +17,11 @@ import { HotToastService } from '@ngneat/hot-toast';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent {
+  selectedPage = '';
+  routerURL = '';
+  selectRole: any = '';
+  currentuid: any = '';
+
   private breakpointObserver = inject(BreakpointObserver);
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -31,6 +36,7 @@ export class SidebarComponent {
     private _snackBar: MatSnackBar,
     public usersService: UsersService,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     private toast: HotToastService
   ) { }
   user$ = this.usersService.currentUserProfile$;
@@ -72,15 +78,20 @@ export class SidebarComponent {
         // this.openSnackBar("Supplier deleted Successfully!", "OK")
       }
     })
+  }
 
-
-
-
-
-
-
-
-
+  ngOnInit(): void {
+    this.activatedRoute.queryParams.subscribe((qp) => {
+      this.selectedPage = qp['section'];
+    });
+    this.getCurrentUser();
+  }
+  async getCurrentUser() {
+    await this.usersService.getUserDetails().then(async (res: any) => {
+      if (res) {
+        this.currentuid = res.uid;
+      }
+    })
   }
 
   openSnackBar(message: string, action: string) {

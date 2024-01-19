@@ -43,7 +43,7 @@ export class UsersService {
 
   loadUsers() {
     const dbInstance = collection(this.firestore, 'users');
-    return collectionData(dbInstance, { idField: 'id'})
+    return collectionData(dbInstance, { idField: 'id' })
   }
 
   //for updating user details
@@ -70,6 +70,50 @@ export class UsersService {
     return new Promise((resolve) => {
       resolve(this.auth.currentUser);
     })
+  }
+
+
+  async getAuthUserProfile() {
+    return new Promise(async (resolve, reject) => {
+      await this.getUserDetails().then(async (res: any) => {
+        if (res) {
+          await this.getUserProfile(res.uid).then((resp) => {
+            resolve(resp);
+          })
+        }
+        else {
+          resolve('No Auth User');
+        }
+      })
+    })
+  }
+
+  async getUserProfile(currentUID: string) {
+    return new Promise(async (resolve, reject) => {
+      await this.getDocumentByIDFrom('users-list', currentUID).then((res) => {
+        if (res) {
+          resolve(res);
+        }
+        else {
+          resolve('No user Details');
+        }
+      })
+    })
+
+  }
+
+  async getDocumentByIDFrom(collectionname: any, key: any) {
+    const datalistref = (doc(this.firestore, collectionname, key));
+    const docsnap = await getDoc(datalistref);
+    if (docsnap.exists()) {
+      let obj: any = docsnap.data();
+      obj.key = docsnap.id;
+      return (obj);
+    } else {
+      // doc.data() will be undefined in this case
+      // 
+    }
+
   }
 
 

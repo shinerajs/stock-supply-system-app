@@ -1,0 +1,41 @@
+<img class="image" src="../../../assets/trianglif.png" alt="background">
+
+<mat-toolbar color="primary">
+  Stock Management System
+
+
+  <button mat-button routerLink="">
+    <mat-icon>home</mat-icon>
+    Home
+  </button>
+
+</mat-toolbar>
+
+<div class="form-container mat-elevation-z5">
+  <mat-progress-bar mode="determinate" class="session-progress"></mat-progress-bar>
+  <div class="container">
+    <h1>Login</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="login(loginForm, $event)">
+      <mat-form-field>
+        <input matInput placeholder="Email address *" formControlName="email" />
+        <mat-error *ngIf="email?.errors?.['required']">
+          Email address is required
+        </mat-error>
+        <mat-error *ngIf="email?.errors?.['email']">
+          Please enter a valid email address
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="password" placeholder="Password *" formControlName="password" />
+        <mat-error *ngIf="password?.errors?.['required']">
+          Password is required
+        </mat-error>
+      </mat-form-field>
+      <div class="center margin-top">
+        <button class="btn" type="submit" mat-raised-button color="primary">Login</button>
+      </div>
+      <span class="center margin-top">New to our platform? <a class="sign-up-link" routerLink="/register"> Sign
+          up!</a></span>
+    </form>
+  </div>
+</div>

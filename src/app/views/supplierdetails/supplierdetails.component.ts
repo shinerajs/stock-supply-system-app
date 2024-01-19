@@ -6,9 +6,9 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Supplier } from 'src/app/shared/interface/supplier';
 import { DataService } from 'src/app/shared/services/data.service';
-import { ViewSupplierComponent } from '../dashboard/supplier/view-supplier/view-supplier.component';
-import { AddSupplierComponent } from '../dashboard/supplier/add-supplier/add-supplier.component';
-import { DeleteSupplierComponent } from '../dashboard/supplier/delete-supplier/delete-supplier.component';
+import { ViewSupplierComponent } from '../admin/supplier/view-supplier/view-supplier.component';
+import { AddSupplierComponent } from '../admin/supplier/add-supplier/add-supplier.component';
+import { DeleteSupplierComponent } from '../admin/supplier/delete-supplier/delete-supplier.component';
 
 @Component({
   selector: 'app-supplierdetails',

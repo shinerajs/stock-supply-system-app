@@ -3,10 +3,10 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UsersService } from 'src/app/shared/services/users.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { AlertComponent } from '../../dashboard/alert/alert.component';
+import { AlertComponent } from '../../../components/alert/alert.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -15,6 +15,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./sidemenu.component.scss']
 })
 export class SidemenuComponent {
+  currentuid: any = '';
+  businessID: any = '';
+  isBusinessOpened = false;
+
   private breakpointObserver = inject(BreakpointObserver);
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -28,9 +32,32 @@ export class SidemenuComponent {
     public dialog: MatDialog,
     private _snackBar: MatSnackBar,
     public usersService: UsersService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute,
   ) { }
   user$ = this.usersService.currentUserProfile$;
+  ngOnInit(): void {
+    this.getCurrentUser();
+
+    this.route.queryParams.subscribe(qp => {
+
+      this.businessID = qp['businessid'];
+      if (this.businessID) {
+        this.isBusinessOpened = true;
+      }
+      else {
+        this.isBusinessOpened = false;
+      }
+    })
+  }
+
+  async getCurrentUser() {
+    await this.usersService.getUserDetails().then(async (res: any) => {
+
+      this.currentuid = res.uid;
+    })
+  }
+
 
   logOut() {
     // this.authService.logout().subscribe(async user => {

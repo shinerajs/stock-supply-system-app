@@ -1,35 +1,58 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SupplierComponent } from './components/dashboard/supplier/supplier.component';
-import { LoginComponent } from './components/auth/login/login.component';
-import { RegisterComponent } from './components/auth/register/register.component';
+import { SupplierComponent } from './views/admin/supplier/supplier.component';
+import { LoginComponent } from './views/auth/login/login.component';
+import { RegisterComponent } from './views/auth/register/register.component';
 import { canActivate, redirectUnauthorizedTo, redirectLoggedInTo } from '@angular/fire/auth-guard';
-import { LandingComponent } from './components/landing/landing.component';
-import { DashboardComponent } from './components/dashboard/dashboard/dashboard.component';
-import { SuppliertabComponent } from './components/dashboard/suppliertab/suppliertab.component';
-import { CompanydetailsComponent } from './components/supplierdetails/companydetails/companydetails.component';
-import { SupplierworksComponent } from './components/supplierdetails/supplierworks/supplierworks.component';
-import { SidemenuComponent } from './components/supplierdetails/sidemenu/sidemenu.component';
+import { LandingComponent } from './views/auth/landing/landing.component';
+import { DashboardComponent } from './views/admin/dashboard/dashboard.component';
+import { SuppliertabComponent } from './views/admin/suppliertab/suppliertab.component';
+import { CompanydetailsComponent } from './views/supplierdetails/companydetails/companydetails.component';
+import { SupplierworksComponent } from './views/supplierdetails/supplierworks/supplierworks.component';
+import { SidemenuComponent } from './views/supplierdetails/supplier-layout/sidemenu.component';
+import { NormaluserguardGuard } from './shared/guard/normaluserguard.guard';
 
-const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['loginuser']);
-const redirectLoggedInToHome = () => redirectLoggedInTo(['']);
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['']);
+const redirectLoggedInToHome = () => redirectLoggedInTo(['/dashboard']);
 
 const routes: Routes = [
+
   {
-    path: 'loginuser', component: LandingComponent, ...canActivate(redirectLoggedInToHome)
+    path: '',
+    redirectTo: 'auth',
+    pathMatch: 'full'
   },
   {
-    path: 'login', component: LoginComponent, ...canActivate(redirectLoggedInToHome)
+    path: 'auth',
+    loadChildren: () => import('./views/auth/auth.module').then(m => m.AuthModule),
+    ...canActivate(redirectLoggedInToHome)
   },
   {
-    path: 'register', component: RegisterComponent, ...canActivate(redirectLoggedInToHome)
+    path: 'supplier',
+    component: SidemenuComponent, ...canActivate(redirectUnauthorizedToLogin),
+    canActivateChild: [NormaluserguardGuard],
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./views/supplierdetails/supplierdetails.module').then(m => m.SupplierdetailsModule),
+      },
+    ]
   },
+  // {
+  //   path: 'loginuser', component: LandingComponent, ...canActivate(redirectLoggedInToHome)
+  // },
+  // {
+  //   path: 'login', component: LoginComponent, ...canActivate(redirectLoggedInToHome)
+  // },
+  // {
+  //   path: 'register', component: RegisterComponent, ...canActivate(redirectLoggedInToHome)
+  // },
   {
     path: '', pathMatch: 'full', component: DashboardComponent, ...canActivate(redirectUnauthorizedToLogin)
   },
-  {
-    path: 'supplier', component: SidemenuComponent, ...canActivate(redirectUnauthorizedToLogin)
-  },
+  // {
+  //   path: 'supplier', component: SidemenuComponent, ...canActivate(redirectUnauthorizedToLogin)
+  // },
   {
     path: 'dashboard', component: DashboardComponent, ...canActivate(redirectUnauthorizedToLogin)
   },

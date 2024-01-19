@@ -9,6 +9,7 @@ import { DashboardComponent } from './components/dashboard/dashboard/dashboard.c
 import { SuppliertabComponent } from './components/dashboard/suppliertab/suppliertab.component';
 import { CompanydetailsComponent } from './components/supplierdetails/companydetails/companydetails.component';
 import { SupplierworksComponent } from './components/supplierdetails/supplierworks/supplierworks.component';
+import { SidemenuComponent } from './components/supplierdetails/sidemenu/sidemenu.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['loginuser']);
 const redirectLoggedInToHome = () => redirectLoggedInTo(['']);
@@ -26,9 +27,9 @@ const routes: Routes = [
   {
     path: '', pathMatch: 'full', component: DashboardComponent, ...canActivate(redirectUnauthorizedToLogin)
   },
-  // {
-  //   path: 'supplier', component: SupplierComponent, ...canActivate(redirectUnauthorizedToLogin)
-  // },
+  {
+    path: 'supplier', component: SidemenuComponent, ...canActivate(redirectUnauthorizedToLogin)
+  },
   {
     path: 'dashboard', component: DashboardComponent, ...canActivate(redirectUnauthorizedToLogin)
   },

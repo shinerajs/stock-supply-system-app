@@ -26,7 +26,7 @@
   <mat-progress-bar mode="determinate" class="session-progress"></mat-progress-bar>
   <div class="container">
   <h1>Login</h1>
-  <form [formGroup]="loginForm" (ngSubmit)="login()">
+  <form [formGroup]="loginForm" (ngSubmit)="login(loginForm, $event)">
     <mat-form-field>
       <input matInput placeholder="Email address *" formControlName="email" />
       <mat-error *ngIf="email?.errors?.['required']">
@@ -43,7 +43,7 @@
       </mat-error>
     </mat-form-field>
     <div class="center margin-top">
-      <button class="btn" type="submit" mat-raised-button [disabled]="isSubmitting" color="primary">Login</button>
+      <button class="btn" type="submit" mat-raised-button color="primary">Login</button>
     </div>
     <span class="center margin-top">New to our platform? <a class="sign-up-link" routerLink="/register"> Sign
         up!</a></span>

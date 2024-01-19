@@ -41,6 +41,11 @@ export class UsersService {
     return from(setDoc(ref, user));
   }
 
+  loadUsers() {
+    const dbInstance = collection(this.firestore, 'users');
+    return collectionData(dbInstance, { idField: 'id'})
+  }
+
   //for updating user details
   // updateUser(user: ProfileUser): Observable<void> {
   //   const ref = doc(this.firestore, 'users', user?.uid);

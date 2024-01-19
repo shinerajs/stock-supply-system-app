@@ -11,6 +11,8 @@ import { DeleteSupplierComponent } from './delete-supplier/delete-supplier.compo
 import { ViewSupplierComponent } from './view-supplier/view-supplier.component';
 import { UsersService } from 'src/app/shared/services/users.service';
 import { HotToastService } from '@ngneat/hot-toast';
+import { Observable } from 'rxjs';
+import { Router, Routes } from '@angular/router';
 
 @Component({
   selector: 'app-supplier',
@@ -18,6 +20,7 @@ import { HotToastService } from '@ngneat/hot-toast';
   styleUrls: ['./supplier.component.scss']
 })
 export class SupplierComponent {
+  allUsers !: Observable<Array<any>>
   currentuid: any = '';
   user$ = this.usersService.currentUserProfile$;
   suppliersArr: Supplier[] = [];
@@ -31,12 +34,13 @@ export class SupplierComponent {
     public dialog: MatDialog,
     private supplierService: DataService,
     private toast: HotToastService,
-    private usersService: UsersService
-  ) { }
+    private usersService: UsersService,
+    private route: Router
+  ) { this.loadUsers(); }
 
   ngOnInit(): void {
     this.getAllSuppliers();
-
+    
   }
 
   async getCurrentUser() {
@@ -46,6 +50,10 @@ export class SupplierComponent {
 
     })
   }
+
+  loadUsers() {
+    this.allUsers = this.usersService.loadUsers()  
+    }
 
   addSupplier() {
     const dialogConfig = new MatDialogConfig();

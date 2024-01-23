@@ -15,7 +15,7 @@ import { SidebarComponent } from './views/admin/admin-layout/sidebar.component';
 import { AdminguardGuard } from './shared/guard/adminguard.guard';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/loginuser']);
-const redirectLoggedInToHome = () => redirectLoggedInTo(['']);
+const redirectLoggedInToHome = () => redirectLoggedInTo(['/loginuser']);
 
 const routes: Routes = [
   {
@@ -44,15 +44,15 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    component:SidebarComponent, ...canActivate(redirectUnauthorizedToLogin),
-canActivateChild: [AdminguardGuard],
-children: [
-  {
-  path: '',
-  loadChildren: () => import('./views/admin/admin.module').then(m => m.AdminModule),
-  },
-  
-]
+    component: SidebarComponent, ...canActivate(redirectUnauthorizedToLogin),
+    canActivateChild: [AdminguardGuard],
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./views/admin/admin.module').then(m => m.AdminModule),
+      },
+
+    ]
   },
   // {
   //   path: 'loginuser', component: LandingComponent, ...canActivate(redirectLoggedInToHome)

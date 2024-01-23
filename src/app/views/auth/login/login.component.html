@@ -32,7 +32,7 @@
         </mat-error>
       </mat-form-field>
       <div class="center margin-top">
-        <button class="btn" type="submit" mat-raised-button color="primary">Login</button>
+        <button class="btn" type="submit" [disabled]="isSubmitting" mat-raised-button color="primary">Login</button>
       </div>
       <span class="center margin-top">New to our platform? <a class="sign-up-link" routerLink="/auth/register"> Sign
           up!</a></span>

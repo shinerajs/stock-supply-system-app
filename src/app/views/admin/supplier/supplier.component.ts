@@ -40,7 +40,8 @@ export class SupplierComponent {
 
   ngOnInit(): void {
     this.getAllSuppliers();
-    
+    this.getCurrentUser();
+
   }
 
   async getCurrentUser() {
@@ -52,8 +53,8 @@ export class SupplierComponent {
   }
 
   loadUsers() {
-    this.allUsers = this.usersService.loadUsers()  
-    }
+    this.allUsers = this.usersService.loadUsers()
+  }
 
   addSupplier() {
     const dialogConfig = new MatDialogConfig();

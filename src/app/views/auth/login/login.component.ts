@@ -74,7 +74,7 @@ export class LoginComponent {
         localStorage.setItem('user', JSON.stringify(docSnap.data()));
           location.reload();
 
-        if(docSnap.data() && docSnap.data()['role']=='Supplier'){
+        if(docSnap.data() && docSnap.data()['role']=='New User'){
           this.router.navigate(['/supplier']);
         }
         else{
@@ -102,6 +102,7 @@ export class LoginComponent {
 
 
       const credential = await signInWithEmailAndPassword(this.auth, email, password);
+console.log(credential);
 
       this.updateUserCollection(credential);
     } catch (e: any) {

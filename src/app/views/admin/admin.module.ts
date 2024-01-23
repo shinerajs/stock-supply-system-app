@@ -101,8 +101,8 @@ import { SupplierdetailsComponent } from '../supplierdetails/supplierdetails.com
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage()),
-    BrowserModule,
-    BrowserAnimationsModule,
+    // BrowserModule,
+    // BrowserAnimationsModule,
     HttpClientModule,
 
   ],

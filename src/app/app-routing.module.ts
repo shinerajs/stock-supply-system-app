@@ -11,12 +11,16 @@ import { CompanydetailsComponent } from './views/supplierdetails/companydetails/
 import { SupplierworksComponent } from './views/supplierdetails/supplierworks/supplierworks.component';
 import { SidemenuComponent } from './views/supplierdetails/supplier-layout/sidemenu.component';
 import { NormaluserguardGuard } from './shared/guard/normaluserguard.guard';
+import { SidebarComponent } from './views/admin/admin-layout/sidebar.component';
+import { AdminguardGuard } from './shared/guard/adminguard.guard';
 
-const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['']);
-const redirectLoggedInToHome = () => redirectLoggedInTo(['/dashboard']);
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/loginuser']);
+const redirectLoggedInToHome = () => redirectLoggedInTo(['']);
 
 const routes: Routes = [
-
+  {
+    path: 'loginuser', component: LandingComponent, ...canActivate(redirectLoggedInToHome)
+  },
   {
     path: '',
     redirectTo: 'auth',
@@ -38,6 +42,18 @@ const routes: Routes = [
       },
     ]
   },
+  {
+    path: 'admin',
+    component:SidebarComponent, ...canActivate(redirectUnauthorizedToLogin),
+canActivateChild: [AdminguardGuard],
+children: [
+  {
+  path: '',
+  loadChildren: () => import('./views/admin/admin.module').then(m => m.AdminModule),
+  },
+  
+]
+  },
   // {
   //   path: 'loginuser', component: LandingComponent, ...canActivate(redirectLoggedInToHome)
   // },
@@ -47,30 +63,30 @@ const routes: Routes = [
   // {
   //   path: 'register', component: RegisterComponent, ...canActivate(redirectLoggedInToHome)
   // },
-  {
-    path: '', pathMatch: 'full', component: DashboardComponent, ...canActivate(redirectUnauthorizedToLogin)
-  },
+  // {
+  //   path: '', pathMatch: 'full', component: DashboardComponent, ...canActivate(redirectUnauthorizedToLogin)
+  // },
   // {
   //   path: 'supplier', component: SidemenuComponent, ...canActivate(redirectUnauthorizedToLogin)
   // },
-  {
-    path: 'dashboard', component: DashboardComponent, ...canActivate(redirectUnauthorizedToLogin)
-  },
+  // {
+  //   path: 'dashboard', component: DashboardComponent, ...canActivate(redirectUnauthorizedToLogin)
+  // },
 
-  {
-    path: 'dashboard',
-    children: [
-      {
-        path: 'suppliertab', component: SuppliertabComponent
-      },
-      {
-        path: 'company-details', component: CompanydetailsComponent
-      },
-      {
-        path: 'supplier-works', component: SupplierworksComponent
-      }
-    ], ...canActivate(redirectUnauthorizedToLogin)
-  },
+  // {
+  //   path: 'dashboard',
+  //   children: [
+  //     {
+  //       path: 'suppliertab', component: SuppliertabComponent
+  //     },
+  //     {
+  //       path: 'company-details', component: CompanydetailsComponent
+  //     },
+  //     {
+  //       path: 'supplier-works', component: SupplierworksComponent
+  //     }
+  //   ], ...canActivate(redirectUnauthorizedToLogin)
+  // },
 
   // {
   //   path: 'home',

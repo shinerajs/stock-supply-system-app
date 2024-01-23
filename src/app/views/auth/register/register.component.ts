@@ -129,7 +129,7 @@ export class RegisterComponent {
       if (docSnap.exists()) {
         localStorage.setItem('user', JSON.stringify(docSnap.data()));
         location.reload();
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/supplier/dashboard']);
       }
     } catch (e: any) {
       console.error(e.message);

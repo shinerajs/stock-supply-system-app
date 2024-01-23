@@ -10,7 +10,7 @@ import { UsersService } from './shared/services/users.service';
 export class AppComponent {
   user$ = this.usersService.currentUserProfile$;
   title = 'Stock Management System';
-  userLoggedIn: boolean = false;
+  // userLoggedIn: boolean = false;
   public layoutConf: any = {};
 
   constructor(
@@ -18,6 +18,6 @@ export class AppComponent {
     private usersService: UsersService
   ) { }
   ngOnInit() {
-    this.userLoggedIn = this.authService.isUserLoggedIn();
+    // this.userLoggedIn = this.authService.isUserLoggedIn();
   }
 }

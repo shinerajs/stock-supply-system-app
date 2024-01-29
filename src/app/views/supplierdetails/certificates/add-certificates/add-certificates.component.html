@@ -1,4 +1,4 @@
-<h2 mat-dialog-title> {{ tittle }} </h2>
+<!-- <h2 mat-dialog-title> {{ tittle }} </h2>
 <mat-divider></mat-divider>
 <mat-form-field>
     <div class="inline">
@@ -14,4 +14,68 @@
 <div style="justify-content: end; padding: 0px 20px 20px 0px;" mat-dialog-actions>
     <button mat-raised-button color="primary" mat-dialog-close (click)="addCertificates()">
         {{buttonName}} </button>
+</div> -->
+
+<div class="container">
+    <div class="header">
+        <h2 mat-dialog-title>Add Certificate</h2>
+
+        <!-- <button mat-button class="close-icon" (click)="close()">
+            <mat-icon>close</mat-icon>
+        </button> -->
+
+    </div>
+    <mat-divider></mat-divider>
+    <div class="body">
+        <mat-dialog-content>
+            <form #reqform="ngForm" autocomplete="off">
+                <ul>
+                    <li>
+                        <label for="title"><span style="color: red;"> * </span>Certificate Title</label>
+                        <input type="text" placeholder="Enter Certificate title" id="title" name="title"
+                            [(ngModel)]="docObj.title" [required]="true" #title="ngModel" pattern="^[^\s]+.*$">
+                    </li>
+                    <li *ngIf="title.errors?.['required'] && (title.touched || title.dirty)">
+                        <mat-error>
+                            Certificate title is required!
+                        </mat-error>
+                    </li>
+                    <li *ngIf="title.errors?.['pattern']">
+                        <mat-error>
+                            Certificate title should not start with space
+                        </mat-error>
+                    </li>
+
+                    <li>
+                        <label for="tags">Mandatory</label>
+                        <mat-radio-group name="mandate" aria-label="Select an option" [(ngModel)]="docObj.mandate"
+                            style="width: 100%;">
+                            <mat-radio-button style="width: 50%;" [value]="true">Mandatory</mat-radio-button>
+                            <mat-radio-button style="width: 50%;" [value]="false">Optional</mat-radio-button>
+                        </mat-radio-group>
+                    </li>
+
+                    <li>
+                        <mat-label>Accepted File Type</mat-label>
+                        <mat-select [(value)]="formatselected" multiple>
+                            <mat-option *ngFor="let format of formatList" [value]="format">{{format}}</mat-option>
+                            <!-- <mat-option value="PDF">PDF</mat-option>
+                            <mat-option value="JPG/JPEG/PNG">JPG/JPEG/PNG</mat-option>
+                            <mat-option value="DWG/DXF/SFV">DWG/DXF/SFV</mat-option> -->
+                        </mat-select>
+                    </li>
+                    <li>
+                        <label for="description">Description <span>(optional)</span></label>
+                        <textarea rows="3" type="text" placeholder="Enter description" id="description"
+                            name="description" [(ngModel)]="docObj.description" #description="ngModel"></textarea>
+                    </li>
+                </ul>
+            </form>
+        </mat-dialog-content>
+        <mat-dialog-actions align="end">
+            <button mat-button style="color: #545454 ;border: 1px solid #545454;" mat-dialog-close>Cancel</button>
+            <button type="submit" style="color: #fff;background-color: #3f51b5;" (click)="onAdd(reqform,$event)"
+                mat-button cdkFocusInitial>Save</button>
+        </mat-dialog-actions>
+    </div>
 </div>

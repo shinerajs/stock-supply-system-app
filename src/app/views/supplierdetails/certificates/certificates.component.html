@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="header">
+        {{filterby}} Certificates
+    </div>
+    <mat-divider></mat-divider>
+    <div class="body">
+        <div class="newDoc">
+            <div class="addImages" (click)="openAddDocsModal('500ms','300ms')" style="cursor: pointer;">
+                <h4 style="font-size: 20px;color: grey;">Add Document Details Here...</h4>
+                <button style="color:#D06A3E" mat-icon-button disabled aria-label="Add a new snap">
+                    <mat-icon>border_color</mat-icon>
+                </button>
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="docList" *ngIf="documentList && documentList.length>0">
+            <div class="eachFile" *ngFor="let doc of documentList">
+                <mat-card class="card">
+                    <mat-card-header style="max-width: 100%;">
+                        <div *ngIf="doc.mandate" class="mandateimage"><mat-icon>stars</mat-icon></div>
+                        <div style="max-width: 68%;">
+                            <mat-card-title class="textoverflow"
+                                (click)="toggleClass($event,'show')">{{doc.title}}</mat-card-title>
+                        </div>
+                    </mat-card-header>
+                    <img mat-card-image src="./../../../../assets/testimgs/pdfplaceholder.png" alt="PDF ICON">
+                    <mat-divider></mat-divider>
+                    <mat-card-content>
+                        <p class="textoverflow" (click)="toggleClass($event,'show')">{{doc.description}}
+                        </p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button mat-icon-button style="color: #D06A3E;">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-icon-button style="color: #D06A3E;">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>

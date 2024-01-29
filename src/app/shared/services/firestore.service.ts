@@ -129,11 +129,11 @@ export class FirestoreService {
         }
         transaction.update(sfDocRef, Object.assign({}, dataobj), { merge: true });
       })
-      
+
       return (true)
 
     } catch (e) {
-      
+
       return false;
     }
 
@@ -141,18 +141,18 @@ export class FirestoreService {
   }
 
   async updateArrayUnionInDocumentWithIDOF(collectionname: any, key: any, propname: string, propval: any) {
-    
+
 
     const sfDocRef = doc(this.firestore, collectionname, key);
     try {
       await updateDoc(sfDocRef, {
         [propname]: arrayUnion(propval)
       });
-      
+
       return (true)
 
     } catch (e) {
-      
+
       return false;
     }
   }
@@ -163,11 +163,11 @@ export class FirestoreService {
       await updateDoc(sfDocRef, {
         [propname]: arrayRemove(propval)
       });
-      
+
       return (true)
 
     } catch (e) {
-      
+
       return false;
     }
   }
@@ -349,7 +349,7 @@ export class FirestoreService {
   async getCollectionListFromPath(path: string) {
     // const datalistref = (doc(this.firestore, 'announcementview/' + docid + '/viewlist', userid));
     const datalistref = query(collection(this.firestore, path));
-    
+
 
     const documentSnapshots = await getDocs(datalistref);
     let dataarry: any = []
@@ -366,7 +366,7 @@ export class FirestoreService {
   async getCollectionListFromPathwithOrder(path: string, propname: string, propval: OrderByDirection) {
     // const datalistref = (doc(this.firestore, 'announcementview/' + docid + '/viewlist', userid));
     const datalistref = query(collection(this.firestore, path), orderBy(propname, propval));
-    
+
 
     const documentSnapshots = await getDocs(datalistref);
     let dataarry: any = []
@@ -384,7 +384,7 @@ export class FirestoreService {
   async getCollectionListFromPathWithCondition(path: string, propname: string, propval: string) {
     // const datalistref = (doc(this.firestore, 'announcementview/' + docid + '/viewlist', userid));
     const datalistref = query(collection(this.firestore, path), where(propname, '==', propval));
-    
+
 
     const documentSnapshots = await getDocs(datalistref);
     let dataarry: any = []
@@ -414,21 +414,23 @@ export class FirestoreService {
 
 
 
-  async addDocumentTo(collectionname: any, formdataobj: any) {
+  async addDocumentTo(formdataobj: any) {
 
-    const datalistref = query(collection(this.firestore, collectionname), where('refno', '==', formdataobj.refno));
-    const documentSnapshots = await getDocs(datalistref);
+    // const datalistref = query(collection(this.firestore, collectionname), where('refno', '==', formdataobj.refno));
+    // const documentSnapshots = await getDocs(datalistref);
 
-    if (documentSnapshots.size > 0) {
-      
-      return;
-    } else {
-      const docRef = await addDoc(collection(this.firestore, collectionname), Object.assign({}, formdataobj));
-      return new Promise((resolve) => {
-        resolve(docRef.id);
-      });
-    }
+    // if (documentSnapshots.size > 0) {
 
+    //   return;
+    // } else {
+    //   const docRef = await addDoc(collection(this.firestore, 'users-list'), Object.assign({}, formdataobj));
+    //   return new Promise((resolve) => {
+    //     resolve(docRef.id);
+    //   });
+    // }
+    formdataobj.id = doc(collection(this.firestore, "id")).id
+    // console.log(user?.uid);
+    return addDoc(collection(this.firestore, 'users-list'), formdataobj);
 
 
 
@@ -528,7 +530,7 @@ export class FirestoreService {
 
 
   async getPostLike(postid: any) {
-    
+
     const datalistref = query(collection(this.firestore, 'Post-likes'), where('pid', '==', postid));
     const documentSnapshots = await getDocs(datalistref);
     let dataarry: any = []
@@ -571,7 +573,7 @@ export class FirestoreService {
       const data: any = element.data()
       data.key = element.id;
       data.id = element.id;
-      
+
       dataarry.push(data)
     });
 
@@ -648,7 +650,7 @@ export class FirestoreService {
       });
 
     } catch (e: any) {
-      
+
     }
   }
 
@@ -662,7 +664,7 @@ export class FirestoreService {
       });
 
     } catch (e: any) {
-      
+
     }
   }
 

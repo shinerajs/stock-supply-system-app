@@ -4,6 +4,7 @@ import { SidebarComponent } from './admin-layout/sidebar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SupplierComponent } from './supplier/supplier.component';
 import { SuppliertabComponent } from './suppliertab/suppliertab.component';
+import { DocumentationComponent } from './documentation/documentation.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'suppliertab',
     component: SuppliertabComponent
+  },
+  {
+    path: 'certificates',
+    component: DocumentationComponent
   },
 ];
 

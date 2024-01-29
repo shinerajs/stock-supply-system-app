@@ -35,13 +35,14 @@ export class AddSupplierComponent {
   product !: string;
   quantity !: string;
   amount !: string;
-  available !: string;
+  status !: string;
   comments !: string;
   certificates !: string[];
   radata: any;
 
-  roles: string[] = ['Subcontractor', 'Supplier'];
+  roles: string[] = ['Supplier', 'Subcontractor', 'Admin'];
   periods: string[] = ['Four months', 'Six months', 'One Year'];
+  statuses: string[] = ['Invited', 'On Review', 'Approved', 'Expired']
 
   constructor(
     private fb: FormBuilder,
@@ -64,7 +65,7 @@ export class AddSupplierComponent {
     this.product = data.product;
     this.quantity = data.quantity;
     this.amount = data.amount;
-    this.available = data.available;
+    this.status = data.status;
     this.comments = data.comments;
     this.certificates = data.certificates;
   }
@@ -83,7 +84,7 @@ export class AddSupplierComponent {
       product: [this.product, [Validators.required]],
       quantity: [this.quantity, [Validators.required]],
       amount: [this.amount, [Validators.required]],
-      available: [this.available, [Validators.required]],
+      status: [this.status, [Validators.required]],
       comments: [this.comments],
       certificates: [this.fruits, [Validators.required]]
 

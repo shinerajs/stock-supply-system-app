@@ -7,60 +7,63 @@
 
         <!-- Sidebar user -->
         <ng-container *ngIf="user$ | async as user">
-        <div class="app-user">
-            <div class="app-user-photo">
-                <img src="../../../../assets/face-1.jpg" class="mat-elevation-z1" alt="" />
-            </div>
-            <div class="ml-16">
-                <span class="app-user-name mb-4">
-                    {{user.displayName}}
-                </span>
-                <!-- Small buttons -->
-                <div class="app-user-controls">
-                    <button class="text-muted" mat-icon-button mat-xs-button matTooltip="Settings"
-                        [matMenuTriggerFor]="appUserMenu">
-                        <mat-icon>settings</mat-icon>
-                    </button>
-                    <button class="text-muted" mat-icon-button mat-xs-button matTooltip="Inbox" routerLink="#">
-                        <mat-icon>email</mat-icon>
-                    </button>
-                    <button class="text-muted" mat-icon-button mat-xs-button matTooltip="Sign Out" (click)="logOut()">
-                        <mat-icon>exit_to_app</mat-icon>
-                    </button>
-                    <mat-menu #appUserMenu="matMenu">
-                        <button mat-menu-item routerLink="#">
-                            <mat-icon>account_box</mat-icon>
-                            <span>Profile</span>
-                        </button>
-                        <button mat-menu-item routerLink="#">
+            <div class="app-user">
+                <div class="app-user-photo">
+                    <img src="../../../../assets/face-1.jpg" class="mat-elevation-z1" alt="" />
+                </div>
+                <div class="ml-16">
+                    <span class="app-user-name mb-4">
+                        {{user.displayName}}
+                    </span>
+                    <!-- Small buttons -->
+                    <div class="app-user-controls">
+                        <button class="text-muted" mat-icon-button mat-xs-button matTooltip="Settings"
+                            [matMenuTriggerFor]="appUserMenu">
                             <mat-icon>settings</mat-icon>
-                            <span>Account Settings</span>
                         </button>
-                        <button mat-menu-item routerLink="#">
-                            <mat-icon>date_range</mat-icon>
-                            <span>Calendar</span>
+                        <button class="text-muted" mat-icon-button mat-xs-button matTooltip="Inbox" routerLink="#">
+                            <mat-icon>email</mat-icon>
                         </button>
-                        <button mat-menu-item (click)="logOut()">
+                        <button class="text-muted" mat-icon-button mat-xs-button matTooltip="Sign Out"
+                            (click)="logOut()">
                             <mat-icon>exit_to_app</mat-icon>
-                            <span>Sign out</span>
                         </button>
-                    </mat-menu>
+                        <mat-menu #appUserMenu="matMenu">
+                            <button mat-menu-item routerLink="#">
+                                <mat-icon>account_box</mat-icon>
+                                <span>Profile</span>
+                            </button>
+                            <button mat-menu-item routerLink="#">
+                                <mat-icon>settings</mat-icon>
+                                <span>Account Settings</span>
+                            </button>
+                            <button mat-menu-item routerLink="#">
+                                <mat-icon>date_range</mat-icon>
+                                <span>Calendar</span>
+                            </button>
+                            <button mat-menu-item (click)="logOut()">
+                                <mat-icon>exit_to_app</mat-icon>
+                                <span>Sign out</span>
+                            </button>
+                        </mat-menu>
+                    </div>
                 </div>
             </div>
-        </div>
 
 
-        <mat-nav-list class="content">
-            <a mat-list-item routerLink="dashboard">
-                <mat-icon>grid_view</mat-icon> Dashboard </a>
-            <a mat-list-item routerLinkActive="active" routerLink="company-details">
-                <mat-icon>inventory_2</mat-icon> Company Details </a>
-            <a mat-list-item routerLinkActive="active" routerLink="supplier-works">
-                <mat-icon>category</mat-icon> Works Undertaken </a>
-            <a mat-list-item routerLinkActive="active" routerLink="certificates">
-                <mat-icon>category</mat-icon> Certificates </a>
-            <a mat-list-item routerLinkActive="active" (click)="logOut()">Sign out</a>
-        </mat-nav-list></ng-container>
+            <mat-nav-list class="content">
+                <a mat-list-item routerLink="dashboard">
+                    <mat-icon>grid_view</mat-icon> Dashboard </a>
+                <a mat-list-item routerLinkActive="active" routerLink="company-details">
+                    <mat-icon>inventory_2</mat-icon> Company Details </a>
+                <a mat-list-item routerLinkActive="active" routerLink="supplier-works">
+                    <mat-icon>category</mat-icon> Works Undertaken </a>
+                <a mat-list-item routerLinkActive="active" routerLink="certificates">
+                    <mat-icon>category</mat-icon> Certificates </a>
+                <a mat-list-item routerLinkActive="active" (click)="logOut()">
+                    <mat-icon>exit_to_app</mat-icon>Sign out</a>
+            </mat-nav-list>
+        </ng-container>
     </mat-sidenav>
 
 
@@ -70,8 +73,8 @@
                 *ngIf="isHandset$ | async">
                 <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
             </button>
-         <ng-container *ngIf="user$ | async as user; else loginButton">
-            <span>{{user.companyname}}</span>
+            <ng-container *ngIf="user$ | async as user; else loginButton">
+                <span>{{user.companyname}}</span>
 
                 <button mat-button [matMenuTriggerFor]="appUserMenu">
                     <mat-menu #appUserMenu="matMenu">

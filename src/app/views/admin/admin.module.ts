@@ -48,6 +48,7 @@ import { AddSupplierComponent } from './supplier/add-supplier/add-supplier.compo
 import { DeleteSupplierComponent } from './supplier/delete-supplier/delete-supplier.component';
 import { ViewSupplierComponent } from './supplier/view-supplier/view-supplier.component';
 import { SupplierdetailsComponent } from '../supplierdetails/supplierdetails.component';
+import { DocumentationComponent } from './documentation/documentation.component';
 
 
 
@@ -60,7 +61,8 @@ import { SupplierdetailsComponent } from '../supplierdetails/supplierdetails.com
     AddSupplierComponent,
     DeleteSupplierComponent,
     ViewSupplierComponent,
-    SupplierdetailsComponent
+    SupplierdetailsComponent,
+    DocumentationComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,22 @@
+<!-- <div class="modal-content">
+    <div class="modal-header" style="border-bottom:none;">
+      <i class="icon-close" (click)="modalHide()" style="font-size: 20px;"></i>
+    </div>
+  </div>
+  <div class="modal-body">
+    <form (ngSubmit)="onAddCertificate(form)" #form="ngForm">
+      <ul class="list-group">
+        <li class="d-flex justify-content-between align-items-center">
+          <textarea class="form-control" type="text" style="margin-right: 20px;margin-bottom:20px;" [required]="true" 
+          name="name" #name="ngModel" autofocus="true"
+          [(ngModel)]=" cretaeCertificate.name" placeholder="Enter certificate name"></textarea>
+          <button [disabled]="form.invalid" type="submit"
+          class="btn btn-light text-left" style="margin-bottom: 20px;">
+          <i class="icon-plus"></i>
+            <span *ngIf="certificateKey != undefined"> Update</span> 
+            <span *ngIf="certificateKey == undefined"> Add</span> 
+          </button>
+        </li>
+      </ul>
+    </form>
+</div> -->

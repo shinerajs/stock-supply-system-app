@@ -1,0 +1,91 @@
+<!-- <div class="container-fluid" style="padding: 22px;">
+    <div class="animated fadeIn">
+        <p style="font-size: 0.9rem;color: #69696b;">Click 'Add certificate' button to add certificates</p>
+        <button class="btn btn-pill" style="background-color: #3f51b5;color: #fff;align-items: center; float: right;
+      margin-bottom: 20px;">Add certificate</button>
+
+        <table class="table table-responsive-sm table-bordered" style="margin-bottom:0px;">
+            <thead class="thead-light">
+                <tr>
+                    <th style="width:5%">No</th>
+                    <th class="text-center">Certificate name</th>
+                    <th style="width:17%" class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="text-align:center;">
+                    <td>
+                        <div class="head-details">1</div>
+                    </td>
+                    <td style="vertical-align: middle;">
+                        <div class="text-left" style="font-family: 'SF Display Regular';font-size: 17px;"></div>
+                    </td>
+                    <td class="text-center" style="vertical-align: middle;">
+                        <button class="btn btn-info" style="margin-right:5px;padding:4px;">Edit</button>
+                        <button class="btn btn-danger" style="margin-left:5px;padding:4px;
+                        ">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-responsive-sm table-bordered">
+            <tr>
+                <td>
+                    <div class="text-left" style="font-family: 'SF Display Regular';font-size: 17px;">Certificates are
+                        loading or Currently no certificates are available</div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div> -->
+
+<div class="container">
+
+    <h1>Certifications</h1>
+
+    <hr>
+    <form id="submitForm" (ngSubmit)="onSubmit(taskForm)" #taskForm="ngForm">
+        <div class="form-group">
+            <input type="text" class="form-control" id="task" placeholder="Enter certificate name" ngModel name="task"
+                required>
+            <small *ngIf="taskForm.invalid && taskForm.dirty" id="errorMessage" class="form-text text-danger">Required
+                field</small>
+        </div>
+
+        <button [disabled]="taskForm.invalid" id="submitButton" type="submit" class="btn btn-primary">Add
+            Certificate</button>
+    </form>
+
+    <hr>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">Certificate Name</th>
+                <th scope="col">Delete</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Save</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let t of taskArray; index as i">
+                <td>
+                    <div class="head-details">{{i+1}}</div>
+                </td>
+                <td>
+                    <input [ngClass]="{'edit': t.isEditable, 'not-edit': !t.isEditable, 'crossed': t.isCompleted}"
+                        #taskinput type="text" class="form-control" id="taskInTable" value="{{t.taskName}}"
+                        [readOnly]="!t.isEditable">
+                </td>
+                <!-- <td><input (change)="onCheck(i)" id="myCheckbox" type="checkbox"></td> -->
+                <td><button id="delete" class="btn btn-danger btn-sm" (click)="onDelete(i)">Delete</button></td>
+                <td><button id="edit" class="btn btn-primary btn-sm" (click)="onEdit(i)"
+                        [disabled]="t.isEditable">Edit</button></td>
+                <td><button id="save" class="btn btn-warning btn-sm" (click)="onSave(i, taskinput.value)"
+                        [disabled]="!t.isEditable">Save</button></td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>

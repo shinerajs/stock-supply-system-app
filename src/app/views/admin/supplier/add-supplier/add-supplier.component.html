@@ -58,9 +58,9 @@
                     <mat-label style="font-size: 17px;">Password</mat-label>
                     <input matInput type="password" placeholder="Password" formControlName="password" />
                     <mat-error *ngIf="password?.errors?.['required']">
-                      Password is required
+                        Password is required
                     </mat-error>
-                  </mat-form-field>
+                </mat-form-field>
 
 
                 <!-- <mat-form-field>
@@ -76,7 +76,7 @@
 
         <mat-grid-tile>
             <div>
-                
+
 
                 <mat-form-field>
                     <mat-label style="font-size: 17px;">Select Contractor Type</mat-label>
@@ -103,6 +103,15 @@
                     <mat-select formControlName="period" name="period">
                         <mat-option *ngFor="let period of periods" [value]="period">
                             {{period}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label style="font-size: 17px;">Supplier Status</mat-label>
+                    <mat-select formControlName="status" name="status">
+                        <mat-option *ngFor="let status of statuses" [value]="status">
+                            {{status}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>

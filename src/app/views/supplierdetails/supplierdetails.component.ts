@@ -9,6 +9,8 @@ import { DataService } from 'src/app/shared/services/data.service';
 import { ViewSupplierComponent } from '../admin/supplier/view-supplier/view-supplier.component';
 import { AddSupplierComponent } from '../admin/supplier/add-supplier/add-supplier.component';
 import { DeleteSupplierComponent } from '../admin/supplier/delete-supplier/delete-supplier.component';
+import { UsersService } from 'src/app/shared/services/users.service';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'app-supplierdetails',
@@ -18,7 +20,7 @@ import { DeleteSupplierComponent } from '../admin/supplier/delete-supplier/delet
 export class SupplierdetailsComponent {
 
   suppliersArr: Supplier[] = [];
-  displayedColumns: string[] = ['id', 'companyname', 'name', 'email', 'mobile', 'supervisoremail', 'contractor', 'invitedon', 'action'];
+  displayedColumns: string[] = ['id', 'companyname', 'displayName', 'email', 'mobile', 'supervisoremail', 'role', 'invitedon', 'action'];
   dataSource!: MatTableDataSource<Supplier>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -27,7 +29,9 @@ export class SupplierdetailsComponent {
   constructor(
     public dialog: MatDialog,
     private supplierService: DataService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private usersService: UsersService,
+    private toast: HotToastService,
   ) { }
 
   ngOnInit(): void {
@@ -51,13 +55,15 @@ export class SupplierdetailsComponent {
   viewSupplier(row: any) {
     // window.open('/view_supplier/' + row.patient_id, '_blank');
 
-    if (row.id == null || row.name == null) {
+    if (row.id == null || row.displayName == null) {
       return;
     }
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
+    dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
     dialogConfig.data = row;
+    dialogConfig.position = { right: '1px' };
+    dialogConfig.width = "55%"
     // dialogConfig.data.tittle = "View Supplier",
     // dialogConfig.data.buttonName = 'Update';
     //dialogConfig.data.purdate = row.purdate.toDate();
@@ -69,7 +75,7 @@ export class SupplierdetailsComponent {
     dialogRef.afterClosed().subscribe(data => {
 
       if (data) {
-        this.supplierService.getSupplierById(data);
+        this.usersService.getSupplierDetails();
         console.log(data);
 
         // this.openSnackBar("Supplier is updated successfully.", "OK")
@@ -78,7 +84,7 @@ export class SupplierdetailsComponent {
   }
 
   editSupplier(row: any) {
-    if (row.id == null || row.name == null) {
+    if (row.id == null || row.displayName == null) {
       return;
 
     }
@@ -93,15 +99,21 @@ export class SupplierdetailsComponent {
 
     const dialogRef = this.dialog.open(AddSupplierComponent, dialogConfig);
 
-    dialogRef.afterClosed().subscribe(data => {
+    dialogRef.afterClosed()
+      .pipe(this.toast.observe({
+        loading: 'Editing Supplier...',
+        success: 'Successfully Edited',
+        error: 'There was an error in editing the Supplier',
+      }))
+      .subscribe(data => {
 
-      if (data) {
-        this.supplierService.updateSupplier(data);
-        console.log(data);
+        if (data) {
+          this.supplierService.updateSupplier(data);
+          console.log(data);
 
-        this.openSnackBar("Supplier is updated successfully.", "OK")
-      }
-    })
+          // this.openSnackBar("Supplier is updated successfully.", "OK")
+        }
+      })
   }
 
   async deleteSupplier(row: Supplier) {

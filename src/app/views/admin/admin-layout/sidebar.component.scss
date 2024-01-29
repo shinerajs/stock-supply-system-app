@@ -4,7 +4,7 @@
 }
 
 .sidenav {
-  width: 232px;
+  width: 258px;
 }
 
 .sidenav .mat-toolbar {
@@ -33,6 +33,7 @@
 
 ::ng-deep .mdc-list-item__primary-text {
   display: flex;
+  font-size: 15px;
 }
 
 .active {

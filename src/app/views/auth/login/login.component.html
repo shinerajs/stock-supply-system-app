@@ -56,48 +56,49 @@
 <div class="form-container mat-elevation-z5">
   <mat-progress-bar mode="determinate" class="session-progress"></mat-progress-bar>
   <div class="container">
-    <h1>Login</h1>      
+    <h1>Login</h1>
 
-<form (ngSubmit)="login(form, $event)" #form="ngForm" autocomplete="off">
-    <ul>
+    <form (ngSubmit)="login(form, $event)" #form="ngForm" autocomplete="off">
+      <ul>
         <li>
-            <label for="email"> Email*</label>
-            <input type="text" placeholder="Enter your Email address" id="email" name="email"
-                [(ngModel)]="user.email" [required]="true" pattern=".+@.+\..+" #email="ngModel">
+          <label for="email"> Email*</label>
+          <input type="text" placeholder="Enter your Email address" id="email" name="email" [(ngModel)]="user.email"
+            [required]="true" pattern=".+@.+\..+" #email="ngModel">
         </li>
 
         <li>
-            <mat-error *ngIf="email.invalid && (email.touched || email.dirty)">
-               Email address is required!
-            </mat-error>
+          <mat-error *ngIf="email.invalid && (email.touched || email.dirty)">
+            Email address is required!
+          </mat-error>
         </li>
         <li>
-            <label for="password"> Password* </label>
-            <input type="password" id="password" name="password" placeholder="Enter your Password"
-                [(ngModel)]="user.password" [required]="true" #password="ngModel" minlength="6"
-                validatePassword="password" required>
+          <label for="password"> Password* </label>
+          <input type="password" id="password" name="password" placeholder="Enter your Password"
+            [(ngModel)]="user.password" [required]="true" #password="ngModel" minlength="6" validatePassword="password"
+            required>
         </li>
         <li>
-            <mat-error *ngIf="password.invalid && (password.touched || password.dirty)">
-                Password is required!
-            </mat-error>
+          <mat-error *ngIf="password.invalid && (password.touched || password.dirty)">
+            Password is required!
+          </mat-error>
 
         </li>
 
-    </ul>
-    <div class="signup__button ">
+      </ul>
+      <div class="signup__button ">
         <button mat-raised-button [disabled]="isSubmitting" class="button"
-            style="background-color: #3f51b5;font-weight: 400;font-size: 18px;" type="submit">Login</button>
+          style="background-color: #3f51b5; color: white; font-weight: 400;font-size: 18px;"
+          type="submit">Login</button>
+      </div>
+
+    </form>
+
+    <mat-divider></mat-divider>
+    <div class="text-center" style="margin: 10px auto;">
+      <span>New to our platform? <a class="sign-up-link" routerLink="/auth/register" style="color: #3f51b5;"> Sign
+          up!</a></span>
+      <!-- <a style="color: #3f51b5;" routerLink="/auth/businessregister">Not a member? Register</a> -->
     </div>
-
-</form>
-
-<mat-divider></mat-divider>
-<div class="text-center" style="margin: 10px auto;">
-    <span>New to our platform? <a class="sign-up-link" routerLink="/auth/register" style="color: #3f51b5;" > Sign
-        up!</a></span>
-    <!-- <a style="color: #3f51b5;" routerLink="/auth/businessregister">Not a member? Register</a> -->
-</div>
-</div>
+  </div>
 
 </div>

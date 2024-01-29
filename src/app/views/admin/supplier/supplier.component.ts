@@ -27,7 +27,7 @@ export class SupplierComponent {
   currentuid: any = '';
   user$ = this.usersService.currentUserProfile$;
   suppliersArr: Supplier[] = [];
-  displayedColumns: string[] = ['id', 'companyname', 'displayName', 'email', 'mobile', 'supervisoremail', 'role', 'action'];
+  displayedColumns: string[] = ['id', 'companyname', 'displayName', 'email', 'mobile', 'supervisoremail', 'role', 'status', 'action'];
   dataSource!: MatTableDataSource<Supplier>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -39,7 +39,7 @@ export class SupplierComponent {
     private toast: HotToastService,
     private usersService: UsersService,
     private auth: Auth,
-    private uxService:UxserviceService,
+    private uxService: UxserviceService,
     private afs: Firestore,
     private router: Router
   ) { this.loadUsers(); }
@@ -89,13 +89,14 @@ export class SupplierComponent {
               data.password);
             await updateProfile(
               credential.user, {
-              displayName: data.displayName,}
+              displayName: data.displayName,
+            }
             );
             console.log(credential.user);
-            this.updateUserCollection(credential,data);
+            this.updateUserCollection(credential, data);
             this.uxService.openSnackBar('Successfully Invited!!!', 'Ok');
 
-          }catch (e: any) {
+          } catch (e: any) {
             console.error(e.message);
             //this.isSubmitting = false;
             this.uxService.openSnackBar(e.message, 'SnackBar');
@@ -104,7 +105,7 @@ export class SupplierComponent {
       })
   }
 
-  updateUserCollection = async (credential: any, data :any) => {
+  updateUserCollection = async (credential: any, data: any) => {
     const userRef = doc(this.afs, 'users-list', credential.user.uid);
 
     try {
@@ -119,6 +120,7 @@ export class SupplierComponent {
         companyname: data.companyname,
         supervisoremail: data.supervisoremail,
         period: data.period,
+        status: data.status,
         comments: data.comments,
       });
       // const docSnap = await getDoc(userRef);

@@ -18,6 +18,7 @@
   </mat-form-field>
 
   <div class="mat-elevation-z8">
+
     <table mat-table [dataSource]="dataSource" matSort>
 
       <ng-container matColumnDef="id">
@@ -64,10 +65,10 @@
       </ng-container>
 
       <!-- Quantity Column -->
-      <!-- <ng-container matColumnDef="invitedon">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Invited On </th>
-        <td mat-cell (click)="viewSupplier(row)" *matCellDef="let row"> {{row.invitedon}} </td>
-      </ng-container> -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+        <td mat-cell (click)="viewSupplier(row)" *matCellDef="let row"> {{row.status}} </td>
+      </ng-container>
 
       <!-- PurchaseDate Column -->
       <!-- <ng-container matColumnDef="purdate">
@@ -122,10 +123,12 @@
       <tr class="mat-row" *matNoDataRow>
         <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
       </tr>
+
     </table>
 
     <mat-paginator #paginatorRef [length]="5" [pageSize]="5" class="mb-4" [pageSizeOptions]="[5, 10, 25, 100]"
       aria-label="Select page of users"></mat-paginator>
+
   </div>
 
 

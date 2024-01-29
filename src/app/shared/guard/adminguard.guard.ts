@@ -24,7 +24,7 @@ export class AdminguardGuard implements CanActivateChild {
   async checkUserRole(route: ActivatedRouteSnapshot, url: any, state: any): Promise<boolean> {
     return new Promise(async (resolve, reject) => {
       await this.firestoreService.getAuthUserProfile().then((res: any) => {
-        if(res && res.role ){
+        if (res && res.role) {
           if (res.role === 'Admin') {
             resolve(true);
           }
@@ -35,12 +35,12 @@ export class AdminguardGuard implements CanActivateChild {
             else {
               this.router.navigateByUrl((res.role).toLowerCase());
             }
-  
+
             resolve(false);
           }
         }
-        else{
-          
+        else {
+
           this.router.navigateByUrl('/commondashboard');
           resolve(false);
         }

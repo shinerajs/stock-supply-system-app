@@ -1,25 +1,15 @@
-<img class="image" src="../../../assets/trianglif.png" alt="background">
+<!-- <img class="image" src="../../../assets/trianglif.png" alt="background">
 <div class="landing">
     <h1>
         Welcome to Our Stock Management System
     </h1>
-    <!-- <div class="landing">
-        <h2> Click Login to login to our system</h2>
-        <p>OR</p>
-        <button mat-raised-button color="primary" routerLink="/register">
-            Sign Up!
-        </button>
 
-        <button mat-raised-button color="primary" routerLink="/login">
-            Login!
-        </button>
-    </div> -->
 </div>
 
 <div class="row">
     <div class="col-sm-6 col-md-4 mt-3 ml-3">
         <mat-card class="add-doc text-center">
-            <a routerLink="suppliertab">
+            <a routerLink="admin/suppliertab">
                 <mat-card-content>
                     <mat-icon>groups</mat-icon> <br>
                     Supplier
@@ -44,8 +34,44 @@
             </mat-card-content>
         </mat-card>
     </div>
-    <!-- <button mat-menu-item (click)="logOut()">
-        <mat-icon>exit_to_app</mat-icon>
-        <span>Sign out</span>
-    </button> -->
+
+</div> -->
+
+<div class="container-fluid">
+    <div class="animated fadeIn">
+      <div class="container-fluid" style="text-align: center; margin-bottom: 3rem;margin-top: 3rem;">
+          <h2 style="font-size: 2.4rem;font-weight: 400;color:#000000;">Welcome to Our Stock Management System</h2>
+          <!-- <p style="font-size: 1.1rem;color: #8e8e8f;">Supplier Management Program</p> -->
+      </div>
+
+      <div class="row">
+          <div class="col-sm-6 col-lg-4">
+              <div class="card" (click)="onNavigationfrmDashboard('supplierList')">
+                  <!-- <img class="card-img-top" src="assets/img/avatars/people.svg" style="height: 122px;padding-top: 23px;"> -->
+                  <mat-card-content class="card-body">
+                    <mat-icon class="icon">groups</mat-icon> <br>
+                    <h4 class="card-title" style="text-align: center;font-size: 15px;font-weight: bold;">Suppliers</h4>
+                </mat-card-content>
+                </div>
+            </div>
+        <!-- /.col-->
+        <div class="col-sm-6 col-lg-4">
+            <div class="card"(click)="addSupplier()" >
+                <mat-card-content class="card-body">
+                    <mat-icon class="icon">group_add</mat-icon> <br>
+                    <h4 class="card-title" style="text-align: center;font-size: 15px;font-weight: bold;">Invite Supplier</h4>
+                </mat-card-content>
+              </div>
+          </div>
+          <div class="col-sm-6 col-lg-4">
+
+              <div class="card" (click)="onNavigationfrmDashboard('manage')">
+                <mat-card-content class="card-body">
+                    <mat-icon class="icon">card_membership</mat-icon> <br>
+                    <h4 class="card-title" style="text-align: center;font-size: 15px;font-weight: bold;">Manage certificate</h4>
+                </mat-card-content>
+                </div>
+            </div>
+      </div>
+    </div>
 </div>

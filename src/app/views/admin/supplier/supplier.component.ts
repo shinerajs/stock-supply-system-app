@@ -13,6 +13,9 @@ import { UsersService } from 'src/app/shared/services/users.service';
 import { HotToastService } from '@ngneat/hot-toast';
 import { Observable } from 'rxjs';
 import { Router, Routes } from '@angular/router';
+import { Auth, createUserWithEmailAndPassword, updateProfile } from '@angular/fire/auth';
+import { Firestore, doc, getDoc, setDoc } from '@angular/fire/firestore';
+import { UxserviceService } from 'src/app/shared/services/uxservice.service';
 
 @Component({
   selector: 'app-supplier',
@@ -24,7 +27,7 @@ export class SupplierComponent {
   currentuid: any = '';
   user$ = this.usersService.currentUserProfile$;
   suppliersArr: Supplier[] = [];
-  displayedColumns: string[] = ['id', 'companyname', 'name', 'email', 'mobile', 'supervisoremail', 'contractor', 'action'];
+  displayedColumns: string[] = ['id', 'companyname', 'displayName', 'email', 'mobile', 'supervisoremail', 'role', 'action'];
   dataSource!: MatTableDataSource<Supplier>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -35,7 +38,10 @@ export class SupplierComponent {
     private supplierService: DataService,
     private toast: HotToastService,
     private usersService: UsersService,
-    private route: Router
+    private auth: Auth,
+    private uxService:UxserviceService,
+    private afs: Firestore,
+    private router: Router
   ) { this.loadUsers(); }
 
   ngOnInit(): void {
@@ -72,16 +78,61 @@ export class SupplierComponent {
         success: 'Successfully Invited',
         error: 'There was an error in inviting the Supplier',
       }))
-      .subscribe(data => {
+      .subscribe(async data => {
         if (data) {
           console.log(data);
+          // this.supplierService.addSupplier(data);
+          try {
+            const credential = await createUserWithEmailAndPassword(
+              this.auth,
+              data.email,
+              data.password);
+            await updateProfile(
+              credential.user, {
+              displayName: data.displayName,}
+            );
+            console.log(credential.user);
+            this.updateUserCollection(credential,data);
+            this.uxService.openSnackBar('Successfully Invited!!!', 'Ok');
 
-          this.supplierService.addSupplier(data);
-
+          }catch (e: any) {
+            console.error(e.message);
+            //this.isSubmitting = false;
+            this.uxService.openSnackBar(e.message, 'SnackBar');
+          }
         }
       })
   }
 
+  updateUserCollection = async (credential: any, data :any) => {
+    const userRef = doc(this.afs, 'users-list', credential.user.uid);
+
+    try {
+      await setDoc(userRef, {
+        displayName: credential.user.displayName,
+        uid: credential.user.uid,
+        email: credential.user.email,
+        role: data.role,
+        createdAt: credential.user.metadata.creationTime,
+        lastloginat: credential.user.metadata.lastLoginAt,
+        mobile: data.mobile,
+        companyname: data.companyname,
+        supervisoremail: data.supervisoremail,
+        period: data.period,
+        comments: data.comments,
+      });
+      // const docSnap = await getDoc(userRef);
+      // if (docSnap.exists()) {
+      //   localStorage.setItem('user', JSON.stringify(docSnap.data()));
+      //   location.reload();
+      //   //this.router.navigate(['/admin/suppliertab']);
+      // }
+    } catch (e: any) {
+      console.error(e.message);
+      //this.isSubmitting = false;
+      this.uxService.openSnackBar('Login Failed !!!', 'Try Again');
+    }
+  }
   getAllSuppliers() {
     this.supplierService.getSupplier().subscribe(suppliersArr => {
       this.suppliersArr = suppliersArr;
@@ -98,27 +149,25 @@ export class SupplierComponent {
   viewSupplier(row: any) {
     // window.open('/view_supplier/' + row.patient_id, '_blank');
 
-    if (row.id == null || row.name == null) {
+    if (row.id == null || row.displayName == null) {
       return;
     }
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
     dialogConfig.data = row;
-    dialogConfig.position = { right: '18px' };
-    dialogConfig.width = "40%"
+    dialogConfig.position = { right: '1px' };
+    dialogConfig.width = "55%"
     // dialogConfig.data.tittle = "View Supplier",
     // dialogConfig.data.buttonName = 'Update';
     //dialogConfig.data.purdate = row.purdate.toDate();
 
     console.log(dialogConfig.data);
-
     const dialogRef = this.dialog.open(ViewSupplierComponent, dialogConfig);
-
     dialogRef.afterClosed().subscribe(data => {
 
       if (data) {
-        this.usersService.getSupplierDetails(data);
+        this.usersService.getSupplierDetails();
         console.log(data);
 
         // this.openSnackBar("Supplier is updated successfully.", "OK")
@@ -127,7 +176,7 @@ export class SupplierComponent {
   }
 
   editSupplier(row: any) {
-    if (row.id == null || row.name == null) {
+    if (row.id == null || row.displayName == null) {
       return;
 
     }

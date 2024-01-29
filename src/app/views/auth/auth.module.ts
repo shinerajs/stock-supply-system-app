@@ -15,6 +15,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { LandingComponent } from './landing/landing.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
     declarations: [
@@ -26,7 +27,8 @@ import { LandingComponent } from './landing/landing.component';
         CommonModule,
         MatToolbarModule,
         AuthRoutingModule,
-        MaterialModule,
+        // MaterialModule,
+        MatProgressBarModule,
         FormsModule,
         ReactiveFormsModule,
         MatButtonModule,

@@ -36,11 +36,20 @@ export class SidebarComponent {
     private _snackBar: MatSnackBar,
     public usersService: UsersService,
     private router: Router,
-    private activatedRoute: ActivatedRoute,
+    private route: ActivatedRoute,
     private toast: HotToastService
   ) { }
   user$ = this.usersService.currentUserProfile$;
+  ngOnInit(): void {
+    this.getCurrentUser();
+  }
 
+  async getCurrentUser() {
+    await this.usersService.getUserDetails().then(async (res: any) => {
+
+      this.currentuid = res.uid;
+    })
+  }
   logOut() {
     // this.authService.logout().subscribe(async user => {
     //   if (user) {
@@ -80,19 +89,19 @@ export class SidebarComponent {
     })
   }
 
-  ngOnInit(): void {
-    this.activatedRoute.queryParams.subscribe((qp) => {
-      this.selectedPage = qp['section'];
-    });
-    this.getCurrentUser();
-  }
-  async getCurrentUser() {
-    await this.usersService.getUserDetails().then(async (res: any) => {
-      if (res) {
-        this.currentuid = res.uid;
-      }
-    })
-  }
+  // ngOnInit(): void {
+  //   this.activatedRoute.queryParams.subscribe((qp) => {
+  //     this.selectedPage = qp['section'];
+  //   });
+  //   this.getCurrentUser();
+  // }
+  // async getCurrentUser() {
+  //   await this.usersService.getUserDetails().then(async (res: any) => {
+  //     if (res) {
+  //       this.currentuid = res.uid;
+  //     }
+  //   })
+  // }
 
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action);

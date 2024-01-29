@@ -1,9 +1,215 @@
-:host ::ng-deep .mat-mdc-card {
-  padding: 20px;
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+
+.left{
+    width: 50%;
 }
 
-:host ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-  background-color: #eceff1 !important;
+:host ::ng-deep .mat-mdc-card {
+    padding: 20px;
+  }
+  
+  :host ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: #eceff1 !important;
+  }
+  
+  .mt-3 {
+    width: 100%;
+    height: 42px !important;
+  }
+  
+  .form-container h1 {
+    font-weight: 500;
+  }
+  
+  .form-container {
+    display: block;
+    max-width: 350px;
+    margin: auto;
+    z-index: 999;
+    position: relative;
+    background: #eceff1;
+    border-radius: 3px;
+  }
+  
+  .container {
+    padding: 28px;
+  }
+  
+  mat-progress-bar {
+    border-radius: 75px;
+  }
+  mat-form-field {
+    width: 100%;
+    margin-top: 7px;
+  }
+  
+  .center {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .margin-top {
+    margin-top: 16px !important;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  mat-toolbar {
+    justify-content: space-between;
+    margin-bottom: 80px;
+    position: relative;
+  }
+  
+  .image {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+  }
+.right{
+    width: 35%;
+    background-color: white;
+    border: 1px solid #3f51b5;
+    height: auto;
+    border-radius: 15px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    color: black;
+
+    min-height: 650px;
+}
+.logo{
+    color: #3f51b5 !important;
+    min-width: 100%;
+    max-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    img{
+        max-height: 120px;
+        scale: 2;
+    }
+    h1,h2{
+        margin: 0px;
+    }
+    margin-bottom: 0.5rem;
+}
+
+
+
+.signup__details{
+    padding: 0px 50px;
+}
+ul {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    
+}
+
+li {
+    width: 100%;
+    display: flex;
+    flex-direction: column !important;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 0.8rem;
+}
+.inline-li{
+    margin-top: -0.2rem;
+    display: flex;
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: space-between;
+}
+label {
+    text-align: start;
+    font-weight: 300;
+    opacity: 0.8;
+    color: black;
+    font-weight: 400;
+    width: 100%;
+}
+
+input {
+    width: 100%;
+    padding: 5px 10px;
+    border: 1px solid #3f51b5;
+    height: 40px;
+    border-radius: 5px;
+    z-index: 1000 !important;
+}
+
+input:focus {
+    outline: none;
+}
+.forgot_Password{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.signupContainer .form__error {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    padding: 0.5rem 1.25rem;
+    border: 1px solid transparent;
+}
+
+.signupContainer .error {
+    color: red;
+    font-size: 14px;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 3%;
+}
+
+.signup__button {
+    width: 100%;
+}
+
+.button {
+    width: 100%;
+    color: white;
+    height: 40px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    font: inherit
+}
+
+button:active {
+    box-shadow: 3px 2px 22px 1px darkgray;
+    color: white;
+}
+
+button:disabled,
+button[disabled] {
+    border: 1px solid #999999;
+    background-color: #cccccc !important;
+    color: #666666;
+}
+
+.reg_button {
+    padding-left: 0;
+}
+
+.centerWritings {
+    text-align: center;
+    width: 100%;
+    font-size: larger;
+    font-weight: 500;
+}
+
+a {
+    color: black !important;
+    font-weight: 500;
+    margin: 10px;
+    border-bottom: none;
+    text-decoration: none;
 }
 
 .mt-3 {

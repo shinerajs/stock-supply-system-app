@@ -64,7 +64,7 @@ export class DataService {
   // }
 
   updateSupplier(supplier: Supplier) {
-    const ref = doc(this.firestore, `suppliers/${supplier.id}`);
+    const ref = doc(this.firestore, `users-list/${supplier.id}`);
     return from(updateDoc(ref, { ...supplier }));
   }
 
@@ -75,7 +75,7 @@ export class DataService {
   //   return collectionData(supplierRef, { idField: 'id' }) as Observable<Supplier[]>
   // }
   getSupplier(): Observable<Supplier[]> {
-    const supplierRef = collection(this.firestore, 'users/' + 'ZQ1rk1LEwkbTf5hHSFyiFKrIDJa2' + '/suppliers')
+    const supplierRef = collection(this.firestore, 'users-list')
     return collectionData(supplierRef, { idField: 'id' }) as Observable<Supplier[]>
   }
 

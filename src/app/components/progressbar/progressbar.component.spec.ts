@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CustomalertComponent } from './customalert.component';
+import { ProgressbarComponent } from './progressbar.component';
 
-describe('CustomalertComponent', () => {
-  let component: CustomalertComponent;
-  let fixture: ComponentFixture<CustomalertComponent>;
+describe('ProgressbarComponent', () => {
+  let component: ProgressbarComponent;
+  let fixture: ComponentFixture<ProgressbarComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CustomalertComponent ]
+      declarations: [ ProgressbarComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CustomalertComponent);
+    fixture = TestBed.createComponent(ProgressbarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

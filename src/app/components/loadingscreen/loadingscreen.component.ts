@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
-
+import { UxserviceService } from 'src/app/shared/services/uxservice.service';
 
 @Component({
   selector: 'app-loadingscreen',

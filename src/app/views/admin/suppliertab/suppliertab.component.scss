@@ -33,18 +33,18 @@ mat-icon {
     background-color: blue;
 }
 
-:host ::ng-deep .mat-mdc-tab .mdc-tab-indicator__content--underline {
-    border-color: #ea203a !important;
-}
+// :host ::ng-deep .mat-mdc-tab .mdc-tab-indicator__content--underline {
+//     border-color: #ea203a !important;
+// }
 
-:host ::ng-deep .mat-mdc-radio-button .mdc-radio .mdc-radio__native-control:enabled:checked+.mdc-radio__background .mdc-radio__outer-circle {
-    border-color: #ea203a !important;
-}
+// :host ::ng-deep .mat-mdc-radio-button .mdc-radio .mdc-radio__native-control:enabled:checked+.mdc-radio__background .mdc-radio__outer-circle {
+//     border-color: #ea203a !important;
+// }
 
-:host ::ng-deep .mat-mdc-radio-button .mdc-radio .mdc-radio__native-control:enabled+.mdc-radio__background .mdc-radio__inner-circle {
-    border-color: #ea203a !important;
-}
+// :host ::ng-deep .mat-mdc-radio-button .mdc-radio .mdc-radio__native-control:enabled+.mdc-radio__background .mdc-radio__inner-circle {
+//     border-color: #ea203a !important;
+// }
 
-:host ::ng-deep .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
-    color: #ea203a;
-}
+// :host ::ng-deep .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
+//     color: #ea203a;
+// }

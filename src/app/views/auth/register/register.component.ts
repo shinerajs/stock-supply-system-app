@@ -11,6 +11,7 @@ import { HotToastService } from '@ngneat/hot-toast';
 import { Observable } from 'rxjs';
 import { Auth, createUserWithEmailAndPassword, updateProfile } from '@angular/fire/auth';
 import { Firestore, doc, getDoc, setDoc } from '@angular/fire/firestore';
+import { UxserviceService } from 'src/app/shared/services/uxservice.service';
 
 
 export function passwordsMatchValidator(): ValidatorFn {
@@ -48,11 +49,10 @@ export class RegisterComponent {
 
   constructor(
     private auth: Auth,
-    private fb: NonNullableFormBuilder,
     private afs: Firestore,
     public dialog: MatDialog,
     private _snackBar: MatSnackBar,
-    private toast: HotToastService,
+    private uxService:UxserviceService,
     private usersService: UsersService,
     private router: Router
   ) { this.loadUsers(); }
@@ -73,9 +73,9 @@ export class RegisterComponent {
   //   return this.form.get('name');
   // }
 
-  openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action);
-  }
+  // openSnackBar(message: string, action: string) {
+  //   this._snackBar.open(message, action);
+  // }
 
   register = async (form: NgForm, e: Event) => {
 
@@ -105,8 +105,8 @@ export class RegisterComponent {
       } catch (e: any) {
         console.error(e.message);
         this.isSubmitting = false;
-        this.openSnackBar('error', "ok")
-        //this.uxService.openSnackBar(e.message, 'SnackBar');
+        //this.openSnackBar('error', "ok")
+        this.uxService.openSnackBar(e.message, 'SnackBar');
       }
     }
 
@@ -134,8 +134,8 @@ export class RegisterComponent {
     } catch (e: any) {
       console.error(e.message);
       this.isSubmitting = false;
-      this.openSnackBar('error', "ok")
-      // this.uxService.openSnackBar('Login Failed !!!', 'Try Again');
+      //this.openSnackBar('error', "ok")
+      this.uxService.openSnackBar('Login Failed !!!', 'Try Again');
     }
 
   }

@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
 import { AuthService } from 'src/app/shared/services/auth.service';
@@ -14,9 +14,11 @@ import {
   getDoc,
   setDoc,
 } from '@angular/fire/firestore';
-import { CustomNotificationService } from 'src/app/shared/services/custom-notification.service';
+//import { CustomNotificationService } from 'src/app/shared/services/custom-notification.service';
 import { Observable } from 'rxjs';
 import { UsersService } from 'src/app/shared/services/users.service';
+import { UxserviceService } from 'src/app/shared/services/uxservice.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -27,10 +29,10 @@ export class LoginComponent {
   isSubmitting = false;
   allUsers !: Observable<Array<any>>
 
-  loginForm = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', Validators.required],
-  });
+  // loginForm = this.fb.group({
+  //   email: ['', [Validators.required, Validators.email]],
+  //   password: ['', Validators.required],
+  // });
   @ViewChild(MatProgressBar) progressBar!: MatProgressBar;
   @ViewChild(MatButton) submitButton !: MatButton;
 
@@ -42,16 +44,17 @@ export class LoginComponent {
     private router: Router,
     private fb: NonNullableFormBuilder,
     private usersService: UsersService,
+    private uxService: UxserviceService
     //private snackbar: SnackbarService
   ) { this.loadUsers(); }
 
-  get email() {
-    return this.loginForm.get('email');
-  }
+  // get email() {
+  //   return this.loginForm.get('email');
+  // }
 
-  get password() {
-    return this.loginForm.get('password');
-  }
+  // get password() {
+  //   return this.loginForm.get('password');
+  // }
 
   updateUserCollection = async (credential: any) => {
     let userRefObj: Object;
@@ -91,7 +94,7 @@ export class LoginComponent {
         if (docSnap.data() && docSnap.data()['role'] == 'Admin') {
           this.router.navigate(['/admin']);
         }
-        else if (docSnap.data() && docSnap.data()['role'] == 'New User') {
+        else if (docSnap.data() && docSnap.data()['role'] == 'New User' || docSnap.data()['role'] == 'Supplier' || docSnap.data()['role'] == 'Sub Contractor') {
 
           this.router.navigate(['/supplier']);
         }
@@ -107,16 +110,16 @@ export class LoginComponent {
       this.isSubmitting = false;
       console.log('error');
 
-      //this.uxService.openSnackBar('Login Failed !!!', 'Try Again');
-      //this.uxService.closeOverlay();
+      this.uxService.openSnackBar('Login Failed !!!', 'Try Again');
+      this.uxService.closeOverlay();
     }
 
 
   }
 
-  login = async (form: FormGroup, e: Event) => {
+  login = async (form: NgForm, e: Event) => {
     e.preventDefault();
-    //this.uxService.showOverlay('Logging in');
+    this.uxService.showOverlay('Logging in');
     this.isSubmitting = true;
     const email = form.value.email;
     const password = form.value.password;
@@ -124,14 +127,14 @@ export class LoginComponent {
     try {
       const credential = await signInWithEmailAndPassword(this.auth, email, password);
       this.updateUserCollection(credential);
-      //this.uxService.closeOverlay();
+      this.uxService.closeOverlay();
     } catch (e: any) {
       console.error(e.message);
       this.isSubmitting = false;
       console.log('error');
 
-      //this.uxService.openSnackBar('Authentication Failed', 'Try Again');
-      // this.uxService.closeOverlay();
+      this.uxService.openSnackBar('Authentication Failed', 'Try Again');
+       this.uxService.closeOverlay();
     }
   }
 

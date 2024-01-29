@@ -1,8 +1,9 @@
+<mat-dialog-content class="viewSupplier">
 <h2 style="font-weight: 700; padding: 20px;" color="primary">Supplier Information</h2>
-<mat-card class="m-3">
+<mat-card class="m-2">
 
     <mat-card-title class="pb-2">
-        Supplier Name : <b>{{name}}</b>
+        Supplier Name : <b>{{displayName}}</b>
     </mat-card-title>
     <mat-divider></mat-divider>
 
@@ -62,13 +63,14 @@
     <mat-divider></mat-divider>
     <div class="row pt-3">
         <mat-card-content>
-            <span> Name : </span> {{name}} <br><br>
+            <span> Name : </span> {{displayName}} <br><br>
             <span> Position : </span> {{position}} <br><br>
             <span> Contact Number : </span> {{contactnum}} <br><br>
         </mat-card-content>
     </div>
 
 </mat-card>
+</mat-dialog-content>
 <div style="justify-content: space-between;" mat-dialog-actions>
     <button mat-raised-button (click)="close()">Close</button>
 </div>

@@ -1,0 +1,18 @@
+
+.mat-mdc-progress-bar {
+    --mdc-linear-progress-active-indicator-color: var(--color) !important;
+  height: var(--height);
+  }
+  ::ng-deep.mdc-linear-progress__bar-inner {
+    border-top-width: var(--mdc-linear-progress-track-height, var(--height)) !important;
+  }
+  ::ng-deep.mat-mdc-progress-bar .mdc-linear-progress__buffer-bar {
+    background-color: var(--buffercolor) !important;
+  }
+  .progressvalue{
+    position:relative;
+    // display: flex;
+    // align-items: center;
+    // top: -20px;
+    color: var(--color) !important;
+  }

@@ -34,9 +34,9 @@
       </ng-container>
 
       <!-- Name Column -->
-      <ng-container matColumnDef="name">
+      <ng-container matColumnDef="displayName">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Contact Name </th>
-        <td mat-cell (click)="viewSupplier(row)" *matCellDef="let row"> {{row.name}} </td>
+        <td mat-cell (click)="viewSupplier(row)" *matCellDef="let row"> {{row.displayName}} </td>
       </ng-container>
 
       <!-- Contact Email Column -->
@@ -58,9 +58,9 @@
       </ng-container>
 
       <!-- Role Column -->
-      <ng-container matColumnDef="contractor">
+      <ng-container matColumnDef="role">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Role </th>
-        <td mat-cell (click)="viewSupplier(row)" *matCellDef="let row"> {{row.contractor}} </td>
+        <td mat-cell (click)="viewSupplier(row)" *matCellDef="let row"> {{row.role}} </td>
       </ng-container>
 
       <!-- Quantity Column -->

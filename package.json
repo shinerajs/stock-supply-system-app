@@ -16,6 +16,7 @@
     "@angular/compiler": "^16.2.0",
     "@angular/core": "^16.2.0",
     "@angular/fire": "^16.0.0",
+    "@angular/flex-layout": "^15.0.0-beta.42",
     "@angular/forms": "^16.2.0",
     "@angular/material": "^16.2.12",
     "@angular/platform-browser": "^16.2.0",
@@ -24,6 +25,10 @@
     "@ngneat/hot-toast": "^6.0.2",
     "@ngneat/overview": "5.1.1",
     "@ngneat/until-destroy": "^10.0.0",
+    "bootstrap": "^5.2.3",
+    "ng2-search-filter": "^0.5.1",
+    "ngx-bootstrap": "^11.0.2",
+    "ngx-image-cropper": "^7.2.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"

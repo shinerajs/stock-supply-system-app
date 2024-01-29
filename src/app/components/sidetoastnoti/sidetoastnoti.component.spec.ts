@@ -6,10 +6,12 @@ describe('SidetoastnotiComponent', () => {
   let component: SidetoastnotiComponent;
   let fixture: ComponentFixture<SidetoastnotiComponent>;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [SidetoastnotiComponent]
-    });
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ SidetoastnotiComponent ]
+    })
+    .compileComponents();
+
     fixture = TestBed.createComponent(SidetoastnotiComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

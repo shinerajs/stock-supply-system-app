@@ -1,4 +1,4 @@
-
+<!-- 
 <img class="image" src="../../../assets/trianglif.png" alt="background">
 <mat-toolbar color="primary">
     Stock Management System
@@ -38,4 +38,93 @@
         </div>
         <a class="center margin-top sign-up-link" routerLink="/auth/login"> Already have an account?</a>
     </form>
-</div>
+</div> -->
+<img class="image" src="../../../../../assets/trianglif.png" alt="background">
+<mat-toolbar color="primary">
+    Stock Management System
+    <button mat-button routerLink="/login">
+        <mat-icon>login</mat-icon>
+        Login
+    </button>
+
+</mat-toolbar>
+
+<div class="form-container mat-elevation-z5">
+    <h1>Sign Up a New User!</h1>
+                    <form (ngSubmit)="register(form, $event)" #form="ngForm" autocomplete="off">
+                        <ul>
+                            <li>
+                                <label for="name">Name*</label>
+                                <input type="text" placeholder="Enter your name" id="displayName" name="displayName"
+                                    [(ngModel)]="user.displayName" [required]="true" #username="ngModel">
+                            </li>
+                            <li>
+                                <mat-error *ngIf="
+                                username.invalid && (username.touched || username.dirty)
+                              ">
+                                    Name is required!
+                                </mat-error>
+                            </li>
+                            <li>
+                                <label for="email"> Email address* </label>
+                                <input type="text" placeholder="Enter an Email address" id="email" name="email"
+                                    [(ngModel)]="user.email" [required]="true" pattern=".+@.+\..+" #email="ngModel">
+                            </li>
+
+                            <li>
+                                <mat-error *ngIf="
+                                email.invalid && (email.touched || email.dirty)
+                              ">
+                                    Email is required!
+                                </mat-error>
+                            </li>
+                            <li>
+                                <label for="password"> Password* </label>
+                                <input type="password" id="password" name="password" placeholder="Create a Password"
+                                    [(ngModel)]="user.password" [required]="true" #password="ngModel" minlength="6"
+                                    validatePassword="password" required>
+                            </li>
+                            <li>
+                                <mat-error *ngIf="
+                                password.invalid && (password.touched || password.dirty)
+                              ">
+                                    Password is required!
+                                </mat-error>
+
+                            </li>
+
+                            <li>
+                                <label for="confirmPassword">Confirm Password* </label>
+                                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your Password"
+                                    [(ngModel)]="user.confirmPassword" [required]="true" #confirmPassword="ngModel" minlength="6"
+                                    validatePassword="confirmPassword" required>
+                            </li>
+                            <li>
+                                <mat-error *ngIf="form.errors?.['passwordsDontMatch']">
+                                    Passwords should match
+                                </mat-error>
+
+                            </li>
+
+
+                        </ul>
+                        <div class="signup__button ">
+                            <button mat-raised-button [disabled]="isSubmitting" class="button"
+                                style="background-color: #3f51b5;font-weight: 400;font-size: 18px;" type="submit">Sign Up</button>
+                        </div>
+                        <!-- <div class="text-center centerWritings">
+                            OR
+                        </div> -->
+                    </form>
+
+                    <mat-divider></mat-divider>
+                    <div class="text-center" style="margin: 10px auto;">
+                        <a style="color: #3f51b5;" routerLink="/auth/login">Already a member? Login</a>
+                    </div>
+                    <!-- <div class="signup_business__button ">
+                        <button mat-raised-button [disabled]="isSubmitting" class="button"
+                            routerLink="/auth/register" style="background-color:rgb(156, 139, 139) ;"
+                            type="button">Create a GM Client Account</button>
+                    </div> -->
+                </div>
+

@@ -14,7 +14,7 @@ export class ViewSupplierComponent {
   buttonName !: string;
   button !: string;
   id !: any;
-  name !: string;
+  displayName !: string;
   mobile !: string;
   product !: string;
   quantity !: string;
@@ -49,7 +49,7 @@ export class ViewSupplierComponent {
     this.id = data.id;
     this.tittle = data.tittle;
     this.buttonName = data.buttonName;
-    this.name = data.name;
+    this.displayName = data.displayName;
     this.mobile = data.mobile;
     this.product = data.product;
     this.quantity = data.quantity;

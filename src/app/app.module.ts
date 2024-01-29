@@ -41,6 +41,13 @@ import { SidetoastnotiComponent } from './components/sidetoastnoti/sidetoastnoti
 import { SupplierdetailsModule } from './views/supplierdetails/supplierdetails.module';
 import { AdminModule } from './views/admin/admin.module';
 import { AuthModule } from './views/auth/auth.module';
+import { ComponentsModuleModule } from './components/components-module.module';
+import { MatMenuModule} from '@angular/material/menu';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { UxserviceService } from './shared/services/uxservice.service';
+import { OverlayModule, OverlayRef } from '@angular/cdk/overlay';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 
 //import { ChipComponent } from './components/dashboard/chip/chip.component';
 //import { SidenavComponent } from './components/dashboard/sidenav/sidenav.component';
@@ -49,31 +56,28 @@ import { AuthModule } from './views/auth/auth.module';
 @NgModule({
   declarations: [
     AppComponent,
-    // SidebarComponent,
-    // SupplierComponent,
-    // AddSupplierComponent,
-    // DeleteSupplierComponent,
-    // ViewSupplierComponent,
-    // LoginComponent,
-    // RegisterComponent,
-    // LandingComponent,
     LayoutComponent,
     FooterComponent,
     AlertComponent,
-    // DashboardComponent,
-    // SuppliertabComponent,
-    // SupplierdetailsComponent,
-    // CompanydetailsComponent,
-    // SupplierworksComponent,
-    // CertificatesComponent,
-    // SidemenuComponent,
-    // AddCertificatesComponent,
-    CustomalertComponent,
-    LoadingscreenComponent,
-    SidetoastnotiComponent,
+
+    // CustomalertComponent,
+    // LoadingscreenComponent,
+    // SidetoastnotiComponent,
   ],
   providers: [
-    provideHotToastConfig(), // @ngneat/hot-toast providers
+    BsModalService,
+    {
+      provide: MatDialogRef,
+      useValue: {}
+    },
+    {
+      provide:MAT_DIALOG_DATA,
+      useValue:{}
+    },
+    { 
+      provide: OverlayRef, useValue: {} 
+    },
+    UxserviceService,
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -86,8 +90,10 @@ import { AuthModule } from './views/auth/auth.module';
     HttpClientModule,
     AdminModule,
     AuthModule,
-    SupplierdetailsModule,
+    MatIconModule,
     FormsModule,
+    OverlayModule,
+    ComponentsModuleModule,
     // AngularFireModule.initializeApp(environment.firebase),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),

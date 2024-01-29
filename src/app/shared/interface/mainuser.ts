@@ -29,7 +29,7 @@ export class MainUser {
 
     //add supplier
 
-    public contractor?: string;
+    public role?: string;
     public product?: string;
     public period?: string;
     public quantity?: string;

@@ -13,7 +13,7 @@ import {
 import { filter, from, map, Observable, of, switchMap } from 'rxjs';
 import { ProfileUser } from 'src/app/shared/interface/user';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { Auth } from '@angular/fire/auth';
+import { Auth, user } from '@angular/fire/auth';
 @Injectable({
   providedIn: 'root'
 })
@@ -30,40 +30,44 @@ export class UsersService {
           return of(null);
         }
 
-        const ref = doc(this.firestore, 'users', user?.uid);
+        const ref = doc(this.firestore, 'users-list', user?.uid);
         return docData(ref) as Observable<ProfileUser>;
       })
     );
   }
 
   addUser(user: ProfileUser): Observable<void> {
-    const ref = doc(this.firestore, 'users', user?.uid);
+    const ref = doc(this.firestore, 'users-list', user?.uid);
     return from(setDoc(ref, user));
   }
 
   loadUsers() {
-    const dbInstance = collection(this.firestore, 'users');
+    const dbInstance = collection(this.firestore, 'users-list');
     return collectionData(dbInstance, { idField: 'id' })
   }
 
   //for updating user details
-  // updateUser(user: ProfileUser): Observable<void> {
-  //   const ref = doc(this.firestore, 'users', user?.uid);
-  //   return from(updateDoc(ref, { ...user }));
-  // }
   updateUser(user: ProfileUser): Observable<void> {
-    const ref = doc(this.firestore, 'users/' + user?.uid + '/suppliers/' + 'Kcsq8mcf3frpvWXyRChI');
+    const ref = doc(this.firestore, 'users-list', user?.uid);
     return from(updateDoc(ref, { ...user }));
   }
+  // updateUser(user: ProfileUser): Observable<void> {
+  //   const ref = doc(this.firestore, 'users/' + user?.uid + '/suppliers/' + 'Kcsq8mcf3frpvWXyRChI');
+  //   return from(updateDoc(ref, { ...user }));
+  // }
 
 
 
-  getSupplierDetails(details: ProfileUser): Observable<ProfileUser[]> {
-    const supplierRef = collection(this.firestore, `supplierdetails/${details.id}`)
-    console.log(supplierRef);
-
+  getSupplierDetails(): Observable<ProfileUser[]> {
+    // const supplierRef = collection(this.firestore, `supplierdetails/${details.id}`)
+    const supplierRef = collection(this.firestore, 'users-list')
     return collectionData(supplierRef, { idField: 'id' }) as Observable<ProfileUser[]>
+  }
 
+  getSupplierById(user: ProfileUser): Observable<ProfileUser[]> {
+    const supplierRef = collection(this.firestore, `users-list/${user.uid}`)
+    console.log(supplierRef);
+    return collectionData(supplierRef, { idField: 'id' }) as Observable<ProfileUser[]>
   }
 
   async getUserDetails() {

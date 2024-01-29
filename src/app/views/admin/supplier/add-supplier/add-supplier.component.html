@@ -11,10 +11,10 @@
                     <mat-label style="font-size: 17px;">Supplier Name</mat-label>
                     <div class="inline">
                         <mat-icon class="icon">person</mat-icon>
-                        <input matInput placeholder="Enter Supplier name" formControlName="name" required>
+                        <input matInput placeholder="Enter Supplier name" formControlName="displayName" required>
                     </div>
                     <mat-error
-                        *ngIf="form.get('name')?.invalid || form.get('name')?.dirty || form.get('name')?.touched">Enter
+                        *ngIf="form.get('displayName')?.invalid || form.get('displayName')?.dirty || form.get('displayName')?.touched">Enter
                         full
                         name</mat-error>
                 </mat-form-field>
@@ -54,15 +54,14 @@
                         valid email address </mat-error>
                 </mat-form-field>
 
-
                 <mat-form-field>
-                    <mat-label style="font-size: 17px;">Select Contractor Type</mat-label>
-                    <mat-select formControlName="contractor" name="contractor">
-                        <mat-option *ngFor="let contractor of contractors" [value]="contractor">
-                            {{contractor}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
+                    <mat-label style="font-size: 17px;">Password</mat-label>
+                    <input matInput type="password" placeholder="Password" formControlName="password" />
+                    <mat-error *ngIf="password?.errors?.['required']">
+                      Password is required
+                    </mat-error>
+                  </mat-form-field>
+
 
                 <!-- <mat-form-field>
                     <mat-label style="font-size: 17px;">Item</mat-label>
@@ -77,6 +76,17 @@
 
         <mat-grid-tile>
             <div>
+                
+
+                <mat-form-field>
+                    <mat-label style="font-size: 17px;">Select Contractor Type</mat-label>
+                    <mat-select formControlName="role" name="role">
+                        <mat-option *ngFor="let role of roles" [value]="role">
+                            {{role}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
                 <mat-form-field>
                     <mat-label style="font-size: 17px;">Supervisor Email</mat-label>
                     <div class="inline">
@@ -109,7 +119,7 @@
                 </mat-form-field>
 
                 <!-- <app-chip></app-chip> -->
-                <mat-form-field class="example-chip-list">
+                <!-- <mat-form-field class="example-chip-list">
                     <mat-label style="font-size: 17px;">Add mandatory certificates*</mat-label>
                     <mat-chip-grid #chipGrid aria-label="Enter fruits">
                         <mat-chip-row *ngFor="let fruit of fruits" (removed)="remove(fruit)" [editable]="true"
@@ -126,7 +136,7 @@
                                 [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)" />
                         </div>
                     </mat-chip-grid>
-                </mat-form-field>
+                </mat-form-field> -->
 
                 <!-- <mat-form-field class="example-chip-list">
                     <mat-label>Favorite Fruits</mat-label>

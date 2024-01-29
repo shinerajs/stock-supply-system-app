@@ -1,13 +1,8 @@
 @use 'node_modules/@ngneat/hot-toast/src/styles/styles.scss';
 /* You can add global styles to this file, and also import other style files */
 
-html,
-body {
-  height: 100%;
-  margin: 0;
-  background: rgb(226, 222, 222);
-}
-
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 html,
 body {
   height: 100%;
@@ -18,7 +13,62 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-.btn {
-  width: 100%;
-  padding: 21px !important;
+.snackBarTheme {
+  color: #D06A3E;
+  background-color: white;
 }
+
+.snackBarThemeTopSide {
+  max-width: 300px !important;
+  background-color: #fff;
+  height: 100px;
+  position: absolute !important;
+  right: -10% !important;
+  right: 0% !important;
+  top: 60px !important;
+  opacity: 0;
+  padding: 0 !important;
+  // animation: myfirst 0.5s ease-in-out forwards;
+
+}
+
+.snackBarThemeWarning {
+  background-color: #ffffff;
+  color: #000000;
+}
+* :not(mat-icon,i){
+  font-family: Poppins,'sans-serif' !important;
+}
+
+.loadingScreenClass {
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
+  overflow: hidden;
+}
+
+.active-link {
+  // text-decoration: underline !important;
+  // text-underline-offset: 8px;
+  // color: black !important;
+  background-color: #cacaca;
+}
+.header{
+  h2{
+    margin-bottom: 0px !important;
+  }
+}
+
+::ng-deep  .documentUploadOverlayClass{
+  .cdk-overlay-pane{
+    width: 100% !important;
+    position: relative !important;
+    left: 500px !important;
+    top: 250px !important;
+  }
+
+}
+/* Importing Bootstrap SCSS file. */
+@import "./node_modules/bootstrap/scss/bootstrap";
+
+/* Importing Datepicker SCSS file. */
+@import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";

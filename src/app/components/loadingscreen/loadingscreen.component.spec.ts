@@ -6,10 +6,12 @@ describe('LoadingscreenComponent', () => {
   let component: LoadingscreenComponent;
   let fixture: ComponentFixture<LoadingscreenComponent>;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [LoadingscreenComponent]
-    });
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ LoadingscreenComponent ]
+    })
+    .compileComponents();
+
     fixture = TestBed.createComponent(LoadingscreenComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
